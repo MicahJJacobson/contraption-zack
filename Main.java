@@ -78,27 +78,23 @@ public class Main extends Application
             String item = scan.next();
             if (item.equals("T"))
             {
-               
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               gc.setFill(color);
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.setFill(Color.WHITE);
-               gc.fillRect(X,Y,50,50);
+               gc.fillRect(X,Y,50,50); 
             }
-            else if (item.equals("Y"))
-            {
-               int X = scan.nextInt();
-               int Y = scan.nextInt();
-               gc.setFill(Color.GREY);
-               gc.fillRect(X,Y,50,50);               
-            } 
             else if (item.equals("W"))
             {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               gc.setFill(color);
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.setFill(Color.LIGHTGREY);
                gc.fillRect(X,Y,50,50);               
             }  
-            else if (item.equals("LV"))
+            else if (item.equals("LH"))
             {
                int X = scan.nextInt();
                int Y = scan.nextInt();
@@ -111,7 +107,8 @@ public class Main extends Application
                int Y = scan.nextInt();
                gc.setFill(Color.GREEN);
                gc.fillRect(X,Y,50,50);          
-            }          }
+            }        
+         }
       }
       catch(FileNotFoundException fnfe)
       {
@@ -179,6 +176,15 @@ public class Main extends Application
             
          }
       }
+   }
+   public Color parseColor(String colorString) {
+      Color color;
+      try {
+         color = Color.web(colorString);
+      } catch (IllegalArgumentException e) {
+         color = Color.BLACK;
+      }
+      return color;
    }
    
    
