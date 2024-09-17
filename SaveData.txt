@@ -1,0 +1,1 @@
+playerx 784 playery 348
