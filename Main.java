@@ -37,9 +37,14 @@ public class Main extends Application
    ComboBox menu = new ComboBox();
    FlowPane fp = new FlowPane();
    GridPane gp = new GridPane();
-   Canvas theCanvas = new Canvas(1368,700);
+   Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
+   Player player = new Player(684,384);
+   int playerx = 768;
+   int playery = 348;
+   boolean up, down, left, right = false;
+   boolean nextlevel = false;
    public void start(Stage stage)
    {
       drawBackground();
@@ -119,8 +124,31 @@ public class Main extends Application
    {
       public void handle(long currentTimeInNanoSeconds) 
       {
-      
+         if(!nextlevel)
+         {
+            gc.clearRect(0,0,1368,768);
+            drawBackground();
+            drawItems();
+            player.draw(playerx,playery,gc,true);
+            if(up)
+            {
+               playery--;
+            }
+            if(down)
+            {
+               playery++;
+            }
+            if(left)
+            {
+               playerx--;
+            }
+            if(right)
+            {
+               playerx++;
+            }  
+         }       
       }
+      
    }
    public class KeyListenerDown implements EventHandler<KeyEvent>  
    {
@@ -139,15 +167,19 @@ public class Main extends Application
          }
          if (event.getCode() == KeyCode.W)  
          {
-            
+            up = true;
          }
+         if (event.getCode() == KeyCode.A)  
+         {
+            left = true;
+         }         
          if (event.getCode() == KeyCode.S)  
          {
-            
+            down = true;
          }
          if (event.getCode() == KeyCode.D)  
          {
-            
+            right = true;
          }
          
       
@@ -159,21 +191,21 @@ public class Main extends Application
       public void handle(KeyEvent event) 
       { 
       //Key listener to counter act when the action is released
-         if (event.getCode() == KeyCode.A) 
+         if (event.getCode() == KeyCode.W) 
          {
-            
+            up = false;
          }
-         if (event.getCode() == KeyCode.W)  
+         if (event.getCode() == KeyCode.A)  
          {
-            
+            left = false;
          }
          if (event.getCode() == KeyCode.S)  
          {
-            
+            down = false;
          }
          if (event.getCode() == KeyCode.D)  
          {
-            
+            right = false;
          }
       }
    }
