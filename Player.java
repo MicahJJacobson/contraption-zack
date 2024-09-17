@@ -14,6 +14,6 @@ public class Player extends Draw
    {
    //Creating the ovals with black outline around them
       gc.setFill(Color.RED);
-      gc.fillOval(x,y,50,50);
+      gc.fillRect(x,y,25,25);
    }
 }

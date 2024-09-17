@@ -15,23 +15,9 @@ public abstract class AbstractMech
       }
    }
    public abstract void drawMe(Graphicscontext gc);
+   public abstract void activate(AbstractMech mech);
 }   
 
-public class Button extends AbstractMech
-   {
-      public void doThing()
-      {
-         
-      
-      }
-      
-      
-      public void drawMe(Graphicscontext gc)
-      {
-      
-      
-      
-      }
       
       
       
@@ -40,8 +26,5 @@ public class Button extends AbstractMech
       
       
       
-      
-      
-   }
 
    

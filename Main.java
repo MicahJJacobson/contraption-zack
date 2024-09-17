@@ -35,14 +35,14 @@ public class Main extends Application
 
    AnimationHandler ta = new AnimationHandler();
    ComboBox menu = new ComboBox();
-   FlowPane fp = new FlowPane();
+   StackPane sp = new StackPane();
    GridPane gp = new GridPane();
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
    int boundariesU, boundariesD, boundariesL, boundariesR;
    Player player = new Player(684,384);
-   int playerx = 768;
+   int playerx = 684;
    int playery = 348;
    boolean up, down, left, right = false;
    boolean nextlevel = false;
@@ -53,14 +53,14 @@ public class Main extends Application
       //Establishing the flowpane of the project
       //Key lsiteners for moving the player
       gp.setAlignment(Pos.TOP_LEFT);
-      fp.setOnKeyPressed(new KeyListenerDown());
-      fp.setOnKeyReleased(new KeyListenerUp());
-      fp.getChildren().add(theCanvas);
-      fp.getChildren().add(gp);
-      Scene scene = new Scene(fp, 1368, 768);
+      sp.setOnKeyPressed(new KeyListenerDown());
+      sp.setOnKeyReleased(new KeyListenerUp());
+      sp.getChildren().add(theCanvas);
+      sp.getChildren().add(gp);
+      Scene scene = new Scene(sp, 1368, 768);
       stage.setScene(scene);
       stage.setTitle("Contraption Zac");
-      fp.requestFocus();
+      sp.requestFocus();
       stage.show();
       ta.start();
       
@@ -71,6 +71,48 @@ public class Main extends Application
       gc.setFill(Color.BLACK);
       gc.fillRect(0,0,theCanvas.getWidth(),theCanvas.getHeight());   
    }
+   public void loadReader()
+   {
+      try
+      {
+         Scanner savescan = new Scanner(new File("SaveData.txt"));
+         while(savescan.hasNext())
+         {
+            String objectscan = savescan.next();
+            if(objectscan.equals("playercords"))
+            {
+               playerx = savescan.nextInt();
+               playery = savescan.nextInt();
+            }
+         }
+      }
+      
+      catch(FileNotFoundException fnfe)
+      {
+      
+      }
+      
+      
+   }
+   public void saveData()
+   {
+      try
+      {
+         FileOutputStream fos = new FileOutputStream("SaveData.txt", true); //false means new file; true means append
+                     
+         PrintWriter pw = new PrintWriter(fos);
+                     
+         pw.println("playercords" + player.getX() + player.getY());
+                     
+         pw.close();      
+      }
+      
+      catch(FileNotFoundException fnfe)
+      {
+      
+      }
+   }
+      
    public void drawItems()
    {
    //Here I read through a file so we can track the highscore through every game
@@ -166,6 +208,8 @@ public class Main extends Application
                   playerx++;
                }  
             }
+            player.setX(player.getX() + playerx);
+            player.setY(player.getY() + playery);
          }       
       }
       
@@ -181,6 +225,14 @@ public class Main extends Application
             menu.getItems().add("Save");
             menu.getItems().add("Load");
             gp.getChildren().add(menu);
+            if(menu.getValue() == "Save")
+            {
+               saveData();
+            }
+            else if (menu.getValue() == "Load")
+            {
+               loadReader();
+            }
             
             
             
