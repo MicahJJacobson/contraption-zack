@@ -174,8 +174,6 @@ public class Main extends Application
    {
       public void handle(long currentTimeInNanoSeconds) 
       {
-         if(!nextlevel)
-         {
             gc.clearRect(0,0,1368,768);
             drawBackground();
             drawItems();
@@ -210,7 +208,7 @@ public class Main extends Application
             }
             player.setX(player.getX() + playerx);
             player.setY(player.getY() + playery);
-         }       
+                
       }
       
    }
