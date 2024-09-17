@@ -40,7 +40,10 @@ public class Main extends Application
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
+<<<<<<< HEAD
    int boundariesU, boundariesD, boundariesL, boundariesR;
+=======
+>>>>>>> 1997a02d0ecdb7dc8e11221fac688f50e25949a9
    Player player = new Player(684,384);
    int playerx = 768;
    int playery = 348;
@@ -138,6 +141,7 @@ public class Main extends Application
             drawBackground();
             drawItems();
             player.draw(playerx,playery,gc,true);
+<<<<<<< HEAD
             if(playery > boundariesU)
             {
                if(up)
@@ -166,6 +170,24 @@ public class Main extends Application
                   playerx++;
                }  
             }
+=======
+            if(up)
+            {
+               playery--;
+            }
+            if(down)
+            {
+               playery++;
+            }
+            if(left)
+            {
+               playerx--;
+            }
+            if(right)
+            {
+               playerx++;
+            }  
+>>>>>>> 1997a02d0ecdb7dc8e11221fac688f50e25949a9
          }       
       }
       
