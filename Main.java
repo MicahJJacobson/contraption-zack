@@ -52,6 +52,7 @@ public class Main extends Application
    boolean nextlevel = false;
    //checks if next level block is in boundaries
    boolean Inboundaries;
+   //Previous level boundaries
    boolean PInboundaries;
    //intially 1st level
    String levelFile = "1stLevel.txt";
@@ -132,7 +133,7 @@ public class Main extends Application
    //Here I read through a file so we can track the highscore through every game
       try
       {
-         Scanner scan = new Scanner(new File("1stLevel.txt"));
+         Scanner scan = new Scanner(new File(levelFile));
          
          
          while(scan.hasNext())
@@ -223,7 +224,7 @@ public class Main extends Application
       }
       catch(FileNotFoundException fnfe)
       {
-      
+         System.out.println("No next level file");
       }
    }
    public class AnimationHandler extends AnimationTimer
@@ -238,7 +239,7 @@ public class Main extends Application
                mechs.get(i).checkBoundaries(player);
             }
             player.draw(player.getX(),player.getY(),gc);
-            if(player.getY() > boundariesU)
+            if(player.getY() > boundariesU || (player.getX() > nextLevelL && player.getY() <= nextLevelU && player.getX()+50 <= nextLevelR))
             {
                if(up)
                {
