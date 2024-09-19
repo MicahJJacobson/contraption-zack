@@ -41,16 +41,14 @@ public class Main extends Application
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
    int boundariesU, boundariesD, boundariesL, boundariesR;
-<<<<<<< HEAD
+
    //window where player can access next level
    int nextLevelU, nextLevelL, nextLevelR;
    int prevLevelD, prevLevelL, prevLevelR;
-=======
->>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
+
    Player player = new Player(684,384);
    boolean up, down, left, right = false;
    boolean nextlevel = false;
-<<<<<<< HEAD
    //checks if next level block is in boundaries
    boolean Inboundaries;
    boolean PInboundaries;
@@ -60,9 +58,7 @@ public class Main extends Application
    String stagingFile;
    //for going back in file 
    String previousFile;
-=======
-   
->>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
+
    public void start(Stage stage)
    {
       drawBackground();
@@ -186,7 +182,6 @@ public class Main extends Application
                boundariesU = scan.nextInt();  
                boundariesL = scan.nextInt();
                boundariesR = scan.nextInt(); 
-<<<<<<< HEAD
             }
             //area where player can pass to next level 
             else if(item.equals("Next"))
@@ -220,9 +215,7 @@ public class Main extends Application
             {
                stagingFile = scan.next();
             }              
-=======
-            }                   
->>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
+          //}
          }
       }
       catch(FileNotFoundException fnfe)
@@ -242,10 +235,9 @@ public class Main extends Application
             {
                if(up)
                {
-<<<<<<< HEAD
-                  playery--;
+                  player.setY(player.getY() - 1);
                   //check if player is going to next level
-                  if(playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR)
+                  if(player.getX() > nextLevelL && player.getY() <= nextLevelU && player.getX()+50 <= nextLevelR)
                   {
                      if(Inboundaries) 
                      {
@@ -254,17 +246,14 @@ public class Main extends Application
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
-                     else if(playerx > nextLevelL && playery+25 < nextLevelU && playerx+50 <= nextLevelR) 
+                     else if(player.getX() > nextLevelL && player.getY()+25 < nextLevelU && player.getX()+50 <= nextLevelR) 
                      {
                         previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();   
                      }
                   }
-                  
-=======
-                  player.setY(player.getY() - 1);
->>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
+           
                }
             }
             if(player.getY() < boundariesD)
