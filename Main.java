@@ -209,8 +209,17 @@ public class Main extends Application
                   playery--;
                   if(playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR)
                   {
-                     levelFile = stagingFile;
-                     drawItems();
+                     if(Inboundaries) 
+                     {
+                        levelFile = stagingFile;
+                        drawItems();
+                     }
+                     //make sure player fully leaves boundaries
+                     else if(playerx > nextLevelL && playery+25 < nextLevelU && playerx+50 <= nextLevelR) 
+                     {
+                        levelFile = stagingFile;
+                        drawItems();   
+                     }
                   }
                   
                }
