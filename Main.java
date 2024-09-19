@@ -51,6 +51,7 @@ public class Main extends Application
    boolean nextlevel = false;
    //checks if next level block is in boundaries
    boolean Inboundaries;
+   //Previous level boundaries
    boolean PInboundaries;
    //intially 1st level
    String levelFile = "1stLevel.txt";
