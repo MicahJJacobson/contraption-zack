@@ -41,11 +41,15 @@ public class Main extends Application
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   int nextLevelU, nextLevelL, nextLevelR;
    Player player = new Player(684,384);
    int playerx = 684;
    int playery = 348;
    boolean up, down, left, right = false;
    boolean nextlevel = false;
+   //intially 1st level
+   String levelFile = "1stLevel.txt";
+   String stagingFile;
    public void start(Stage stage)
    {
       drawBackground();
@@ -118,7 +122,7 @@ public class Main extends Application
    //Here I read through a file so we can track the highscore through every game
       try
       {
-         Scanner scan = new Scanner(new File("1stLevel.txt"));
+         Scanner scan = new Scanner(new File(levelFile));
          
          
          while(scan.hasNext())
@@ -162,12 +166,24 @@ public class Main extends Application
                boundariesU = scan.nextInt();  
                boundariesL = scan.nextInt();
                boundariesR = scan.nextInt(); 
-            }                   
+            }
+            //area where player can pass to next level 
+            else if(item.equals("Next"))
+            {
+               nextLevelU = scan.nextInt();  
+               nextLevelL = scan.nextInt();
+               nextLevelR = scan.nextInt(); 
+            }
+            //name of next level
+            else if(item.equals("levelFile"))
+            {
+               stagingFile = scan.next();
+            }              
          }
       }
       catch(FileNotFoundException fnfe)
       {
-      
+         System.out.println("No next level found");
       }
    }
    public class AnimationHandler extends AnimationTimer
@@ -178,11 +194,17 @@ public class Main extends Application
             drawBackground();
             drawItems();
             player.draw(playerx,playery,gc,true);
-            if(playery > boundariesU)
+            if(playery > boundariesU || (playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR))
             {
                if(up)
                {
                   playery--;
+                  if(playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR)
+                  {
+                     levelFile = stagingFile;
+                     drawItems();
+                  }
+                  
                }
             }
             if(playery < boundariesD)
