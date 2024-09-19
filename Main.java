@@ -54,6 +54,8 @@ public class Main extends Application
    String levelFile = "1stLevel.txt";
    //put next level here temporarily 
    String stagingFile;
+   //for going back in file 
+   String previousFile;
    public void start(Stage stage)
    {
       drawBackground();
@@ -215,12 +217,14 @@ public class Main extends Application
                   {
                      if(Inboundaries) 
                      {
+                        previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
                      else if(playerx > nextLevelL && playery+25 < nextLevelU && playerx+50 <= nextLevelR) 
                      {
+                        previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();   
                      }
