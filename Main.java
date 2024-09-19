@@ -41,14 +41,16 @@ public class Main extends Application
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
    int boundariesU, boundariesD, boundariesL, boundariesR;
+<<<<<<< HEAD
    //window where player can access next level
    int nextLevelU, nextLevelL, nextLevelR;
    int prevLevelD, prevLevelL, prevLevelR;
+=======
+>>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
    Player player = new Player(684,384);
-   int playerx = 684;
-   int playery = 348;
    boolean up, down, left, right = false;
    boolean nextlevel = false;
+<<<<<<< HEAD
    //checks if next level block is in boundaries
    boolean Inboundaries;
    boolean PInboundaries;
@@ -58,12 +60,15 @@ public class Main extends Application
    String stagingFile;
    //for going back in file 
    String previousFile;
+=======
+   
+>>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
    public void start(Stage stage)
    {
       drawBackground();
       drawItems();
       //Establishing the flowpane of the project
-      //Key listeners for moving the player
+      //Key lsiteners for moving the player
       gp.setAlignment(Pos.TOP_LEFT);
       sp.setOnKeyPressed(new KeyListenerDown());
       sp.setOnKeyReleased(new KeyListenerUp());
@@ -93,8 +98,8 @@ public class Main extends Application
             String objectscan = savescan.next();
             if(objectscan.equals("playercords"))
             {
-               playerx = savescan.nextInt();
-               playery = savescan.nextInt();
+               player.setX(savescan.nextInt());
+               player.setY(savescan.nextInt());
             }
          }
       }
@@ -130,7 +135,7 @@ public class Main extends Application
    //Here I read through a file so we can track the highscore through every game
       try
       {
-         Scanner scan = new Scanner(new File(levelFile));
+         Scanner scan = new Scanner(new File("1stLevel.txt"));
          
          
          while(scan.hasNext())
@@ -161,6 +166,13 @@ public class Main extends Application
                gc.setFill(Color.BLACK);
                gc.fillRect(X,Y,300,1);          
             }
+            else if (item.equals("LV"))
+            {
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.setFill(Color.BLACK);
+               gc.fillRect(X,Y,1,1000);          
+            }              
             else if (item.equals("JK"))
             {
                int X = scan.nextInt();
@@ -174,6 +186,7 @@ public class Main extends Application
                boundariesU = scan.nextInt();  
                boundariesL = scan.nextInt();
                boundariesR = scan.nextInt(); 
+<<<<<<< HEAD
             }
             //area where player can pass to next level 
             else if(item.equals("Next"))
@@ -207,11 +220,14 @@ public class Main extends Application
             {
                stagingFile = scan.next();
             }              
+=======
+            }                   
+>>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
          }
       }
       catch(FileNotFoundException fnfe)
       {
-         System.out.println("No next level found");
+      
       }
    }
    public class AnimationHandler extends AnimationTimer
@@ -221,11 +237,12 @@ public class Main extends Application
             gc.clearRect(0,0,1368,768);
             drawBackground();
             drawItems();
-            player.draw(playerx,playery,gc,true);
-            if(playery > boundariesU || (playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR))
+            player.draw(player.getX(),player.getY(),gc);
+            if(player.getY() > boundariesU)
             {
                if(up)
                {
+<<<<<<< HEAD
                   playery--;
                   //check if player is going to next level
                   if(playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR)
@@ -245,32 +262,34 @@ public class Main extends Application
                      }
                   }
                   
+=======
+                  player.setY(player.getY() - 1);
+>>>>>>> 70990a2 (This is the updated program for level 1 and boundaries)
                }
             }
-            if(playery < boundariesD)
+            if(player.getY() < boundariesD)
             {
                if(down)
                {
-                  playery++;
+                  player.setY(player.getY() + 1);;
                }
             }
-            if(playerx > boundariesL)
+            if(player.getX() > boundariesL)
             {            
                if(left)
                {
-                  playerx--;
+                  player.setX(player.getX() - 1);
                }
             }
-            if(playerx < boundariesR)
+            if(player.getX() < boundariesR)
             {
                if(right)
                {
-                  playerx++;
+                  player.setX(player.getX() + 1);
                }  
             }
-            player.setX(player.getX() + playerx);
-            player.setY(player.getY() + playery);
                 
+            
       }
       
    }
