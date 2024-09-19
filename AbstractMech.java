@@ -69,7 +69,7 @@ public abstract class AbstractMech
       }
       */
    }
-   public abstract void drawMe(GraphicsContext gc);
+   public abstract void drawMe(GraphicsContext gc, Color color);
    public int getHeight()
    {
       return height;

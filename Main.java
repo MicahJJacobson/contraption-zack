@@ -40,6 +40,7 @@ public class Main extends Application
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
+   ArrayList<AbstractMech> mechs = new ArrayList<AbstractMech>();
    int boundariesU, boundariesD, boundariesL, boundariesR;
 
    //window where player can access next level
@@ -173,8 +174,10 @@ public class Main extends Application
             {
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.setFill(Color.GREEN);
-               gc.fillRect(X,Y,50,50);          
+               Wall jukebox = new Wall(X,Y,50,50);
+               jukebox.drawMe(gc,Color.GREEN);
+               mechs.add(jukebox);
+               //jukebox.checkBoundaries(player);         
             } 
             else if(item.equals("Boundaries"))
             {
@@ -230,6 +233,10 @@ public class Main extends Application
             gc.clearRect(0,0,1368,768);
             drawBackground();
             drawItems();
+            for(int i = 0; i<mechs.size(); i++)
+            {
+               mechs.get(i).checkBoundaries(player);
+            }
             player.draw(player.getX(),player.getY(),gc);
             if(player.getY() > boundariesU)
             {

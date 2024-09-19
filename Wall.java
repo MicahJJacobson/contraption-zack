@@ -42,10 +42,11 @@ public class Wall extends AbstractMech
       super(x, y, width, height, hasCollisions);
    }
    
-   public void drawMe(GraphicsContext gc)
+   public void drawMe(GraphicsContext gc, Color color)
    {
-      gc.setFill(Color.RED);
+      gc.setFill(color);
       gc.fillRect(x, y, width, height);
+      
    }
    
    public void doThing()
