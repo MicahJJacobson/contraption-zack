@@ -47,6 +47,7 @@ public class Main extends Application
    int playery = 348;
    boolean up, down, left, right = false;
    boolean nextlevel = false;
+   boolean Inboundaries;
    //intially 1st level
    String levelFile = "1stLevel.txt";
    String stagingFile;
@@ -173,6 +174,13 @@ public class Main extends Application
                nextLevelU = scan.nextInt();  
                nextLevelL = scan.nextInt();
                nextLevelR = scan.nextInt(); 
+            }
+            //tells if next level block will be in boundaries or out 
+            else if(item.equals("In?"))
+            {
+               String In = scan.next();
+               Inboundaries = Boolean.parseBoolean(In);
+               
             }
             //name of next level
             else if(item.equals("levelFile"))
