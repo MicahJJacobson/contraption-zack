@@ -41,22 +41,25 @@ public class Main extends Application
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   //window where player can access next level
    int nextLevelU, nextLevelL, nextLevelR;
    Player player = new Player(684,384);
    int playerx = 684;
    int playery = 348;
    boolean up, down, left, right = false;
    boolean nextlevel = false;
+   //checks if next level block is in boundaries
    boolean Inboundaries;
    //intially 1st level
    String levelFile = "1stLevel.txt";
+   //put next level here temporarily 
    String stagingFile;
    public void start(Stage stage)
    {
       drawBackground();
       drawItems();
       //Establishing the flowpane of the project
-      //Key lsiteners for moving the player
+      //Key listeners for moving the player
       gp.setAlignment(Pos.TOP_LEFT);
       sp.setOnKeyPressed(new KeyListenerDown());
       sp.setOnKeyReleased(new KeyListenerUp());
@@ -207,6 +210,7 @@ public class Main extends Application
                if(up)
                {
                   playery--;
+                  //check if player is going to next level
                   if(playerx > nextLevelL && playery <= nextLevelU && playerx+50 <= nextLevelR)
                   {
                      if(Inboundaries) 
