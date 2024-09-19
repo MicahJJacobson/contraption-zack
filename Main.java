@@ -43,6 +43,7 @@ public class Main extends Application
    int boundariesU, boundariesD, boundariesL, boundariesR;
    //window where player can access next level
    int nextLevelU, nextLevelL, nextLevelR;
+   int prevLevelD, prevLevelL, prevLevelR;
    Player player = new Player(684,384);
    int playerx = 684;
    int playery = 348;
@@ -50,6 +51,7 @@ public class Main extends Application
    boolean nextlevel = false;
    //checks if next level block is in boundaries
    boolean Inboundaries;
+   boolean PInboundaries;
    //intially 1st level
    String levelFile = "1stLevel.txt";
    //put next level here temporarily 
@@ -185,6 +187,19 @@ public class Main extends Application
             {
                String In = scan.next();
                Inboundaries = Boolean.parseBoolean(In);
+               
+            }
+            else if(item.equals("Previous"))
+            {
+               prevLevelD = scan.nextInt();  
+               prevLevelL = scan.nextInt();
+               prevLevelR = scan.nextInt();
+               
+            }
+            else if(item.equals("PIn?"))
+            {
+               String In = scan.next();
+               PInboundaries = Boolean.parseBoolean(In);
                
             }
             //name of next level
