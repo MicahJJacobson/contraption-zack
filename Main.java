@@ -175,7 +175,7 @@ public class Main extends Application
             {
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               Wall jukebox = new Wall(X,Y,50,50);
+               Wall jukebox = new Wall(X,Y,50,50, true);
                jukebox.drawMe(gc,Color.GREEN);
                mechs.add(jukebox);
                //jukebox.checkBoundaries(player);         

@@ -81,6 +81,11 @@ public abstract class AbstractMech
    
    public boolean checkBoundaries(Player player) 
    {
+      if(!hasCollisions)
+      {
+         return false;
+      }
+      
       // Define the top-left and bottom-right corners of the player's rectangle.
       Point playerTopLeft = new Point(player.getX(), player.getY());
       Point playerBottomRight = new Point(player.getX() + player.getSize(), player.getY() + player.getSize());
