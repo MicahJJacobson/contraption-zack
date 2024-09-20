@@ -238,7 +238,7 @@ public class Main extends Application
             {
                mechs.get(i).checkBoundaries(player);
             }
-            player.draw(player.getX(),player.getY(),gc);
+            player.drawMe(player.getX(),player.getY(),gc);
             if(player.getY() > boundariesU || (player.getX() > nextLevelL && player.getY() <= nextLevelU && player.getX()+50 <= nextLevelR))
             {
                if(up)

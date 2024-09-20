@@ -22,7 +22,7 @@ public class Player
       this.size = size;
    }
    //draws itself at the passed in x and y.
-   public void draw(int x, int y, GraphicsContext gc)
+   public void drawMe(int x, int y, GraphicsContext gc)
    {
    //Creating the ovals with black outline around them
       gc.setFill(Color.RED);
