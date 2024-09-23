@@ -42,9 +42,15 @@ public class Main extends Application
    String garbage;
    ArrayList<AbstractMech> mechs = new ArrayList<AbstractMech>();
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   
+   levelSwitch nextULevel = new levelSwitch();
+   levelSwitch nextULevel2 = new levelSwitch();
+   levelSwitch nextLLevel = new levelSwitch();
 
    //window where player can access next level
-   int nextLevelU, nextLevelL, nextLevelR;
+   int nextULevelU, nextULevelL, nextULevelR;
+   int nextULevelU2, nextULevelL2, nextULevelR2;
+   int nextLLevelU, nextLLevelL, nextLLevelD;
    int prevLevelD, prevLevelL, prevLevelR;
 
    Player player = new Player(684,384);
@@ -187,18 +193,40 @@ public class Main extends Application
                boundariesL = scan.nextInt();
                boundariesR = scan.nextInt(); 
             }
-            //area where player can pass to next level 
-            else if(item.equals("Next"))
+            //area where player can pass to next level(s) 
+            else if(item.equals("NextU"))
             {
-               nextLevelU = scan.nextInt();  
-               nextLevelL = scan.nextInt();
-               nextLevelR = scan.nextInt(); 
+               nextULevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+            }
+            else if(item.equals("NextU2"))
+            {
+               nextULevelU2 = scan.nextInt();  
+               nextULevelL2 = scan.nextInt();
+               nextULevelR2 = scan.nextInt(); 
+            }
+            else if(item.equals("NextL"))
+            {
+               nextLLevelU = scan.nextInt();  
+               nextLLevelL = scan.nextInt();
+               nextLLevelD = scan.nextInt(); 
             }
             //tells if next level block will be in boundaries or out 
-            else if(item.equals("In?"))
+            else if(item.equals("In?U"))
             {
                String In = scan.next();
-               Inboundaries = Boolean.parseBoolean(In);
+               nextULevel.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            else if(item.equals("In?U2"))
+            {
+               String In = scan.next();
+               nextULevel2.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            else if(item.equals("In?L"))
+            {
+               String In = scan.next();
+               nextLLevel.Inbound(Boolean.parseBoolean(In));
                
             }
             else if(item.equals("Previous"))
@@ -208,6 +236,7 @@ public class Main extends Application
                prevLevelR = scan.nextInt();
                
             }
+            //tells if previous level block will be in boundaries or out
             else if(item.equals("PIn?"))
             {
                String In = scan.next();
@@ -219,7 +248,7 @@ public class Main extends Application
             {
                stagingFile = scan.next();
             }              
-          //}
+          
          }
       }
       catch(FileNotFoundException fnfe)
@@ -239,27 +268,31 @@ public class Main extends Application
                mechs.get(i).checkBoundaries(player);
             }
             player.drawMe(player.getX(),player.getY(),gc);
-            if(player.getY() > boundariesU || (player.getX() > nextLevelL && player.getY() <= nextLevelU && player.getX()+50 <= nextLevelR))
+            if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY(), "up") || nextULevel2.canGo(player.getX(),player.getY(), "up"))
             {
                if(up)
                {
                   player.setY(player.getY() - 1);
                   //check if player is going to next level
-                  if(player.getX() > nextLevelL && player.getY() <= nextLevelU && player.getX()+50 <= nextLevelR)
+                  if(nextULevel.canGo(player.getX(),player.getY(), "up"))
                   {
-                     if(Inboundaries) 
+                     if(nextULevel.isInbound()) 
                      {
                         previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
-                     else if(player.getX() > nextLevelL && player.getY()+25 < nextLevelU && player.getX()+50 <= nextLevelR) 
+                     else if(nextULevel.isOut(player.getX(),player.getY(), "up")) 
                      {
                         previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();   
                      }
+                  }
+                  else if(nextULevel2.canGo(player.getX(),player.getY(), "up"))
+                  {
+                     //same code but for level 2
                   }
            
                }
