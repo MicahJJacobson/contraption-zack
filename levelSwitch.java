@@ -6,6 +6,7 @@ public class levelSwitch
     int winningSide, boundary1, boundary2;
     //shows winning direction as string
     String winningDirection;
+    String nextLevel;
     //is winning block inside or outside boundaries
     boolean inorout;
     
@@ -26,6 +27,16 @@ public class levelSwitch
     public void Inbound(boolean in)
     {
       inorout=in; 
+    }
+    
+    public void staging(String in)
+    {
+      nextLevel=in;  
+    }
+    
+    public String getStaging()
+    {
+      return nextLevel;  
     }
     
     public boolean isInbound()
@@ -78,6 +89,17 @@ public class levelSwitch
       else if(winningDirection.equals("left"))
       {
          if (posy > boundary1 && posx <= winningSide && posy+50 <= boundary2)
+         {
+            return true;
+         }
+         else 
+         {
+            return false;
+         }
+      }
+      else if(winningDirection.equals("down"))
+      {
+         if (posx > boundary1 && posy >= winningSide && posx+50 <= boundary2)
          {
             return true;
          }

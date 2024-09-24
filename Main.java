@@ -46,26 +46,14 @@ public class Main extends Application
    levelSwitch nextULevel = new levelSwitch("up");
    levelSwitch nextULevel2 = new levelSwitch("up");
    levelSwitch nextLLevel = new levelSwitch("left");
-
-   //window where player can access next level
-   int nextULevelU, nextULevelL, nextULevelR;
-   int nextULevelU2, nextULevelL2, nextULevelR2;
-   int nextLLevelU, nextLLevelL, nextLLevelD;
-   int prevLevelD, prevLevelL, prevLevelR;
+   levelSwitch prevDLevel = new levelSwitch("down"); 
 
    Player player = new Player(684,384);
    boolean up, down, left, right = false;
    boolean nextlevel = false;
-   //checks if next level block is in boundaries
-   boolean Inboundaries;
-   //Previous level boundaries
-   boolean PInboundaries;
+
    //intially 1st level
    String levelFile = "1stLevel.txt";
-   //put next level here temporarily 
-   String stagingFile;
-   //for going back in file 
-   String previousFile;
 
    public void start(Stage stage)
    {
@@ -200,15 +188,11 @@ public class Main extends Application
             }
             else if(item.equals("NextU2"))
             {
-               nextULevelU2 = scan.nextInt();  
-               nextULevelL2 = scan.nextInt();
-               nextULevelR2 = scan.nextInt(); 
+               nextULevel2.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
             }
             else if(item.equals("NextL"))
             {
-               nextLLevelU = scan.nextInt();  
-               nextLLevelL = scan.nextInt();
-               nextLLevelD = scan.nextInt(); 
+               nextLLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt()); 
             }
             //tells if next level block will be in boundaries or out 
             else if(item.equals("In?U"))
@@ -229,24 +213,22 @@ public class Main extends Application
                nextLLevel.Inbound(Boolean.parseBoolean(In));
                
             }
-            else if(item.equals("Previous"))
+            else if(item.equals("PreviousD"))
             {
-               prevLevelD = scan.nextInt();  
-               prevLevelL = scan.nextInt();
-               prevLevelR = scan.nextInt();
+               prevDLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
                
             }
             //tells if previous level block will be in boundaries or out
-            else if(item.equals("PIn?"))
+            else if(item.equals("PIn?D"))
             {
                String In = scan.next();
-               PInboundaries = Boolean.parseBoolean(In);
+               prevDLevel.Inbound(Boolean.parseBoolean(In));
                
             }
             //name of next level
             else if(item.equals("levelFile"))
             {
-               stagingFile = scan.next();
+               nextULevel.staging(scan.next());
             }              
           
          }
