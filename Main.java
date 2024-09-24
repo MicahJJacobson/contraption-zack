@@ -268,13 +268,13 @@ public class Main extends Application
                mechs.get(i).checkBoundaries(player);
             }
             player.drawMe(player.getX(),player.getY(),gc);
-            if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY(), "up") || nextULevel2.canGo(player.getX(),player.getY(), "up"))
+            if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY()) || nextULevel2.canGo(player.getX(),player.getY()))
             {
                if(up)
                {
                   player.setY(player.getY() - 1);
                   //check if player is going to next level
-                  if(nextULevel.canGo(player.getX(),player.getY(), "up"))
+                  if(nextULevel.canGo(player.getX(),player.getY()))
                   {
                      if(nextULevel.isInbound()) 
                      {
@@ -283,14 +283,14 @@ public class Main extends Application
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
-                     else if(nextULevel.isOut(player.getX(),player.getY(), "up")) 
+                     else if(nextULevel.isOut(player.getX(),player.getY()))
                      {
                         previousFile = levelFile;
                         levelFile = stagingFile;
                         drawItems();   
                      }
                   }
-                  else if(nextULevel2.canGo(player.getX(),player.getY(), "up"))
+                  else if(nextULevel2.canGo(player.getX(),player.getY()))
                   {
                      //same code but for level 2
                   }
@@ -301,14 +301,33 @@ public class Main extends Application
             {
                if(down)
                {
-                  player.setY(player.getY() + 1);;
+                  player.setY(player.getY() + 1);
                }
             }
-            if(player.getX() > boundariesL)
+            if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()))
             {            
                if(left)
                {
                   player.setX(player.getX() - 1);
+                  
+                  //check if player is going to next level
+                  if(nextLLevel.canGo(player.getX(),player.getY()))
+                  {
+                     if(nextLLevel.isInbound()) 
+                     {
+                        previousFile = levelFile;
+                        levelFile = stagingFile;
+                        drawItems();
+                     }
+                     //make sure player fully leaves boundaries
+                     else if(nextLLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        previousFile = levelFile;
+                        levelFile = stagingFile;
+                        drawItems();   
+                     }
+                  }
+                  
                }
             }
             if(player.getX() < boundariesR)
