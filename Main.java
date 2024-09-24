@@ -226,10 +226,19 @@ public class Main extends Application
                
             }
             //name of next level
-            else if(item.equals("levelFile"))
+            else if(item.equals("levelUFile"))
             {
                nextULevel.staging(scan.next());
-            }              
+            } 
+            else if(item.equals("levelUFile2"))
+            {
+               nextULevel2.staging(scan.next());
+            } 
+            else if(item.equals("levelLFile"))
+            {
+               nextLLevel.staging(scan.next());
+            }     
+                     
           
          }
       }
@@ -260,15 +269,15 @@ public class Main extends Application
                   {
                      if(nextULevel.isInbound()) 
                      {
-                        previousFile = levelFile;
-                        levelFile = stagingFile;
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextULevel.getStaging();
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
                      else if(nextULevel.isOut(player.getX(),player.getY()))
                      {
-                        previousFile = levelFile;
-                        levelFile = stagingFile;
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextULevel.getStaging();
                         drawItems();   
                      }
                   }
@@ -279,11 +288,31 @@ public class Main extends Application
            
                }
             }
-            if(player.getY() < boundariesD)
+            if(player.getY() < boundariesD || prevDLevel.canGo(player.getX(),player.getY()))
             {
                if(down)
                {
                   player.setY(player.getY() + 1);
+                  
+                  //check if player is going to next level
+                  if(prevDLevel.canGo(player.getX(),player.getY()))
+                  {
+                     if(prevDLevel.isInbound()) 
+                     {
+                        //need to fix with previous previous level somehow (if applicable)
+                        prevDLevel.staging(levelFile);
+                        levelFile = prevDLevel.getStaging();
+                        drawItems();
+                     }
+                     //make sure player fully leaves boundaries
+                     else if(nextLLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        //need to fix with previous previous level somehow (if applicable)
+                        prevDLevel.staging(levelFile);
+                        levelFile = prevDLevel.getStaging();
+                        drawItems();   
+                     }
+                  }
                }
             }
             if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()))
@@ -297,15 +326,15 @@ public class Main extends Application
                   {
                      if(nextLLevel.isInbound()) 
                      {
-                        previousFile = levelFile;
-                        levelFile = stagingFile;
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextLLevel.getStaging();
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
                      else if(nextLLevel.isOut(player.getX(),player.getY())) 
                      {
-                        previousFile = levelFile;
-                        levelFile = stagingFile;
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextLLevel.getStaging();
                         drawItems();   
                      }
                   }
