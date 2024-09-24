@@ -300,7 +300,7 @@ public class Main extends Application
                      if(prevDLevel.isInbound()) 
                      {
                         //need to fix with previous previous level somehow (if applicable)
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = prevDLevel.getStaging();
                         drawItems();
                      }
@@ -308,7 +308,7 @@ public class Main extends Application
                      else if(nextLLevel.isOut(player.getX(),player.getY())) 
                      {
                         //need to fix with previous previous level somehow (if applicable)
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = prevDLevel.getStaging();
                         drawItems();   
                      }
