@@ -43,9 +43,9 @@ public class Main extends Application
    ArrayList<AbstractMech> mechs = new ArrayList<AbstractMech>();
    int boundariesU, boundariesD, boundariesL, boundariesR;
    
-   levelSwitch nextULevel = new levelSwitch();
-   levelSwitch nextULevel2 = new levelSwitch();
-   levelSwitch nextLLevel = new levelSwitch();
+   levelSwitch nextULevel = new levelSwitch("up");
+   levelSwitch nextULevel2 = new levelSwitch("up");
+   levelSwitch nextLLevel = new levelSwitch("left");
 
    //window where player can access next level
    int nextULevelU, nextULevelL, nextULevelR;
