@@ -142,6 +142,16 @@ public class Main extends Application
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50); 
             }
+            //level block
+            else if (item.equals("TW"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               gc.setFill(color);
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.fillRect(X,Y,50,50);               
+            }
             else if (item.equals("W"))
             {
                String colorString = scan.next();
@@ -150,7 +160,7 @@ public class Main extends Application
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50);               
-            }  
+            } 
             else if (item.equals("LH"))
             {
                int X = scan.nextInt();
