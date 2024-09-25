@@ -40,9 +40,16 @@ public class Main extends Application
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    String garbage;
+   int dooramountbase = 0;
+   int rotation = 0;
    ArrayList<AbstractMech> mechs = new ArrayList<AbstractMech>();
+   ArrayList<AbstractMech> doormechs = new ArrayList<AbstractMech>();
    int boundariesU, boundariesD, boundariesL, boundariesR;
-   
+   boolean hasDoors = false;
+   int doorX;
+   int doorY;
+   int doorcounter = 0;
+   int dooramount;
    levelSwitch nextULevel = new levelSwitch("up");
    levelSwitch nextULevel2 = new levelSwitch("up");
    levelSwitch nextLLevel = new levelSwitch("left");
@@ -53,7 +60,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+   String levelFile = "2ndLevel.txt";
 
    public void start(Stage stage)
    {
@@ -134,7 +141,7 @@ public class Main extends Application
          {
             String item = scan.next();
              //Tile  
-            if (item.equals("T"))
+            if(item.equals("T"))
             {
                String colorString = scan.next();
                Color color = parseColor(colorString);
@@ -142,17 +149,20 @@ public class Main extends Application
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50); 
-            }
+            }           
             else if(item.equals("D"))
-            {
-               String colorString = scan.next();
-               Color color = parseColor(colorString);
-               int X = scan.nextInt();
-               int Y = scan.nextInt();
-               Door door = new Door(X,Y,25,50, true);
-               door.drawMe(gc,color);
-               mechs.add(door);  
-            }
+               {
+                if(dooramountbase < 4)
+                {
+                  int X = scan.nextInt();
+                  int Y = scan.nextInt();
+                  Door door = new Door(X,Y,25,50, true);
+                  doormechs.add(door);  
+                  hasDoors = true;
+                  dooramountbase++;    
+                }
+               }
+             
             //level block
             else if (item.equals("TW"))
             {
@@ -174,6 +184,7 @@ public class Main extends Application
                wall.drawMe(gc,color);
                mechs.add(wall);             
             } 
+            //Horizontal Lines
             else if (item.equals("LH"))
             {
                int X = scan.nextInt();
@@ -181,13 +192,15 @@ public class Main extends Application
                gc.setFill(Color.BLACK);
                gc.fillRect(X,Y,300,1);          
             }
+            //Vertical Lines
             else if (item.equals("LV"))
             {
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.setFill(Color.BLACK);
-               gc.fillRect(X,Y,1,1000);          
-            }              
+               gc.fillRect(X,Y,1,385);          
+            }  
+            //Boundaries of the level            
             else if(item.equals("Boundaries"))
             {
                boundariesD = scan.nextInt();
@@ -272,6 +285,36 @@ public class Main extends Application
             {
                mechs.get(i).checkBoundaries(player);
             }
+            if(hasDoors == true)
+            {
+              for(int i = 0; i<doormechs.size(); i++)
+                  {
+                     doormechs.get(i).drawMe(gc,Color.GREY);
+                     doormechs.get(i).checkBoundaries(player);
+                  }  
+               int dooramount = dooramountbase; 
+               if(doorcounter == 150)
+               {
+                  doorcounter = 0;
+                  if(rotation > 0)
+                  {
+                  Door closeddoor = new Door(doorX,doorY,25,50,true);
+                  closeddoor.drawMe(gc,Color.GREY);
+                  doormechs.add(closeddoor);
+                  }
+                  doorX = doormechs.get(0).getX();
+                  doorY = doormechs.get(0).getY();
+                  doormechs.remove(0);
+                  gc.clearRect(doorX,doorY,25,50);
+                  rotation++;
+                  if(dooramountbase > 1)
+                  {
+                  dooramount--;;
+                  }
+               }
+               
+                
+            }           
             player.drawMe(player.getX(),player.getY(),gc);
             if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY()) || nextULevel2.canGo(player.getX(),player.getY()))
             {
@@ -362,6 +405,7 @@ public class Main extends Application
                   player.setX(player.getX() + 1);
                }  
             }
+            doorcounter++;
                 
             
       }
