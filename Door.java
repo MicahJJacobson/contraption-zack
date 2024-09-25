@@ -45,6 +45,8 @@ public class Door extends AbstractMech
       {
          gc.setFill(color);
          gc.fillRect(x, y, width, height);
+         gc.setFill(Color.BLACK);
+         gc.fillRect(x,y+25,25,1);
       }
    public void doThing()
       {

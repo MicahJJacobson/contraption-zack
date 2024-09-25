@@ -133,6 +133,7 @@ public class Main extends Application
          while(scan.hasNext())
          {
             String item = scan.next();
+             //Tile  
             if (item.equals("T"))
             {
                String colorString = scan.next();
@@ -141,6 +142,16 @@ public class Main extends Application
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50); 
+            }
+            else if(item.equals("D"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               Door door = new Door(X,Y,25,50, true);
+               door.drawMe(gc,color);
+               mechs.add(door);  
             }
             //level block
             else if (item.equals("TW"))
@@ -152,14 +163,16 @@ public class Main extends Application
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50);               
             }
+            //Wall
             else if (item.equals("W"))
             {
                String colorString = scan.next();
                Color color = parseColor(colorString);
-               gc.setFill(color);
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.fillRect(X,Y,50,50);               
+               Wall wall = new Wall(X,Y,50,50, true);
+               wall.drawMe(gc,color);
+               mechs.add(wall);             
             } 
             else if (item.equals("LH"))
             {
@@ -175,15 +188,6 @@ public class Main extends Application
                gc.setFill(Color.BLACK);
                gc.fillRect(X,Y,1,1000);          
             }              
-            else if (item.equals("JK"))
-            {
-               int X = scan.nextInt();
-               int Y = scan.nextInt();
-               Wall jukebox = new Wall(X,Y,50,50, true);
-               jukebox.drawMe(gc,Color.GREEN);
-               mechs.add(jukebox);
-               //jukebox.checkBoundaries(player);         
-            } 
             else if(item.equals("Boundaries"))
             {
                boundariesD = scan.nextInt();
