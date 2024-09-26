@@ -132,6 +132,16 @@ public abstract class AbstractMech
       {
          player.setY(player.getY() + overlapBottom); // Move player down
       }
+      
+      if(this instanceof Button)
+      {
+         Button button = (Button)this;
+         if(button.getCollisions() == true)
+         {
+            System.out.println("yes");
+            button.swapCollisions();
+         }
+      }
 
       //if the rectangles overlap, then return true
       return true; 

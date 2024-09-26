@@ -33,12 +33,13 @@ import javafx.geometry.*;
 public class Button extends AbstractMech
 {
    private Color color;
-   private static ArrayList<Spike> spikes;
+   private static ArrayList<Spike> spikes = new ArrayList<Spike>();
 
    public Button(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
       super(x, y, width, height, hasCollisions);
       this.color = color;
+      spikes.add(new Spike(10000, 10000, true, Color.GREEN));
    }
    
    public void swapCollisions()
@@ -47,6 +48,18 @@ public class Button extends AbstractMech
       //if it is true, it will change it to false
       //if it is false, it will change it to true
       hasCollisions = !hasCollisions;
+      for(int i = 0; i < spikes.size(); i++)
+      {
+         if(spikes.get(i).getColor().equals(color))
+         {
+            spikes.get(i).swapCollisions();
+         }
+      }
+   }
+   
+   public boolean getCollisions()
+   {
+      return hasCollisions;
    }
    
    public void drawMe(GraphicsContext gc, Color color)
@@ -58,13 +71,30 @@ public class Button extends AbstractMech
    
    public void drawMe(GraphicsContext gc)
    {
-      int borderWidth = 5;
-      gc.setFill(color);
-      gc.fillRect(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
+      if(hasCollisions)
+      {
+         int borderWidth = 5;
+         gc.setFill(color);
+         gc.fillRect(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
+      }
+      else
+      {
+         int borderWidth = 7;
+         gc.setFill(color);
+         gc.fillRect(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
+      }
+      
    }
    
    public void addSpike(Spike spike)
    {
       spikes.add(spike);
    }
+   
+   public Color getColor()
+   {
+      return color;
+   }
+   
+   
 }

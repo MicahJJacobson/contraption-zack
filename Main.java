@@ -54,6 +54,12 @@ public class Main extends Application
    levelSwitch nextULevel2 = new levelSwitch("up");
    levelSwitch nextLLevel = new levelSwitch("left");
    levelSwitch prevDLevel = new levelSwitch("down"); 
+   
+   /*
+   Spike newSpike = new Spike(684, 134, true, Color.GREEN);
+   Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
+   */
+   
 
    Player player = new Player(684,384);
    boolean up, down, left, right = false;
@@ -64,6 +70,12 @@ public class Main extends Application
 
    public void start(Stage stage)
    {
+      /*
+      mechs.add(newSpike);
+      mechs.add(newButton);
+      newButton.addSpike(newSpike);
+      */
+      
       drawBackground();
       drawItems();
       //Establishing the flowpane of the project
@@ -129,12 +141,15 @@ public class Main extends Application
       }
    }
       
+   
    public void drawItems()
    {
    //Here I read through a file so we can track the highscore through every game
       try
       {
          Scanner scan = new Scanner(new File(levelFile));
+         
+         
          
          
          while(scan.hasNext())
@@ -264,7 +279,12 @@ public class Main extends Application
             else if(item.equals("levelLFile"))
             {
                nextLLevel.staging(scan.next());
-            }     
+            }    
+            
+            /*
+            newSpike.drawMe(gc);
+            newButton.drawMe(gc); 
+            */
                      
           
          }
