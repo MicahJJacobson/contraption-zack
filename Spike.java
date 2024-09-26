@@ -83,25 +83,25 @@ public class Spike extends AbstractMech
       gc.fillOval(x + 2 * (circleDiameter + spaceBetweenCircles), y, circleDiameter, circleDiameter); // Third circle
    */
    
-   double totalWidth = 50; // Total available width
-    double circleDiameter = 12; // Diameter of each circle
-    int numberOfCircles = 3; // Number of circles
+      double totalWidth = 50; // Total available width
+      double circleDiameter = 12; // Diameter of each circle
+      int numberOfCircles = 3; // Number of circles
 
-    // Calculate the total space occupied by all circles combined
-    double totalCirclesWidth = numberOfCircles * circleDiameter;
+      // Calculate the total space occupied by all circles combined
+      double totalCirclesWidth = numberOfCircles * circleDiameter;
 
-    // Calculate the remaining space after placing the circles
-    double remainingSpace = totalWidth - totalCirclesWidth;
+      // Calculate the remaining space after placing the circles
+      double remainingSpace = totalWidth - totalCirclesWidth;
 
-    // Calculate the padding on the left and right sides, as well as space between the circles
-    double leftRightPadding = remainingSpace / 4; // Dividing by 4 as there will be padding on both sides and space between circles
-    double spaceBetweenCircles = leftRightPadding; // Space between circles is the same as left-right padding
+      // Calculate the padding on the left and right sides, as well as space between the circles
+      double leftRightPadding = remainingSpace / 4; // Dividing by 4 as there will be padding on both sides and space between circles
+      double spaceBetweenCircles = leftRightPadding; // Space between circles is the same as left-right padding
 
-    gc.setFill(color);
-    // Draw the three circles with padding and spacing
-    gc.fillOval(x + leftRightPadding, y, circleDiameter, circleDiameter); // First circle
-    gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles, y, circleDiameter, circleDiameter); // Second circle
-    gc.fillOval(x + leftRightPadding + 2 * (circleDiameter + spaceBetweenCircles), y, circleDiameter, circleDiameter); // Third circle
+      gc.setFill(color);
+      // Draw the three circles with padding and spacing
+      gc.fillOval(x + leftRightPadding, y, circleDiameter, circleDiameter); // First circle
+      gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles, y, circleDiameter, circleDiameter); // Second circle
+      gc.fillOval(x + leftRightPadding + 2 * (circleDiameter + spaceBetweenCircles), y, circleDiameter, circleDiameter); // Third circle
    }
    
    

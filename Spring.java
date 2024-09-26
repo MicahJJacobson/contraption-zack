@@ -30,41 +30,35 @@ import javafx.scene.image.*;
 import java.net.*;
 import javafx.geometry.*;
 
-public class Button extends AbstractMech
+public class Spring extends AbstractMech
 {
-   private Color color;
-   private static ArrayList<Spike> spikes;
-
-   public Button(int x, int y, int width, int height, boolean hasCollisions, Color color)
+   public Spring(int x, int y, int width, int height)
+   {
+      super(x, y, width, height);
+   }
+   
+   public Spring(int x, int y, int width, int height, boolean hasCollisions)
    {
       super(x, y, width, height, hasCollisions);
-      this.color = color;
    }
-   
-   public void swapCollisions()
-   {
-      //will swap the value of hasCollisions
-      //if it is true, it will change it to false
-      //if it is false, it will change it to true
-      hasCollisions = !hasCollisions;
-   }
-   
+
+   @Override
    public void drawMe(GraphicsContext gc, Color color)
+   {
+      gc.setFill(color);
+      gc.fillRect(x, y, width, height);
+      
+   }
+   public void drawMe(GraphicsContext gc)
+   {
+      //gc.setFill(color);
+      gc.fillRect(x, y, width, height);
+      
+   }
+   
+   public void doThing()
    {
       
    }
    
-   public void doThing(){}
-   
-   public void drawMe(GraphicsContext gc)
-   {
-      int borderWidth = 5;
-      gc.setFill(color);
-      gc.fillRect(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
-   }
-   
-   public void addSpike(Spike spike)
-   {
-      spikes.add(spike);
-   }
 }
