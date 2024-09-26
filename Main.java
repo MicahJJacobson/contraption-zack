@@ -340,7 +340,19 @@ public class Main extends Application
                   }
                   else if(nextULevel2.canGo(player.getX(),player.getY()))
                   {
-                     //same code but for level 2
+                     if(nextULevel2.isInbound()) 
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextULevel2.getStaging();
+                        drawItems();
+                     }
+                     //make sure player fully leaves boundaries
+                     else if(nextULevel2.isOut(player.getX(),player.getY()))
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextULevel2.getStaging();
+                        drawItems();   
+                     }
                   }
            
                }
