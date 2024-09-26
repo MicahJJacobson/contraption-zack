@@ -354,6 +354,10 @@ public class Main extends Application
                         drawItems();   
                      }
                   }
+                  else if(nextULevel2.canGo(player.getX(),player.getY()))
+                  {
+                     //same code but for level 2
+                  }
            
                }
             }
