@@ -378,10 +378,6 @@ public class Main extends Application
                         drawItems();   
                      }
                   }
-                  else if(nextULevel2.canGo(player.getX(),player.getY()))
-                  {
-                     //same code but for level 2
-                  }
            
                }
             }
@@ -400,7 +396,7 @@ public class Main extends Application
                         //prevDLevel.staging(levelFile);
                         levelFile = prevDLevel.getStaging();
                         drawItems();
-                        System.out.println("jelo");
+                        
                      }
                      //make sure player fully leaves boundaries
                      else if(prevDLevel.isOut(player.getX(),player.getY())) 
