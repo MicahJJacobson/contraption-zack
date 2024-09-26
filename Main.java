@@ -279,6 +279,10 @@ public class Main extends Application
             else if(item.equals("levelLFile"))
             {
                nextLLevel.staging(scan.next());
+            }
+            else if (item.equals("levelDFile"))
+            {
+               prevDLevel.staging(scan.next());
             }    
             
             /*
@@ -346,14 +350,14 @@ public class Main extends Application
                   {
                      if(nextULevel.isInbound()) 
                      {
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = nextULevel.getStaging();
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
                      else if(nextULevel.isOut(player.getX(),player.getY()))
                      {
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = nextULevel.getStaging();
                         drawItems();   
                      }
@@ -362,14 +366,14 @@ public class Main extends Application
                   {
                      if(nextULevel2.isInbound()) 
                      {
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = nextULevel2.getStaging();
                         drawItems();
                      }
                      //make sure player fully leaves boundaries
                      else if(nextULevel2.isOut(player.getX(),player.getY()))
                      {
-                        prevDLevel.staging(levelFile);
+                        //prevDLevel.staging(levelFile);
                         levelFile = nextULevel2.getStaging();
                         drawItems();   
                      }
@@ -396,9 +400,10 @@ public class Main extends Application
                         //prevDLevel.staging(levelFile);
                         levelFile = prevDLevel.getStaging();
                         drawItems();
+                        System.out.println("jelo");
                      }
                      //make sure player fully leaves boundaries
-                     else if(nextLLevel.isOut(player.getX(),player.getY())) 
+                     else if(prevDLevel.isOut(player.getX(),player.getY())) 
                      {
                         //need to fix with previous previous level somehow (if applicable)
                         //prevDLevel.staging(levelFile);

@@ -69,7 +69,18 @@ public class levelSwitch
             return false;
          }
       }
-    return false;
+      else if(winningDirection.equals("down"))
+      {
+         if (posx > boundary1 && posy-25 >= winningSide && posx+50 <= boundary2)
+         {
+            return true;
+         }
+         else 
+         {
+            return false;
+         }
+      }
+      return false;
 
     }
     
