@@ -133,7 +133,8 @@ public abstract class AbstractMech
          player.setY(player.getY() + overlapBottom); // Move player down
       }
 
-    return false; // The player has been moved, so return false
+      //if the rectangles overlap, then return true
+      return true; 
    }
 
 }   
