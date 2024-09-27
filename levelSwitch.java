@@ -10,11 +10,13 @@ public class levelSwitch
     //is winning block inside or outside boundaries
     boolean inorout;
     
+    
+    //direction of next level
     public levelSwitch(String winningDirect) 
     {
         winningDirection = winningDirect;
     }
-    
+    //winning conditions 
     public void levelInput(int winning, int bound, int bound2) 
     {
     
@@ -23,27 +25,27 @@ public class levelSwitch
       boundary2 = bound2;
     
     }
-    
+    //from text file get if player is going to leave boundaries or not
     public void Inbound(boolean in)
     {
       inorout=in; 
     }
-    
+    //stores next level
     public void staging(String in)
     {
       nextLevel=in;  
     }
-    
+    //gets next level
     public String getStaging()
     {
       return nextLevel;  
     }
-    
+    //checks if player needs to leave boundaries to go to next level
     public boolean isInbound()
     {
       return inorout;
     }
-    
+    //Check if player is out of boundaries to o to next (if specified)
     public boolean isOut(int posx, int posy)
     {
       //player.getX() > nextLevelL && player.getY()+25 < nextLevelU && player.getX()+50 <= nextLevelR
@@ -83,7 +85,7 @@ public class levelSwitch
       return false;
 
     }
-    
+    //check if player can go to the next level block
     public boolean canGo(int posx, int posy)
     {
       if(winningDirection.equals("up"))
