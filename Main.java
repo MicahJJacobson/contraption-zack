@@ -55,10 +55,10 @@ public class Main extends Application
    levelSwitch nextLLevel = new levelSwitch("left");
    levelSwitch prevDLevel = new levelSwitch("down"); 
    
-   /*
+   //
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
    Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
-   */
+   //
    
 
    Player player = new Player(684,384);
@@ -70,11 +70,11 @@ public class Main extends Application
 
    public void start(Stage stage)
    {
-      /*
+      //
       mechs.add(newSpike);
       mechs.add(newButton);
       newButton.addSpike(newSpike);
-      */
+      //
       
       drawBackground();
       drawItems();
@@ -285,10 +285,10 @@ public class Main extends Application
                prevDLevel.staging(scan.next());
             }    
             
-            /*
+            //
             newSpike.drawMe(gc);
             newButton.drawMe(gc); 
-            */
+            //
                      
           
          }
