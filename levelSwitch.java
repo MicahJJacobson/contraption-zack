@@ -51,7 +51,7 @@ public class levelSwitch
       //player.getX() > nextLevelL && player.getY()+25 < nextLevelU && player.getX()+50 <= nextLevelR
       if(winningDirection.equals("up"))
       {
-         if (posx > boundary1 && posy+25 <= winningSide && posx+50 <= boundary2)
+         if (posx > boundary1 && posy+25 <= winningSide && posx+25 <= boundary2)
          {
             return true;
          }
@@ -62,7 +62,7 @@ public class levelSwitch
       }
       else if(winningDirection.equals("left"))
       {
-         if (posy > boundary1 && posx+25 <= winningSide && posy+50 <= boundary2)
+         if (posy > boundary1 && posx+25 <= winningSide && posy+25 <= boundary2)
          {
             return true;
          }
@@ -73,7 +73,7 @@ public class levelSwitch
       }
       else if(winningDirection.equals("down"))
       {
-         if (posx > boundary1 && posy-25 >= winningSide && posx+50 <= boundary2)
+         if (posx > boundary1 && posy-25 >= winningSide && posx+25 <= boundary2)
          {
             return true;
          }
@@ -90,7 +90,7 @@ public class levelSwitch
     {
       if(winningDirection.equals("up"))
       {
-         if (posx > boundary1 && posy <= winningSide && posx+50 <= boundary2)
+         if (posx > boundary1 && posy <= winningSide && posx+25 <= boundary2)
          {
             return true;
          }
@@ -101,7 +101,7 @@ public class levelSwitch
       }
       else if(winningDirection.equals("left"))
       {
-         if (posy > boundary1 && posx <= winningSide && posy+50 <= boundary2)
+         if (posy > boundary1 && posx <= winningSide && posy+25 <= boundary2)
          {
             return true;
          }
@@ -112,7 +112,7 @@ public class levelSwitch
       }
       else if(winningDirection.equals("down"))
       {
-         if (posx > boundary1 && posy >= winningSide && posx+50 <= boundary2)
+         if (posx > boundary1 && posy >= winningSide && posx+25 <= boundary2)
          {
             return true;
          }
