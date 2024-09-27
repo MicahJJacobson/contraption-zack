@@ -58,6 +58,7 @@ public class Main extends Application
    //
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
    Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
+   Button secondButton = new Button(684, 284, 50, 50, true, Color.GREEN);
    //
    
 
@@ -73,6 +74,7 @@ public class Main extends Application
       //
       mechs.add(newSpike);
       mechs.add(newButton);
+      mechs.add(secondButton);
       newButton.addSpike(newSpike);
       //
       
@@ -288,6 +290,7 @@ public class Main extends Application
             //
             newSpike.drawMe(gc);
             newButton.drawMe(gc); 
+            secondButton.drawMe(gc);
             //
                      
           

@@ -81,11 +81,10 @@ public class Spike extends AbstractMech
       // Calculate the padding on the left and right sides, as well as space between the circles
       double leftRightPadding = remainingSpace / 4; // Dividing by 4 as there will be padding on both sides and space between circles
       double spaceBetweenCircles = leftRightPadding; // Space between circles is the same as left-right padding
-
-      gc.setFill(color);
     
       if (hasCollisions)
       {
+         gc.setFill(color);
          // Draw the three circles with padding and spacing
          gc.fillOval(x + leftRightPadding, y, circleDiameter, circleDiameter); // First circle
          gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles, y, circleDiameter, circleDiameter); // Second circle
@@ -93,9 +92,18 @@ public class Spike extends AbstractMech
       }
       else
       {
-         double smallerDiameter = circleDiameter - 3; // New diameter for smaller circles
+         double smallerDiameter = circleDiameter - 8; // New diameter for smaller circles
          double offset = (circleDiameter - smallerDiameter) / 2; // Offset to keep the circles centered
 
+         gc.setFill(Color.BLACK);
+         
+         //drawing black circles to show that the spikes have retracted
+         gc.fillOval(x + leftRightPadding, y, circleDiameter, circleDiameter); // First circle
+         gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles, y, circleDiameter, circleDiameter); // Second circle
+         gc.fillOval(x + leftRightPadding + 2 * (circleDiameter + spaceBetweenCircles), y, circleDiameter, circleDiameter); // Third circle
+         
+         gc.setFill(color);
+         
          // Draw the three smaller circles, ensuring they stay centered relative to the original positions
          gc.fillOval(x + leftRightPadding + offset, y + offset, smallerDiameter, smallerDiameter); // First circle
          gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles + offset, y + offset, smallerDiameter, smallerDiameter); // Second circle
