@@ -55,11 +55,11 @@ public class Main extends Application
    levelSwitch nextLLevel = new levelSwitch("left");
    levelSwitch prevDLevel = new levelSwitch("down"); 
    
-   //
+   /*
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
    Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
    Button secondButton = new Button(684, 284, 50, 50, true, Color.GREEN);
-   //
+   */
    
 
    Player player = new Player(684,384);
@@ -71,15 +71,13 @@ public class Main extends Application
 
    public void start(Stage stage)
    {
-      //
+      /*
       mechs.add(newSpike);
       mechs.add(newButton);
       mechs.add(secondButton);
       newButton.addSpike(newSpike);
-      //
+      */
       
-      drawBackground();
-      drawItems();
       //Establishing the flowpane of the project
       //Key lsiteners for moving the player
       gp.setAlignment(Pos.TOP_LEFT);
@@ -287,11 +285,11 @@ public class Main extends Application
                prevDLevel.staging(scan.next());
             }    
             
-            //
+            /*
             newSpike.drawMe(gc);
             newButton.drawMe(gc); 
             secondButton.drawMe(gc);
-            //
+            */
                      
           
          }
@@ -307,6 +305,10 @@ public class Main extends Application
       {
             gc.clearRect(0,0,1368,768);
             drawBackground();
+            for(int i = 0; i<mechs.size(); i++)
+            {
+               mechs.remove(i);
+            }            
             drawItems();
             for(int i = 0; i<mechs.size(); i++)
             {
