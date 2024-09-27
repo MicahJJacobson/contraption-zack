@@ -76,8 +76,6 @@ public class Main extends Application
       newButton.addSpike(newSpike);
       */
       
-      drawBackground();
-      drawItems();
       //Establishing the flowpane of the project
       //Key lsiteners for moving the player
       gp.setAlignment(Pos.TOP_LEFT);
