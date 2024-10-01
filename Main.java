@@ -62,7 +62,7 @@ public class Main extends Application
    */
    
 
-   Player player = new Player(684,384);
+   Player player = new Player(795,384);
    boolean up, down, left, right = false;
    boolean nextlevel = false;
 
@@ -283,6 +283,12 @@ public class Main extends Application
             else if (item.equals("levelDFile"))
             {
                prevDLevel.staging(scan.next());
+            }   
+            //player position
+            else if (item.equals("StartPos"))
+            {
+               player.setX(scan.nextInt());
+               player.setY(scan.nextInt());
             }    
             
             /*
