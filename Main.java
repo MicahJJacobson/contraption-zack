@@ -164,7 +164,8 @@ public class Main extends Application
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.fillRect(X,Y,50,50); 
-            }           
+            }       
+            //Doors    
             else if(item.equals("D"))
                {
                 if(dooramountbase < 4)
@@ -284,7 +285,7 @@ public class Main extends Application
             else if (item.equals("levelDFile"))
             {
                prevDLevel.staging(scan.next());
-            }    
+            }  
             
             /*
             newSpike.drawMe(gc);

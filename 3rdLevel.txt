@@ -8,7 +8,7 @@ T LIGHTGREY 634 484 T LIGHTGREY 684 484 T LIGHTGREY 734 484 T BLUE 784 484 T LIG
                                                                                                                                           LH 634 534
 LV 634 150 LV 684 150 LV 734 150 LV 784 150 LV 834 150 LV 884 150 LV 934 150 LV 984 150                                                           LH 634 584
 D 759 384 D 759 284 D 859 384 D 859 284 
-Boundaries 510 184 634 909
+Boundaries 509 184 634 984
 NextU 184 800 909 In?U false
 PreviousD 510 0 1000 PIn?D true
 levelUFile None
