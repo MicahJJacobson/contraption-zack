@@ -530,7 +530,4 @@ public class Main extends Application
       }
       return color;
    }
-   
-   
-   //Hello
 }
