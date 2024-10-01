@@ -67,7 +67,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+   String levelFile = "3rdLevel.txt";
 
    public void start(Stage stage)
    {
@@ -193,9 +193,10 @@ public class Main extends Application
             {
                String colorString = scan.next();
                Color color = parseColor(colorString);
+               int height = scan.nextInt();
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               Wall wall = new Wall(X,Y,50,50, true);
+               Wall wall = new Wall(X,Y,50,height, true);
                wall.drawMe(gc,color);
                mechs.add(wall);             
             } 
@@ -205,7 +206,7 @@ public class Main extends Application
                int X = scan.nextInt();
                int Y = scan.nextInt();
                gc.setFill(Color.BLACK);
-               gc.fillRect(X,Y,300,1);          
+               gc.fillRect(X,Y,500,1);          
             }
             //Vertical Lines
             else if (item.equals("LV"))
