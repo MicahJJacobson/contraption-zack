@@ -29,44 +29,19 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import java.net.*;
 import javafx.geometry.*;
-public class Door extends AbstractMech
-{
-   /*
-   public Door(int x, int y, int width, int height)
-   {
-       super(x, y, width, height);
-   }
-   */
-   
-   public Door(int x, int y, int width, int height, boolean hasCollisions)
-   {
-      super(x, y, width, height, hasCollisions, Color.GREY);
-   }
 
+public class Tile extends AbstractMech
+{
+   public Tile(int x, int y, Color color)
+   {
+      super(x, y, 50, 50, false, color);
+   }
+   
    public void drawMe(GraphicsContext gc)
    {
-      gc.setFill(color);
-      gc.fillRect(x, y, width, height);
       gc.setFill(Color.BLACK);
-      gc.fillRect(x,y+25,25,1);
+      gc.fillRect(x, y, width, height);
+      gc.setFill(color);
+      gc.fillRect(x + 1, y + 1, width - 2, height - 2);
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

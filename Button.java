@@ -32,14 +32,16 @@ import javafx.geometry.*;
 
 public class Button extends AbstractMech
 {
-   private Color color;
    private static ArrayList<Spike> spikes = new ArrayList<Spike>();
 
    public Button(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
-      super(x, y, width, height, hasCollisions);
-      this.color = color;
-      spikes.add(new Spike(10000, 10000, true, Color.GREEN));
+      super(x, y, width, height, hasCollisions, color);
+   }
+   
+   public Button(int x, int y, Color color)
+   {
+      super(x, y, 50, 50, true, color);
    }
    
    public void swapCollisions()
@@ -61,14 +63,7 @@ public class Button extends AbstractMech
    {
       return hasCollisions;
    }
-   
-   public void drawMe(GraphicsContext gc, Color color)
-   {
       
-   }
-   
-   public void doThing(){}
-   
    public void drawMe(GraphicsContext gc)
    {
       if(hasCollisions)
@@ -86,7 +81,7 @@ public class Button extends AbstractMech
       
    }
    
-   public void addSpike(Spike spike)
+   public static void addSpike(Spike spike)
    {
       spikes.add(spike);
    }

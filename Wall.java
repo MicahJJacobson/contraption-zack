@@ -32,25 +32,20 @@ import javafx.geometry.*;
 
 public class Wall extends AbstractMech
 {
-   public Wall(int x, int y, int width, int height)
+   public Wall(int x, int y, int width, int height, Color color)
    {
-      super(x, y, width, height);
+      super(x, y, width, height, true, color);
    }
    
-   public Wall(int x, int y, int width, int height, boolean hasCollisions)
+   public Wall(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
-      super(x, y, width, height, hasCollisions);
+      super(x, y, width, height, hasCollisions, color);
    }
    
-   public void drawMe(GraphicsContext gc, Color color)
+   public void drawMe(GraphicsContext gc)
    {
       gc.setFill(color);
       gc.fillRect(x, y, width, height);
-      
-   }
-   
-   public void doThing()
-   {
       
    }
    

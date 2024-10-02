@@ -32,7 +32,6 @@ import javafx.geometry.*;
 
 public class Spring extends AbstractMech
 {
-   private Color color;
    /*
    public Spike(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
@@ -44,8 +43,7 @@ public class Spring extends AbstractMech
    //all spikes are the same size so we don't need width and height
    public Spring(int x, int y, boolean hasCollisions, Color color)
    {
-      super(x, y, 50, 12, hasCollisions);
-      this.color = color;
+      super(x, y, 50, 12, hasCollisions, color);
    }
    
    public void swapCollisions()
@@ -59,11 +57,6 @@ public class Spring extends AbstractMech
    public boolean getCollisions()
    {
       return hasCollisions;
-   }
-   
-   public void drawMe(GraphicsContext gc, Color color)
-   {
-      
    }
    
    public void drawMe(GraphicsContext gc)
@@ -108,10 +101,5 @@ public class Spring extends AbstractMech
    public Color getColor()
    {
       return color;
-   }
-   
-   public void doThing()
-   {
-      return;
    }
 }

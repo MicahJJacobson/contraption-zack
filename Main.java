@@ -56,10 +56,11 @@ public class Main extends Application
    levelSwitch prevDLevel = new levelSwitch("down"); 
    
    
-   /*Spike newSpike = new Spike(684, 134, true, Color.GREEN);
+   //
+   Spike newSpike = new Spike(684, 134, true, Color.GREEN);
    Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
    Button secondButton = new Button(684, 284, 50, 50, true, Color.GREEN);
-   */
+   //
    Spring newSpring = new Spring(795, 384, true, Color.LIGHTGREY);
 
    
@@ -73,12 +74,12 @@ public class Main extends Application
 
    public void start(Stage stage)
    {
-      /*
+      //
       mechs.add(newSpike);
       mechs.add(newButton);
       mechs.add(secondButton);
       newButton.addSpike(newSpike);
-      */
+      //
       
       //Establishing the flowpane of the project
       //Key lsiteners for moving the player
@@ -154,6 +155,7 @@ public class Main extends Application
          
          
          
+         
          while(scan.hasNext())
          {
             String item = scan.next();
@@ -199,8 +201,8 @@ public class Main extends Application
                int height = scan.nextInt();
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               Wall wall = new Wall(X,Y,50,height, true);
-               wall.drawMe(gc,color);
+               Wall wall = new Wall(X,Y,50,height, true, color);
+               wall.drawMe(gc);
                mechs.add(wall);             
             } 
             //Horizontal Lines
@@ -287,14 +289,35 @@ public class Main extends Application
             else if (item.equals("levelDFile"))
             {
                prevDLevel.staging(scan.next());
-            }  
+            }
+            //spikes
+            else if(item.equals("S")) 
+            {
+               Color newColor = parseColor(scan.next());
+               int x = scan.nextInt();
+               int y = scan.nextInt();
+               boolean spikesAreUp = scan.nextBoolean();
+               Spike newSpike = new Spike(x, y, spikesAreUp, newColor);
+               mechs.add(newSpike);
+               Button.addSpike(newSpike);
+            } 
+            else if(item.equals("B"))
+            {
+               Color newColor = parseColor(scan.next());
+               int x = scan.nextInt();
+               int y = scan.nextInt();
+               mechs.add(new Button(x, y, newColor));
+            }
             
             
-            /*newSpike.drawMe(gc);
+            //
+            newSpike.drawMe(gc);
             newButton.drawMe(gc); 
             secondButton.drawMe(gc);
-            */
+            //
             newSpring.drawMe(gc);
+            
+            System.out.println(mechs.size());
                      
           
          }
@@ -310,10 +333,12 @@ public class Main extends Application
       {
             gc.clearRect(0,0,1368,768);
             drawBackground();
+            /*
             for(int i = 0; i<mechs.size(); i++)
             {
                mechs.remove(i);
-            }            
+            }           
+            */ 
             drawItems();
             for(int i = 0; i<mechs.size(); i++)
             {
@@ -323,7 +348,7 @@ public class Main extends Application
             {
               for(int i = 0; i<doormechs.size(); i++)
                   {
-                     doormechs.get(i).drawMe(gc,Color.GREY);
+                     doormechs.get(i).drawMe(gc);
                      doormechs.get(i).checkBoundaries(player);
                   }  
                int dooramount = dooramountbase; 
@@ -333,7 +358,7 @@ public class Main extends Application
                   if(rotation > 0)
                   {
                   Door closeddoor = new Door(doorX,doorY,25,50,true);
-                  closeddoor.drawMe(gc,Color.GREY);
+                  closeddoor.drawMe(gc);
                   doormechs.add(closeddoor);
                   }
                   doorX = doormechs.get(0).getX();

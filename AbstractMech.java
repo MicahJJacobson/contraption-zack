@@ -33,43 +33,38 @@ import java.awt.Point;
 
 public abstract class AbstractMech
 {
-   int x;
-   int y;
-   int width;
-   int height;
-   boolean hasCollisions;
+   protected int x;
+   protected int y;
+   protected int width;
+   protected int height;
+   protected boolean hasCollisions;
+   protected Color color;
    
    //ArrayList<AbstractMech> mechs;
    
-   public AbstractMech(int x, int y, int width, int height)
+   /*
+   public AbstractMech(int x, int y, int width, int height, Color color)
    {
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
+      hasCollisions = false;
+      this.color = color;
    }
+   */
    
-   public AbstractMech(int x, int y, int width, int height, boolean hasCollisions)
+   public AbstractMech(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
       this.hasCollisions = hasCollisions;
+      this.color = color;
    }
-   
-   public abstract void doThing();
-   public void engage()
-   {
-      doThing();
-      /*
-      for(int i = 0; i<mechs.size(); i++)
-      {
-         mechs.engage();
-      }
-      */
-   }
-   public abstract void drawMe(GraphicsContext gc, Color color);
+
+   public abstract void drawMe(GraphicsContext gc);
    public int getHeight()
    {
       return height;
