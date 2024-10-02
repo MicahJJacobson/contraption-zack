@@ -167,7 +167,11 @@ public class Main extends Application
                gc.setFill(color);
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.fillRect(X,Y,50,50); 
+               gc.setFill(Color.BLACK);
+               gc.fillRect(X, Y, 50, 50);
+               gc.setFill(color);
+               gc.fillRect(X + 1, Y + 1, 48, 48);
+               //mechs.add(new Tile(X, Y, color));
             }       
             //Doors    
             else if(item.equals("D"))
@@ -309,6 +313,12 @@ public class Main extends Application
                mechs.add(new Button(x, y, newColor));
             }
             
+            /*
+            for(int i = 0; i < mechs.size(); i++)
+            {
+               mechs.get(i).drawMe(gc);
+            }
+            */
             
             //
             newSpike.drawMe(gc);

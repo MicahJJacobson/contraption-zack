@@ -44,8 +44,10 @@ public class Wall extends AbstractMech
    
    public void drawMe(GraphicsContext gc)
    {
-      gc.setFill(color);
+      gc.setFill(Color.BLACK);
       gc.fillRect(x, y, width, height);
+      gc.setFill(color);
+      gc.fillRect(x + 1, y + 1, width - 2, height - 2);
       
    }
    
