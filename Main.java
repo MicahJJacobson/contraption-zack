@@ -70,15 +70,16 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+   String levelFile = "5thLevel.txt";
 
    public void start(Stage stage)
    {
-      //
+      //Uncomment this
+      /*
       mechs.add(newSpike);
       mechs.add(newButton);
       mechs.add(secondButton);
-      newButton.addSpike(newSpike);
+      newButton.addSpike(newSpike);*/
       //
       
       //Establishing the flowpane of the project
@@ -172,7 +173,17 @@ public class Main extends Application
                gc.setFill(color);
                gc.fillRect(X + 1, Y + 1, 48, 48);
                //mechs.add(new Tile(X, Y, color));
-            }       
+            } 
+            //This creates a tile that recognize that its the next level similar to an arrow 
+            else if(item.equals("LB"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               int X = scan.nextInt();
+               int Y = scan.nextInt();               
+               gc.setFill(color);
+               gc.fillRect(X, Y, 40, 40);
+            }     
             //Doors    
             else if(item.equals("D"))
                {
@@ -203,28 +214,14 @@ public class Main extends Application
                String colorString = scan.next();
                Color color = parseColor(colorString);
                int height = scan.nextInt();
+               int width = scan.nextInt();
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               Wall wall = new Wall(X,Y,50,height, true, color);
+               Wall wall = new Wall(X,Y,width,height, true, color);
                wall.drawMe(gc);
                mechs.add(wall);             
             } 
-            //Horizontal Lines
-            else if (item.equals("LH"))
-            {
-               int X = scan.nextInt();
-               int Y = scan.nextInt();
-               gc.setFill(Color.BLACK);
-               gc.fillRect(X,Y,500,1);          
-            }
-            //Vertical Lines
-            else if (item.equals("LV"))
-            {
-               int X = scan.nextInt();
-               int Y = scan.nextInt();
-               gc.setFill(Color.BLACK);
-               gc.fillRect(X,Y,1,385);          
-            }  
+ 
             //Boundaries of the level            
             else if(item.equals("Boundaries"))
             {
@@ -317,17 +314,18 @@ public class Main extends Application
             for(int i = 0; i < mechs.size(); i++)
             {
                mechs.get(i).drawMe(gc);
-            }
-            */
+            }*/
             
-            //
+            
+            //Uncomment this
+            /*
             newSpike.drawMe(gc);
             newButton.drawMe(gc); 
             secondButton.drawMe(gc);
             //
             newSpring.drawMe(gc);
             
-            System.out.println(mechs.size());
+            System.out.println(mechs.size());*/
                      
           
          }
