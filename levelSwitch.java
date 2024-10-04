@@ -21,7 +21,10 @@ public class levelSwitch
     public levelSwitch(levelSwitch other)
     {
       this.winningDirection = new String(other.winningDirection);
-      this.nextLevel = new String(other.nextLevel);
+      if(other.nextLevel != null)
+      {
+         this.nextLevel = new String(other.nextLevel);
+      }
       this.inorout = other.inorout;
       this.winningSide = other.winningSide;
       this.boundary1 = other.boundary1;
