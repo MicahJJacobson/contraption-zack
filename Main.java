@@ -144,6 +144,176 @@ public class Main extends Application
       }
    }
       
+      
+   public void initializeItems()
+   {
+      try
+      {
+         Scanner scan = new Scanner(new File(levelFile));
+         
+         while(scan.hasNext())
+         {
+            String item = scan.next();
+             //Tile  
+            if(item.equals("T"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               gc.setFill(color);
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.setFill(Color.BLACK);
+               gc.fillRect(X, Y, 50, 50);
+               gc.setFill(color);
+               gc.fillRect(X + 1, Y + 1, 48, 48);
+               //mechs.add(new Tile(X, Y, color));
+            }       
+            //Doors    
+            else if(item.equals("D"))
+               {
+                if(dooramountbase < 4)
+                {
+                  int X = scan.nextInt();
+                  int Y = scan.nextInt();
+                  Door door = new Door(X,Y,25,50, true);
+                  doormechs.add(door);  
+                  hasDoors = true;
+                  dooramountbase++;    
+                }
+               }
+             
+            //level block
+            else if (item.equals("TW"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               gc.setFill(color);
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.fillRect(X,Y,50,50);               
+            }
+            //Wall
+            else if (item.equals("W"))
+            {
+               String colorString = scan.next();
+               Color color = parseColor(colorString);
+               int height = scan.nextInt();
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               Wall wall = new Wall(X,Y,50,height, true, color);
+               wall.drawMe(gc);
+               mechs.add(wall);             
+            } 
+            //Horizontal Lines
+            else if (item.equals("LH"))
+            {
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.setFill(Color.BLACK);
+               gc.fillRect(X,Y,500,1);          
+            }
+            //Vertical Lines
+            else if (item.equals("LV"))
+            {
+               int X = scan.nextInt();
+               int Y = scan.nextInt();
+               gc.setFill(Color.BLACK);
+               gc.fillRect(X,Y,1,385);          
+            }  
+            //Boundaries of the level            
+            else if(item.equals("Boundaries"))
+            {
+               boundariesD = scan.nextInt();
+               boundariesU = scan.nextInt();  
+               boundariesL = scan.nextInt();
+               boundariesR = scan.nextInt(); 
+            }
+            //area where player can pass to next level(s) 
+            else if(item.equals("NextU"))
+            {
+               nextULevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+            }
+            else if(item.equals("NextU2"))
+            {
+               nextULevel2.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+            }
+            else if(item.equals("NextL"))
+            {
+               nextLLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt()); 
+            }
+            //tells if next level block will be in boundaries or out 
+            else if(item.equals("In?U"))
+            {
+               String In = scan.next();
+               nextULevel.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            else if(item.equals("In?U2"))
+            {
+               String In = scan.next();
+               nextULevel2.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            else if(item.equals("In?L"))
+            {
+               String In = scan.next();
+               nextLLevel.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            else if(item.equals("PreviousD"))
+            {
+               prevDLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+               
+            }
+            //tells if previous level block will be in boundaries or out
+            else if(item.equals("PIn?D"))
+            {
+               String In = scan.next();
+               prevDLevel.Inbound(Boolean.parseBoolean(In));
+               
+            }
+            //name of next level
+            else if(item.equals("levelUFile"))
+            {
+               nextULevel.staging(scan.next());
+            } 
+            else if(item.equals("levelUFile2"))
+            {
+               nextULevel2.staging(scan.next());
+            } 
+            else if(item.equals("levelLFile"))
+            {
+               nextLLevel.staging(scan.next());
+            }
+            else if (item.equals("levelDFile"))
+            {
+               prevDLevel.staging(scan.next());
+            }
+            //spikes
+            else if(item.equals("S")) 
+            {
+               Color newColor = parseColor(scan.next());
+               int x = scan.nextInt();
+               int y = scan.nextInt();
+               boolean spikesAreUp = scan.nextBoolean();
+               Spike newSpike = new Spike(x, y, spikesAreUp, newColor);
+               mechs.add(newSpike);
+               Button.addSpike(newSpike);
+            } 
+            else if(item.equals("B"))
+            {
+               Color newColor = parseColor(scan.next());
+               int x = scan.nextInt();
+               int y = scan.nextInt();
+               mechs.add(new Button(x, y, newColor));
+            }
+         }
+      }
+      catch(FileNotFoundException fnfe)
+      {
+         System.out.println("No next level file");
+      }
+   }
    
    public void drawItems()
    {
