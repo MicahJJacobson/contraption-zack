@@ -44,6 +44,17 @@ public class Main extends Application
    int rotation = 0;
    ArrayList<AbstractMech> mechs = new ArrayList<AbstractMech>();
    ArrayList<AbstractMech> doormechs = new ArrayList<AbstractMech>();
+   //index 0 is nextULevel
+   //index 1 is nextULevel2
+   //index 2 is nextLLevel
+   //index 3 is prevDLevel
+   ArrayList<ArrayList<levelSwitch>> levelSwitches = new ArrayList<ArrayList<levelSwitch>>();
+   //index 0 is Down
+   //index 1 is Up
+   //index 2 is Left
+   //index 3 is Right
+   ArrayList<ArrayList<Integer>> boundaries = new ArrayList<ArrayList<Integer>>();
+   
    int boundariesU, boundariesD, boundariesL, boundariesR;
    boolean hasDoors = false;
    int doorX;
@@ -55,6 +66,48 @@ public class Main extends Application
    levelSwitch nextLLevel = new levelSwitch("left");
    levelSwitch prevDLevel = new levelSwitch("down"); 
    
+   //index of the current level
+   //index 0 is room 1
+   //index 1 is room 2
+   //index 2 is room 3
+   //index 3 is room 4
+   //index 4 is room 5
+   //index 5 is room 6
+   //index 6 is room 7
+   //index 7 is room 8
+   //index 8 is room 9
+   //index 9 is room 10
+   
+   /*
+             /\            
+            /  \           
+           /    \         
+      /\  /   5  \          
+     /  \ \      /        
+    /    \ \    /\/\       
+   /  10  \ \  / /  \      
+   \      /  \/\/ 4 /      
+    \    /\/\  /   / /\     
+     \  / /  \ \  / /  \    
+      \/ /    \ \/\/    \   
+        /   9  \  /   3  \  
+        \      /  \      / 
+      /\/\    / /\/\    / /\
+     /  \ \  / /  \ \  /\/  \  
+    /    \/\/ /    \ \/ /    \
+   /   8  \  /   6  \  /   2  \
+   \      /  \      /  \      /
+    \    /\/\/\    /    \    / /\
+     \  / /  \ \  /      \  /\/  \
+      \/\/    \/\/        \/ /    \
+        /   7  \            /   1  \
+        \      /            \      /
+         \    /              \    /
+          \  /                \  /
+           \/                  \/
+   
+   */
+   int currentRoom = 0;
    
    //
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
@@ -95,6 +148,12 @@ public class Main extends Application
       sp.requestFocus();
       stage.show();
       ta.start();
+      
+      for(int i = 0; i < 10; i++)
+      {
+         levelSwitches.add(new ArrayList<levelSwitch>());
+         boundaries.add(new ArrayList<Integer>());
+      }
       
       
    } 
@@ -188,10 +247,11 @@ public class Main extends Application
             {
                String colorString = scan.next();
                Color color = parseColor(colorString);
-               gc.setFill(color);
+               //gc.setFill(color);
                int X = scan.nextInt();
                int Y = scan.nextInt();
-               gc.fillRect(X,Y,50,50);               
+               gc.fillRect(X,Y,50,50); 
+               mechs.add(new Wall(X, Y, 50, 50, false, color));              
             }
             //Wall
             else if (item.equals("W"))
@@ -228,6 +288,11 @@ public class Main extends Application
                boundariesU = scan.nextInt();  
                boundariesL = scan.nextInt();
                boundariesR = scan.nextInt(); 
+               boundaries.get(currentRoom).add(boundariesD);
+               boundaries.get(currentRoom).add(boundariesU);
+               boundaries.get(currentRoom).add(boundariesL);
+               boundaries.get(currentRoom).add(boundariesR);
+               
             }
             //area where player can pass to next level(s) 
             else if(item.equals("NextU"))
@@ -736,5 +801,14 @@ public class Main extends Application
          color = Color.BLACK;
       }
       return color;
+   }
+   
+   //this will add 
+   public void addLevelSwitchesToArrayList()
+   {
+      levelSwitches.get(currentRoom).add(new levelSwitch(nextULevel));
+      levelSwitches.get(currentRoom).add(new levelSwitch(nextULevel2));
+      levelSwitches.get(currentRoom).add(new levelSwitch(nextLLevel));
+      levelSwitches.get(currentRoom).add(new levelSwitch(prevDLevel));
    }
 }

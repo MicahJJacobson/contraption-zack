@@ -16,6 +16,18 @@ public class levelSwitch
     {
         winningDirection = winningDirect;
     }
+    
+    //copy constructor
+    public levelSwitch(levelSwitch other)
+    {
+      this.winningDirection = new String(other.winningDirection);
+      this.nextLevel = new String(other.nextLevel);
+      this.inorout = other.inorout;
+      this.winningSide = other.winningSide;
+      this.boundary1 = other.boundary1;
+      this.boundary2 = other.boundary2;
+    }
+    
     //winning conditions 
     public void levelInput(int winning, int bound, int bound2) 
     {
