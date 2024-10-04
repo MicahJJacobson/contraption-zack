@@ -16,6 +16,7 @@ import javafx.event.*;
 import javafx.scene.canvas.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
+import java.awt.Point;
 
 public abstract class AbstractMech
 {

@@ -26,7 +26,10 @@ public class Main extends Application
    GridPane gp = new GridPane();
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
+   ArrayList<Object> saveList = new ArrayList<Object>();
    ArrayList<ArrayList<AbstractMech>> mechs = new ArrayList<ArrayList<AbstractMech>>();
+   //this doesn't need to be saved because it is only on one level
+   //also, the save files only have to stay until the program is shut down
    ArrayList<AbstractMech> doormechs = new ArrayList<AbstractMech>();
    //index 0 is nextULevel
    //index 1 is nextULevel2
@@ -132,6 +135,7 @@ public class Main extends Application
       gp.setAlignment(Pos.TOP_LEFT);
       sp.setOnKeyPressed(new KeyListenerDown());
       sp.setOnKeyReleased(new KeyListenerUp());
+      menu.setOnAction(new ComboBoxListener());
       sp.getChildren().add(theCanvas);
       sp.getChildren().add(gp);
       Scene scene = new Scene(sp, 1368, 768);
@@ -617,5 +621,23 @@ public class Main extends Application
       levelSwitches.get(currentRoom).add(new levelSwitch(nextLLevel));
       levelSwitches.get(currentRoom).add(new levelSwitch(prevDLevel));
       levelSwitches.get(currentRoom).add(new levelSwitch(prevRLevel));
+   }
+   
+   public class ComboBoxListener implements EventHandler<ActionEvent>
+   {
+      public void handle(ActionEvent e)
+      {
+         switch((String)menu.getValue())
+         {
+            case "Save":
+               saveList.add(new ArrayList<ArrayList<AbstractMech>>(mechs));
+               saveList.add(new ArrayList<ArrayList<Integer>>(boundaries));
+               saveList.add(new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
+               saveList.add(new File(levelFile));
+               System.out.println("Success");
+            case "Load":
+               
+         }
+      }
    }
 }
