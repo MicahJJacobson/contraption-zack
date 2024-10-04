@@ -19,18 +19,31 @@ import javafx.animation.*;
 
 public class Wall extends AbstractMech
 {
+   //Color outlineColor;
    public Wall(int x, int y, int width, int height, Color color)
    {
       super(x, y, width, height, true, color);
+      //outlineColor = Color.BLACK;
    }
    
    public Wall(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
       super(x, y, width, height, hasCollisions, color);
+      //outlineColor = Color.BLACK;
    }
+   
+   /*
+   public Wall(int x , int y, int width, int height, boolean hasCollisions, Color color, Color outlineColor)
+   {
+      super(x, y, width, height, hasCollisions, color);
+      //this.outlineColor = outlineColor;
+   }
+   */
+   
    
    public void drawMe(GraphicsContext gc)
    {
+      //gc.setFill(outlineColor);
       gc.setFill(Color.BLACK);
       gc.fillRect(x, y, width, height);
       gc.setFill(color);

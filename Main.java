@@ -214,48 +214,8 @@ public class Main extends Application
          {
             while(!(item.equals("end")))
             {
-               item = scan.next();
-                //Tile  
-               if(item.equals("T"))
-               {
-                  String colorString = scan.next();
-                  Color color = parseColor(colorString);
-                  int X = scan.nextInt();
-                  int Y = scan.nextInt();
-                  mechs.get(currentRoom).add(new Tile(X, Y, color));
-               }       
-                
-               //level block
-               else if (item.equals("TW"))
-               {
-                  String colorString = scan.next();
-                  Color color = parseColor(colorString);
-                  int X = scan.nextInt();
-                  int Y = scan.nextInt();
-                  mechs.get(currentRoom).add(new Wall(X, Y, 50, 50, false, color));              
-               }
-               //Additional level block indication
-               else if(item.equals("LB"))
-               {
-                  String colorString = scan.next();
-                  Color color = parseColor(colorString);
-                  int X = scan.nextInt();
-                  int Y = scan.nextInt();               
-                  gc.setFill(color);
-                  gc.fillRect(X, Y, 40, 40);
-               }    
-               //Wall
-               else if (item.equals("W"))
-               {
-                  String colorString = scan.next();
-                  Color color = parseColor(colorString);
-                  int height = scan.nextInt();
-                  int width = scan.nextInt();
-                  int X = scan.nextInt();
-                  int Y = scan.nextInt();
-                  mechs.get(currentRoom).add(new Wall(X,Y,width,height, true, color));            
-               }           
-               else if(item.equals("Boundaries"))
+               item = scan.next();         
+               if(item.equals("Boundaries"))
                {
                   boundariesD = scan.nextInt();
                   boundariesU = scan.nextInt();  
@@ -333,6 +293,46 @@ public class Main extends Application
             {
             //Doors
                mech = mechscan.next();
+               //Tile  
+               if(mech.equals("T"))
+               {
+                  String colorString = mechscan.next();
+                  Color color = parseColor(colorString);
+                  int X = mechscan.nextInt();
+                  int Y = mechscan.nextInt();
+                  mechs.get(currentRoom).add(new Tile(X, Y, color));
+               }       
+                
+               //level block
+               else if (mech.equals("TW"))
+               {
+                  String colorString = mechscan.next();
+                  Color color = parseColor(colorString);
+                  int X = mechscan.nextInt();
+                  int Y = mechscan.nextInt();
+                  mechs.get(currentRoom).add(new Wall(X, Y, 50, 50, false, color));              
+               }
+               //Additional level block indication
+               else if(mech.equals("LB"))
+               {
+                  String colorString = mechscan.next();
+                  Color color = parseColor(colorString);
+                  int X = mechscan.nextInt();
+                  int Y = mechscan.nextInt();               
+                  gc.setFill(color);
+                  mechs.get(currentRoom).add(new Wall(X, Y, 40, 40, false, color));
+               }    
+               //Wall
+               else if (mech.equals("W"))
+               {
+                  String colorString = mechscan.next();
+                  Color color = parseColor(colorString);
+                  int height = mechscan.nextInt();
+                  int width = mechscan.nextInt();
+                  int X = mechscan.nextInt();
+                  int Y = mechscan.nextInt();
+                  mechs.get(currentRoom).add(new Wall(X,Y,width,height, true, color));            
+               }  
                if(mech.equals("D"))
                {
                   int X = mechscan.nextInt();
