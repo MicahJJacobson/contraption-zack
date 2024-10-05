@@ -68,9 +68,8 @@ public class Spring extends AbstractMech
          double offset = (circleDiameter - smallerDiameter) / 2; // Offset to keep the circles centered
 
          gc.setFill(Color.BLACK);
-         
-         gc.setFill(color);
-         gc.fillOval(x-10,y,50,50); // Second circle
+
+         gc.fillRect(x-10,y,50,50); // Second circle
          
       }
       else
