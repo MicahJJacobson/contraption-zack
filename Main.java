@@ -113,7 +113,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "3rdLevel.txt";
+   String levelFile = "2ndLevel.txt";
 
    public void start(Stage stage)
    {
@@ -464,8 +464,9 @@ public class Main extends Application
                      levelFile = nextULevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems(); 
+                     
                   }
-                     //make sure player fully leaves boundaries
+                  //make sure player fully leaves boundaries
                   else if(nextULevel.isOut(player.getX(),player.getY()))
                   {
                         //prevDLevel.staging(levelFile);
