@@ -358,6 +358,17 @@ public class Main extends Application
                   int y = mechscan.nextInt();
                   mechs.get(currentRoom).add(new Button(x, y, newColor));
                }
+               //Springs
+               else if(mech.equals("Sp")) 
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  boolean springsAreUp = mechscan.nextBoolean();
+                  Spring newSpring = new Spring(x, y, springsAreUp, newColor);
+                  mechs.get(currentRoom).add(newSpring);
+                  
+               } 
             
             
             

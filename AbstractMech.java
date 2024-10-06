@@ -128,6 +128,7 @@ public abstract class AbstractMech
       if(this instanceof Spring)
       {
          Spring spring = (Spring)this;
+         //We want spring to have collisions
          if(spring.getCollisions() == true)
          {
             System.out.println("yes");
