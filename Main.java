@@ -113,7 +113,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "3rdLevel.txt";
+   String levelFile = "2ndLevel.txt";
 
    public void start(Stage stage)
    {
@@ -339,8 +339,8 @@ public class Main extends Application
                   int Y = mechscan.nextInt();
                   doormechs.add(new Door(X,Y,25,50, true)); 
                }
-               //Spikes
-               else if(mech.equals("S")) 
+               //Spikes Horizontal
+               else if(mech.equals("SH")) 
                {
                   Color newColor = parseColor(mechscan.next());
                   int x = mechscan.nextInt();
@@ -350,6 +350,18 @@ public class Main extends Application
                   mechs.get(currentRoom).add(newSpike);
                   Button.addSpike(newSpike);
                } 
+               else if(mech.equals("SV")) 
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  int width = mechscan.nextInt();
+                  int height = mechscan.nextInt();
+                  boolean spikesAreUp = mechscan.nextBoolean();
+                  Spike newSpike = new Spike(x, y, width, height, spikesAreUp, newColor);
+                  mechs.get(currentRoom).add(newSpike);
+                  Button.addSpike(newSpike);
+               }                
                //Buttons 
                else if(mech.equals("B"))
                {
