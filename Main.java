@@ -370,6 +370,17 @@ public class Main extends Application
                   int y = mechscan.nextInt();
                   mechs.get(currentRoom).add(new Button(x, y, newColor));
                }
+               //Springs
+               else if(mech.equals("Sp")) 
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  boolean springsAreUp = mechscan.nextBoolean();
+                  Spring newSpring = new Spring(x, y, springsAreUp, newColor);
+                  mechs.get(currentRoom).add(newSpring);
+                  
+               } 
             
             
             
@@ -476,8 +487,9 @@ public class Main extends Application
                      levelFile = nextULevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems(); 
+                     
                   }
-                     //make sure player fully leaves boundaries
+                  //make sure player fully leaves boundaries
                   else if(nextULevel.isOut(player.getX(),player.getY()))
                   {
                         //prevDLevel.staging(levelFile);

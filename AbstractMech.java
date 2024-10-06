@@ -124,6 +124,17 @@ public abstract class AbstractMech
             button.swapCollisions();
          }
       }
+      
+      if(this instanceof Spring)
+      {
+         Spring spring = (Spring)this;
+         //We want spring to have collisions
+         if(spring.getCollisions() == true)
+         {
+            System.out.println("yes");
+            spring.swapCollisions();
+         }
+      }
 
       //if the rectangles overlap, then return true
       return true; 
