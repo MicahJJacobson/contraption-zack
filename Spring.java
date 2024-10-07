@@ -26,11 +26,28 @@ public class Spring extends AbstractMech
       this.color = color;
    }
    */
-   
+   String directionn;
+   Color colorr;
    //all spikes are the same size so we don't need width and height
-   public Spring(int x, int y, boolean hasCollisions, Color color)
+   public Spring(int x, int y, boolean hasCollisions, Color color, String direction)
    {
+      
       super(x, y, 50, 12, hasCollisions, color);
+      directionn = direction;
+      colorr = color;
+   }
+   
+   public String getDirection() 
+   {
+      return directionn;
+   }
+   public int getX() 
+   {
+      return x;
+   }
+   public int getY() 
+   {
+      return y;
    }
    
    public void swapCollisions()
@@ -48,41 +65,28 @@ public class Spring extends AbstractMech
    
    public void drawMe(GraphicsContext gc)
    {
-      double totalWidth = 50; // Total available width
-      double circleDiameter = 12; // Diameter of each circle
-      int numberOfCircles = 3; // Number of circles
-
-      // Calculate the total space occupied by all circles combined
-      double totalCirclesWidth = numberOfCircles * circleDiameter;
-
-      // Calculate the remaining space after placing the circles
-      double remainingSpace = totalWidth - totalCirclesWidth;
-
-      // Calculate the padding on the left and right sides, as well as space between the circles
-      double leftRightPadding = remainingSpace / 4; // Dividing by 4 as there will be padding on both sides and space between circles
-      double spaceBetweenCircles = leftRightPadding; // Space between circles is the same as left-right padding
+     
       //spring has sprung
       if (hasCollisions)
       {
-         double smallerDiameter = circleDiameter - 8; // New diameter for smaller circles
-         double offset = (circleDiameter - smallerDiameter) / 2; // Offset to keep the circles centered
 
-         gc.setFill(Color.BLACK);
-
-         gc.fillRect(x-10,y,50,50); // Second circle
+         
+         
+         //gc.setFill(Color.BLACK);
+         //show circle that spring is available
+         gc.setFill(color);
+         gc.fillOval(x,y,25,25); // Second circle
          
       }
       else
       {
-         double smallerDiameter = circleDiameter - 8; // New diameter for smaller circles
-         double offset = (circleDiameter - smallerDiameter) / 2; // Offset to keep the circles centered
-
          gc.setFill(Color.BLACK);
-         //show circle that spring is available
-         gc.setFill(color);
-         gc.fillOval(x,y,50,50); // Second circle
+
+         gc.fillRect(x,y,25,25); // Second circle
+         
       }
-   }   
+   }
+   
    
    public Color getColor()
    {
