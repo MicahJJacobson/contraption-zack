@@ -469,7 +469,7 @@ public class Main extends Application
                doormechs.get(i).checkBoundaries(player);
             }
             
-<<<<<<< HEAD
+//<<<<<<< HEAD
             if(doorcounter == 150)
             {
                doorcounter = 0;
@@ -485,8 +485,8 @@ public class Main extends Application
                
             }
          
-=======
-         }
+//=======
+         
          
          if(currentRoom == 2)
          {
@@ -502,7 +502,7 @@ public class Main extends Application
                doormechs.get(i).setShouldBeDrawn(false);
             }
          }
->>>>>>> origin/main
+//>>>>>>> origin/main
                
                 
             
