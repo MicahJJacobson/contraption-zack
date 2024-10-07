@@ -30,7 +30,7 @@ public class Main extends Application
    ArrayList<ArrayList<AbstractMech>> mechs = new ArrayList<ArrayList<AbstractMech>>();
    //this doesn't need to be saved because it is only on one level
    //also, the save files only have to stay until the program is shut down
-   ArrayList<AbstractMech> doormechs = new ArrayList<AbstractMech>();
+   ArrayList<Door> doormechs = new ArrayList<Door>();
    //index 0 is nextULevel
    //index 1 is nextULevel2
    //index 2 is nextLLevel
@@ -46,7 +46,7 @@ public class Main extends Application
    int boundariesU, boundariesD, boundariesL, boundariesR;
    int doorX;
    int doorY;
-   int doorcounter = 0;
+   int doorcounter = -1;
    int doorcount = 0;
    String item = "";
    String mech = "";
@@ -338,6 +338,7 @@ public class Main extends Application
                   int X = mechscan.nextInt();
                   int Y = mechscan.nextInt();
                   doormechs.add(new Door(X,Y,25,50, true)); 
+                  doorcounter = 0;
                }
                //Spikes
                else if(mech.equals("S")) 
@@ -443,6 +444,21 @@ public class Main extends Application
             doormechs.remove(0);
             doorcount++;
             
+         }
+         
+         if(currentRoom == 2)
+         {
+            for (int i = 0; i < doormechs.size(); i++)
+            {
+               doormechs.get(i).setShouldBeDrawn(true);
+            }
+         }
+         else
+         {
+            for (int i = 0; i < doormechs.size(); i++)
+            {
+               doormechs.get(i).setShouldBeDrawn(false);
+            }
          }
                
                 
@@ -560,7 +576,10 @@ public class Main extends Application
                player.setX(player.getX() + 1);
             }  
          }
-         doorcounter++;
+         if(doorcounter != -1)
+         {
+            doorcounter++;
+         }
                 
             
       }

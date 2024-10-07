@@ -30,7 +30,7 @@ public class Spike extends AbstractMech
    //all spikes are the same size so we don't need width and height
    public Spike(int x, int y, boolean hasCollisions, Color color)
    {
-      super(x, y, 50, 12, hasCollisions, color);
+      super(x, y, 12, 50, hasCollisions, color);
    }
    
    public void swapCollisions()
@@ -48,6 +48,7 @@ public class Spike extends AbstractMech
    
    public void drawMe(GraphicsContext gc)
    {
+      /*
       double totalWidth = 50; // Total available width
       double circleDiameter = 12; // Diameter of each circle
       int numberOfCircles = 3; // Number of circles
@@ -89,6 +90,7 @@ public class Spike extends AbstractMech
          gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles + offset, y + offset, smallerDiameter, smallerDiameter); // Second circle
          gc.fillOval(x + leftRightPadding + 2 * (circleDiameter + spaceBetweenCircles) + offset, y + offset, smallerDiameter, smallerDiameter); // Third circle
       }
+      */
    }   
    
    public Color getColor()
