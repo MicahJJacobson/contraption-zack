@@ -112,6 +112,7 @@ public class Main extends Application
    boolean up, down, left, right = false;
    boolean nextlevel = false;
 
+
    //intially 1st level
    String levelFile = "1stLevel.txt";
 
@@ -354,6 +355,7 @@ public class Main extends Application
                   doormechs.add(new Door(X,Y,25,50, true)); 
                   doorcounter = 0;
                }
+               
                //Spikes Horizontal
                else if(mech.equals("SH")) 
                {
@@ -459,26 +461,30 @@ public class Main extends Application
             
          }
          */
-      
-         for(int i = 0; i<doormechs.size(); i++)
-         {
-            doormechs.get(i).checkBoundaries(player);
-         }
-               
-         if(doorcounter == 150)
-         {
-            doorcounter = 0;
-            if(doorcount > 0)
+
+            for(int i = 0; i<doormechs.size(); i++)
             {
-               Door closeddoor = new Door(doorX,doorY,25,50,true);
-               doormechs.add(closeddoor);
+               doormechs.get(i).checkBoundaries(player);
             }
-            doorX = doormechs.get(0).getX();
-            doorY = doormechs.get(0).getY();
-            doormechs.remove(0);
-            doorcount++;
             
-         }
+//<<<<<<< HEAD
+            if(doorcounter == 150)
+            {
+               doorcounter = 0;
+               if(doorcount > 0)
+               {
+                  Door closeddoor = new Door(doorX,doorY,25,50,true);
+                  doormechs.add(closeddoor);
+               }
+               doorX = doormechs.get(0).getX();
+               doorY = doormechs.get(0).getY();
+               doormechs.remove(0);
+               doorcount++;
+               
+            }
+         
+//=======
+         
          
          if(currentRoom == 2)
          {
@@ -494,6 +500,7 @@ public class Main extends Application
                doormechs.get(i).setShouldBeDrawn(false);
             }
          }
+//>>>>>>> origin/main
                
                 
             
