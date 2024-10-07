@@ -741,8 +741,9 @@ public class Main extends Application
                //index 3 levelFile
                //index 4 X position of player
                //index 5 Y position of player
-               saveList.add(new ArrayList<ArrayList<AbstractMech>>());
+               saveList.add(new ArrayList<ArrayList<AbstractMech>>(mechs));
                //this will create a shallow copy of the mechs arraylist
+               /*
                for(int i = 0; i < saveList.get(0).size(); i++)
                {
                   for(int j = 0; j < saveList.get(0).get(i).size(); j++)
@@ -751,6 +752,7 @@ public class Main extends Application
                      saveList.get(0).get(i).add(new AbstractMech(mechs.get(i).get(j)));
                   }
                }
+               */
                saveList.add(new ArrayList<ArrayList<Integer>>(boundaries));
                saveList.add(new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
                saveList.add(new String(levelFile));
