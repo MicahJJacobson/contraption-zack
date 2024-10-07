@@ -98,13 +98,13 @@ public class Main extends Application
    
    */
    int currentRoom = 0;
-   
+   //String direction = "left";
    /*
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
    Button newButton = new Button(684, 184, 50, 50, true, Color.GREEN);
    Button secondButton = new Button(684, 284, 50, 50, true, Color.GREEN);
    */
-   Spring newSpring = new Spring(795, 384, true, Color.LIGHTGREY);
+   //Spring newSpring = new Spring(795, 384, true, Color.LIGHTGREY,);
 
    
 
@@ -113,7 +113,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "9thLevel.txt";
+   String levelFile = "1stLevel.txt";
 
    public void start(Stage stage)
    {
@@ -377,7 +377,8 @@ public class Main extends Application
                   int x = mechscan.nextInt();
                   int y = mechscan.nextInt();
                   boolean springsAreUp = mechscan.nextBoolean();
-                  Spring newSpring = new Spring(x, y, springsAreUp, newColor);
+                  String direction = mechscan.next();
+                  Spring newSpring = new Spring(x, y, springsAreUp, newColor, direction);
                   mechs.get(currentRoom).add(newSpring);
                   
                } 
