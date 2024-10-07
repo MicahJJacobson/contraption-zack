@@ -27,18 +27,27 @@ public class Spring extends AbstractMech
    }
    */
    String directionn;
+   Color colorr;
    //all spikes are the same size so we don't need width and height
    public Spring(int x, int y, boolean hasCollisions, Color color, String direction)
    {
       
       super(x, y, 50, 12, hasCollisions, color);
       directionn = direction;
-      System.out.println(direction);
+      colorr = color;
    }
    
    public String getDirection() 
    {
       return directionn;
+   }
+   public int getX() 
+   {
+      return x;
+   }
+   public int getY() 
+   {
+      return y;
    }
    
    public void swapCollisions()
@@ -65,7 +74,7 @@ public class Spring extends AbstractMech
          
          //gc.setFill(Color.BLACK);
          //show circle that spring is available
-         gc.setFill(Color.GREEN);
+         gc.setFill(color);
          gc.fillOval(x,y,25,25); // Second circle
          
       }
