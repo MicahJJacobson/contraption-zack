@@ -130,15 +130,23 @@ public class Spike extends AbstractMech
          
             gc.setFill(color);
          
+         /*
          // Draw the three smaller circles, ensuring they stay centered relative to the original positions
+//
+         gc.fillOval(x + leftRightPadding + offset, y + offset, smallerDiameter, smallerDiameter); // First circle
+         gc.fillOval(x + leftRightPadding + circleDiameter + spaceBetweenCircles + offset, y + offset, smallerDiameter, smallerDiameter); // Second circle
+         gc.fillOval(x + leftRightPadding + 2 * (circleDiameter + spaceBetweenCircles) + offset, y + offset, smallerDiameter, smallerDiameter); // Third circle
+         */
+      //}
+      //
+            /*
             gc.fillOval(x + offset, y + topBottomPadding + offset, smallerDiameter, smallerDiameter); // First circle
             gc.fillOval(x + offset, y + topBottomPadding + circleDiameter + spaceBetweenCircles + offset, smallerDiameter, smallerDiameter); // Second circle
             gc.fillOval(x + offset, y + topBottomPadding + 2 * (circleDiameter + spaceBetweenCircles) + offset, smallerDiameter, smallerDiameter); // Third circle
+            */
          }
-      } 
-     
          
-     
+      } 
    }   
    
    public Color getColor()

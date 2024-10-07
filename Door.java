@@ -21,6 +21,9 @@ public class Door extends AbstractMech
 {
    //private static int doorCounter;
    //private boolean isVisible;
+   
+   //determines whether or not the doors should be drawn and have collisions
+   private boolean shouldBeDrawn;
 
    /*
    public Door(int x, int y, int width, int height)
@@ -32,6 +35,12 @@ public class Door extends AbstractMech
    public Door(int x, int y, int width, int height, boolean hasCollisions)
    {
       super(x, y, width, height, hasCollisions, Color.GREY);
+      shouldBeDrawn = true;
+   }
+   
+   public void setShouldBeDrawn(boolean shouldBeDrawn)
+   {
+      this.shouldBeDrawn = shouldBeDrawn;
    }
    
    /*
@@ -67,10 +76,13 @@ public class Door extends AbstractMech
          gc.fillRect(x,y+25,25,1);
       }
       */
-      gc.setFill(color);
-      gc.fillRect(x, y, width, height);
-      gc.setFill(Color.BLACK);
-      gc.fillRect(x,y+25,25,1);
+      if(shouldBeDrawn)
+      {
+         gc.setFill(color);
+         gc.fillRect(x, y, width, height);
+         gc.setFill(Color.BLACK);
+         gc.fillRect(x,y+25,25,1);
+      }
    }
 
 
