@@ -58,17 +58,18 @@ public class Spring extends AbstractMech
          //gc.setFill(Color.BLACK);
          //show circle that spring is available
          gc.setFill(Color.GREEN);
-         gc.fillOval(x-10,y,50,50); // Second circle
+         gc.fillOval(x,y,50,50); // Second circle
          
       }
       else
       {
          gc.setFill(Color.BLACK);
 
-         gc.fillRect(x-10,y,50,50); // Second circle
+         gc.fillRect(x,y,50,50); // Second circle
          
       }
-   }   
+   }
+   
    
    public Color getColor()
    {

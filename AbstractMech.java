@@ -133,12 +133,20 @@ public abstract class AbstractMech
          {
             System.out.println("yes");
             spring.swapCollisions();
+            springMove(player);
          }
       }
-
+      
       //if the rectangles overlap, then return true
       return true; 
    }
+   
+   public void springMove(Player player) 
+   {
+   
+      player.setX(player.getX()+50);
+   
+   }  
 
 }   
 

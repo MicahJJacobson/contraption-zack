@@ -113,7 +113,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "9thLevel.txt";
+   String levelFile = "1stLevel.txt";
 
    public void start(Stage stage)
    {
