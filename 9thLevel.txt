@@ -14,3 +14,4 @@ levelUFile None
 levelDFile 7thLevel.txt
 end
 SV BLUE 709 384 12 50 true SV BLUE 709 334 12 50 true SV BLUE 709 284 12 50 true B BLUE 709 134
+SP GREY 798 394 false

@@ -113,7 +113,7 @@ public class Main extends Application
    boolean nextlevel = false;
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+   String levelFile = "9thLevel.txt";
 
    public void start(Stage stage)
    {
@@ -371,7 +371,7 @@ public class Main extends Application
                   mechs.get(currentRoom).add(new Button(x, y, newColor));
                }
                //Springs
-               else if(mech.equals("Sp")) 
+               else if(mech.equals("SP")) 
                {
                   Color newColor = parseColor(mechscan.next());
                   int x = mechscan.nextInt();

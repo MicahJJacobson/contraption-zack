@@ -16,3 +16,4 @@ levelDFile 7thLevel.txt
 end
 SV ORANGE 769 384 12 50 true
 SH PURPLE 659 319 true SH PURPLE 709 319 true B PURPLE 834 334
+SP GREY 698 394 true
