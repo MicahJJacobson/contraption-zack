@@ -150,13 +150,7 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
-<<<<<<< HEAD
-=======
 
-   
-   
-   
->>>>>>> origin/main
       initializeArrayLists();
       
       /*
@@ -171,11 +165,8 @@ public class Main extends Application
       
       
       
-<<<<<<< HEAD
+
       menu.setValue("Menu");
-=======
-      menu.setValue("MENU");
->>>>>>> origin/main
       menu.getItems().add("Save");
       menu.getItems().add("Load");
       menu.getItems().add("Reset");
