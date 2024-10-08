@@ -122,7 +122,8 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+
+   String levelFile = "9thLevel.txt";
 
    public void start(Stage stage)
    {
@@ -454,8 +455,30 @@ public class Main extends Application
                   mechs.get(currentRoom).add(newSpring);
                   
                } 
+               //Switches
+               else if(mech.equals("SW"))
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  mechs.get(currentRoom).add(new Switches(x,y,25,25, true, newColor, false));
+                  
+               
+               }
+               //Electric Wall
+               else if(mech.equals("EW"))
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  ElectricWall newElectricWall = new ElectricWall(x, y, 10, 30, true, newColor);
+                  mechs.get(currentRoom).add(newElectricWall);
+                  Button.addSpike(newElectricWall);               
+               }
+               
                addLevelSwitchesToArrayList();
             }
+            
          }
          else
          {
@@ -495,7 +518,6 @@ public class Main extends Application
       drawBackground();
       for (int i = 0; i < mechs.get(currentRoom).size(); i++)
       {
-         System.out.println(currentRoom);
          mechs.get(currentRoom).get(i).drawMe(gc);
       }
       

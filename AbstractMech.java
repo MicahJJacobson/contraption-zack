@@ -154,7 +154,11 @@ public abstract class AbstractMech implements Cloneable
             spring.springMove(player);
          }
       }
-      
+      if(this instanceof Switches)
+      {
+         Switches switches = (Switches)this;
+         switches.switchIsActivated();
+      }      
       //if the rectangles overlap, then return true
       return true; 
    }

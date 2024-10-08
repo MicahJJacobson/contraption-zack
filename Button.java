@@ -22,7 +22,7 @@ public class Button extends AbstractMech
    //this is probably bad practice
    protected static ArrayList<ArrayList<Spike>> spikes = new ArrayList<ArrayList<Spike>>();
    //I know, bad practice
-   private static int currentRoom = 0;
+   protected static int currentRoom = 0;
 
    public Button(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
@@ -152,7 +152,6 @@ public class Button extends AbstractMech
    
    public static void addSpike(Spike spike)
    {
-      System.out.println(currentRoom);
       while(spikes.size() <= currentRoom)
       {
          spikes.add(new ArrayList<Spike>());
