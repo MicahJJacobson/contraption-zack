@@ -139,11 +139,11 @@ public abstract class AbstractMech implements Cloneable
       {
          Spring spring = (Spring)this;
          //We want spring to have collisions
-         if(spring.getCollisions() == true)
+         if(spring.getIsActivated() == false)
          {
-            spring.swapCollisions();
-            String direction = spring.getDirection();
-            springMove(player, direction, spring.getX(), spring.getY());
+            //spring.swapCollisions();
+            spring.activate();
+            spring.springMove(player);
          }
       }
       
@@ -151,27 +151,7 @@ public abstract class AbstractMech implements Cloneable
       return true; 
    }
    
-   public void springMove(Player player, String direction, int x, int y) 
-   {
-      player.setX(x);
-      player.setY(y);
-      if(direction.equals("right")) 
-      {
-         player.setX(player.getX()+50);
-      }
-      else if(direction.equals("left")) 
-      {
-         player.setX(player.getX()-50);
-      }
-      else if(direction.equals("up")) 
-      {
-         player.setY(player.getY()-50);
-      }
-      else if(direction.equals("down")) 
-      {
-         player.setY(player.getY()+50);
-      }
-   }  
+    
 
 }   
 

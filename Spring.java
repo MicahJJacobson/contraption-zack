@@ -26,20 +26,22 @@ public class Spring extends AbstractMech
       this.color = color;
    }
    */
-   String direction;
-   Color color;
+   private  String direction;
+   private boolean isActivated;
+   //Color color;
    //all spikes are the same size so we don't need width and height
    public Spring(int x, int y, boolean hasCollisions, Color color, String direction)
    {
       
-      super(x, y, 50, 12, hasCollisions, color);
+      super(x , y , 25, 25, hasCollisions, color);
       this.direction = direction;
-      //this.color = color;
+      isActivated = false;
    }
    
    public Spring(Spring other)
    {
       super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+      isActivated = other.isActivated;
    }
    
    public Spring clone()
@@ -64,6 +66,14 @@ public class Spring extends AbstractMech
    {
       return y;
    }
+   public void activate()
+   {
+      isActivated = true;
+   }
+   public boolean getIsActivated()
+   {
+      return isActivated;
+   }
    
    public void swapCollisions()
    {
@@ -78,11 +88,33 @@ public class Spring extends AbstractMech
       return hasCollisions;
    }
    
+   public void springMove(Player player) 
+   {
+      player.setX(this.x);
+      player.setY(this.y);
+      if(direction.equals("right")) 
+      {
+         player.setX(player.getX()+50);
+      }
+      else if(direction.equals("left")) 
+      {
+         player.setX(player.getX()-50);
+      }
+      else if(direction.equals("up")) 
+      {
+         player.setY(player.getY()-50);
+      }
+      else if(direction.equals("down")) 
+      {
+         player.setY(player.getY()+50);
+      }
+   } 
+   
    public void drawMe(GraphicsContext gc)
    {
      
       //spring has sprung
-      if (hasCollisions)
+      if (isActivated == false)
       {
 
          
