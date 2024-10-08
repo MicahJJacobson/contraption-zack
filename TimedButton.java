@@ -94,7 +94,7 @@ public class TimedButton extends Button
          gc.setFill(color);
          gc.fillOval(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
          timer++;
-         if(timer >= 150)
+         if(timer >= 2000)
          {
             timer = 0;
             swapCollisions();

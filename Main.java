@@ -122,7 +122,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "6thLevel.txt";
+   String levelFile = "1stLevel.txt";
 
    public void start(Stage stage)
    {
@@ -880,10 +880,9 @@ public class Main extends Application
                   Button.reassignSpikes(mechs);
                   initializeItems();
                   player.setX((int)saveList.get(4));
-                  player.setY((int)saveList.get(5));
-                  
-                  
+                  player.setY((int)saveList.get(5));                  
                   break;
+               case "Reset":
             }
          }
       }

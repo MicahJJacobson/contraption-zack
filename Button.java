@@ -79,7 +79,6 @@ public class Button extends AbstractMech
             if(current instanceof Spike)
             {
                spikes.get(i).add((Spike)current);
-               System.out.println("kill me");
             }
          }
       }

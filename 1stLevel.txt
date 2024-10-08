@@ -13,4 +13,3 @@ levelUFile 2ndLevel.txt
 StartPos 747 408
 ReturnPosU 790 135
 end
-SP GREEN 747 397 true right
