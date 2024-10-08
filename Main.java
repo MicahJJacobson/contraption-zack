@@ -42,8 +42,11 @@ public class Main extends Application
    //index 2 is Left
    //index 3 is Right
    ArrayList<ArrayList<Integer>> boundaries = new ArrayList<ArrayList<Integer>>();
+   ArrayList<ArrayList<Integer>> Position = new ArrayList<ArrayList<Integer>>();
    
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   int playerX;
+   int playerY;
    int doorX;
    int doorY;
    int doorcounter = -1;
@@ -114,7 +117,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "2ndLevel.txt";
+   String levelFile = "3rdLevel.txt";
 
    public void start(Stage stage)
    {
@@ -122,6 +125,7 @@ public class Main extends Application
       {
          levelSwitches.add(new ArrayList<levelSwitch>());
          boundaries.add(new ArrayList<Integer>());
+         Position.add(new ArrayList<Integer>());
          mechs.add(new ArrayList<AbstractMech>());
       }
       
@@ -223,8 +227,6 @@ public class Main extends Application
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
          //temporary just so the level is playable
-         player.setX(684);
-         player.setY(484);
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
          {
@@ -305,6 +307,16 @@ public class Main extends Application
                {
                   prevDLevel.staging(scan.next());
                }
+               else if (item.equals("StartPos"))
+               {
+                  playerX = scan.nextInt();
+                  playerY = scan.nextInt();
+                  Position.get(currentRoom).add(playerX);
+                  Position.get(currentRoom).add(playerY);
+                  player.setX(playerX);
+                  player.setY(playerY);
+               }
+               
             }
             while(mechscan.hasNext())
             {
@@ -416,6 +428,10 @@ public class Main extends Application
             boundariesU = boundaries.get(currentRoom).get(1);
             boundariesL = boundaries.get(currentRoom).get(2);
             boundariesR = boundaries.get(currentRoom).get(3);
+            player.setX(Position.get(currentRoom).get(0));
+            player.setY(Position.get(currentRoom).get(1));
+            
+            
          }
       }
       catch(FileNotFoundException fnfe)

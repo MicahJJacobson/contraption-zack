@@ -7,10 +7,13 @@ T LIGHTGREY 634 434 W GREY 25 50 634 409 T LIGHTGREY 684 434 W GREY 25 50 684 40
 T LIGHTGREY 634 484 W GREY 25 50 634 484 T LIGHTGREY 684 484 W GREY 25 50 684 484 T LIGHTGREY 734 484 W GREY 25 50 734 484 T LIGHTGREY 784 484 T LIGHTGREY 834 484 W GREY 25 50 834 484 T LIGHTGREY 884 484 W GREY 25 50 884 484 T LIGHTGREY 934 484 W GREY 25 50 934 484        
 LB GREY 789 489  LB GREY 689 189  LB GREY 639 239                                                                                                                                                       
 Boundaries 509 184 634 959
-NextU 184 800 909 In?U false
-PreviousD 510 0 1000 PIn?D true
+NextU 184 634 909 In?U true
+NextL 634 184 234 In?L true
+PreviousD 509 0 1000 PIn?D true
 levelUFile 4thLevel.txt
+levelLFile 6thLevel.txt
 levelDFile 2ndLevel.txt 
+StartPos 760 484
 end
 D 759 434 D 759 359 D 834 434 D 834 359
 SH PURPLE 784 334 true B PURPLE 634 434 B PURPLE 934 359

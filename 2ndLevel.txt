@@ -14,6 +14,7 @@ NextU 134 758 809 In?U true
 PreviousD 510 0 1000 PIn?D true
 levelUFile 3rdLevel.txt
 levelDFile 1stLevel.txt
+StartPos 765 500
 end
 SH YELLOW 759 158 true SH YELLOW 634 419 true SH YELLOW 884 419 false B YELLOW 659 434 B YELLOW 784 334
 SH PURPLE 759 134 true B PURPLE 684 334 B PURPLE 884 434
