@@ -129,12 +129,7 @@ public class Main extends Application
    //intially 1st level
 
    String levelFile = "1stLevel.txt";
-<<<<<<< HEAD
 
-
-=======
-   
->>>>>>> origin/main
    public void start(Stage stage)
    {
       for(int i = 0; i < 10; i++)
@@ -748,10 +743,7 @@ public class Main extends Application
                   //check if player is going to next level
                   if(nextLLevel.canGo(player.getX(),player.getY()))
                   {
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
                      //prevDLevel.staging(levelFile);
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
@@ -764,10 +756,7 @@ public class Main extends Application
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
                      if(nextLLevel.isInbound()) 
                      {
                         prevDLevel.staging(levelFile);
@@ -826,10 +815,7 @@ public class Main extends Application
                   }
                   else if(nextRLevel.canGo(player.getX(),player.getY()))
                   {
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
                      //prevDLevel.staging(levelFile);
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
@@ -842,10 +828,7 @@ public class Main extends Application
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
                      if(nextRLevel.isInbound()) 
                      {
                         prevDLevel.staging(levelFile);
