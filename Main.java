@@ -36,6 +36,7 @@ public class Main extends Application
    //index 2 is nextLLevel
    //index 3 is prevDLevel
    //index 4 is prevRLevel
+   //index 5 is nextRLevel
    ArrayList<ArrayList<levelSwitch>> levelSwitches = new ArrayList<ArrayList<levelSwitch>>();
    //index 0 is Down
    //index 1 is Up
@@ -60,8 +61,10 @@ public class Main extends Application
    levelSwitch nextULevel = new levelSwitch("up");
    levelSwitch nextULevel2 = new levelSwitch("up");
    levelSwitch nextLLevel = new levelSwitch("left");
+   levelSwitch prevLLevel = new levelSwitch("left");
    levelSwitch prevDLevel = new levelSwitch("down"); 
    levelSwitch prevRLevel = new levelSwitch("right");
+   levelSwitch nextRLevel = new levelSwitch("right");
    
    //index of the current level
    //index 0 is room 1
@@ -122,7 +125,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "7thLevel.txt";
+   String levelFile = "8thLevel.txt";
 
    public void start(Stage stage)
    {
@@ -140,7 +143,7 @@ public class Main extends Application
       
       for(int i = 0; i < levelSwitches.size(); i++)
       {
-         for(int j = 0; j < 5; j++)
+         for(int j = 0; j < 7; j++)
          {
             levelSwitches.get(i).add(null);
          }
@@ -285,6 +288,10 @@ public class Main extends Application
                {
                   nextLLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt()); 
                }
+               else if(item.equals("NextR"))
+               {
+                  nextRLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt()); 
+               }
                //tells if next level block will be in boundaries or out 
                else if(item.equals("In?U"))
                {
@@ -304,6 +311,12 @@ public class Main extends Application
                   nextLLevel.Inbound(Boolean.parseBoolean(In));
                   
                }
+               else if(item.equals("In?R"))
+               {
+                  String In = scan.next();
+                  nextRLevel.Inbound(Boolean.parseBoolean(In));
+                  
+               }
                else if(item.equals("PreviousD"))
                {
                   prevDLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
@@ -321,11 +334,22 @@ public class Main extends Application
                   prevRLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
                   
                }
+               else if(item.equals("PreviousL"))
+               {
+                  prevLLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+                  
+               }
                //tells if previous level block will be in boundaries or out
                else if(item.equals("PIn?R"))
                {
                   String In = scan.next();
                   prevRLevel.Inbound(Boolean.parseBoolean(In));
+                  
+               }
+               else if(item.equals("PIn?L"))
+               {
+                  String In = scan.next();
+                  prevLLevel.Inbound(Boolean.parseBoolean(In));
                   
                }
                //name of next level
@@ -341,6 +365,10 @@ public class Main extends Application
                {
                   nextLLevel.staging(scan.next());
                }
+               else if(item.equals("levelRFile1"))
+               {
+                  nextRLevel.staging(scan.next());
+               }
                else if (item.equals("levelDFile"))
                {
                   prevDLevel.staging(scan.next());
@@ -348,6 +376,10 @@ public class Main extends Application
                else if (item.equals("levelRFile"))
                {
                   prevRLevel.staging(scan.next());
+               }
+               else if (item.equals("levelLFile1"))
+               {
+                  prevLLevel.staging(scan.next());
                }
                else if (item.equals("StartPos"))
                {
@@ -484,6 +516,8 @@ public class Main extends Application
             nextLLevel = levelSwitches.get(currentRoom).get(2);
             prevDLevel = levelSwitches.get(currentRoom).get(3);
             prevRLevel = levelSwitches.get(currentRoom).get(4);
+            nextRLevel = levelSwitches.get(currentRoom).get(5);
+            prevLLevel = levelSwitches.get(currentRoom).get(6);
             boundariesD = boundaries.get(currentRoom).get(0);
             boundariesU = boundaries.get(currentRoom).get(1);
             boundariesL = boundaries.get(currentRoom).get(2);
@@ -665,7 +699,7 @@ public class Main extends Application
                }
             }
          }
-         if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()))
+         if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()) || prevLLevel.canGo(player.getX(),player.getY()))
          {            
             if(left)
             {
@@ -690,10 +724,25 @@ public class Main extends Application
                      initializeItems();    
                   }
                }
+               else if(prevLLevel.canGo(player.getX(),player.getY()))
+               {
+                  if(prevLLevel.isInbound()) 
+                  {
+                     levelFile = prevLLevel.getStaging();
+                     addLevelSwitchesToArrayList();
+                     initializeItems(); 
+                  }
+                     //make sure player fully leaves boundaries
+                  else if(prevLLevel.isOut(player.getX(),player.getY())) 
+                  {
+                     addLevelSwitchesToArrayList();
+                     initializeItems();     
+                  }
+               }
                   
             }
          }
-         if(player.getX() < boundariesR || prevRLevel.canGo(player.getX(),player.getY()))
+         if(player.getX() < boundariesR || prevRLevel.canGo(player.getX(),player.getY()) || nextRLevel.canGo(player.getX(),player.getY()))
          {
             if(right)
             {
@@ -713,6 +762,24 @@ public class Main extends Application
                   {
                      addLevelSwitchesToArrayList();
                      initializeItems();     
+                  }
+               }
+               else if(nextRLevel.canGo(player.getX(),player.getY()))
+               {
+                  if(nextRLevel.isInbound()) 
+                  {
+                     prevDLevel.staging(levelFile);
+                     levelFile = nextRLevel.getStaging();
+                     addLevelSwitchesToArrayList();
+                     initializeItems(); 
+                  }
+                     //make sure player fully leaves boundaries
+                  else if(nextRLevel.isOut(player.getX(),player.getY())) 
+                  {
+                     prevDLevel.staging(levelFile);
+                     levelFile = nextRLevel.getStaging();
+                     addLevelSwitchesToArrayList();
+                     initializeItems();    
                   }
                }
             }  
@@ -809,6 +876,8 @@ public class Main extends Application
       levelSwitches.get(currentRoom).set(2, new levelSwitch(nextLLevel));
       levelSwitches.get(currentRoom).set(3, new levelSwitch(prevDLevel));
       levelSwitches.get(currentRoom).set(4, new levelSwitch(prevRLevel));
+      levelSwitches.get(currentRoom).set(5, new levelSwitch(nextRLevel));
+      levelSwitches.get(currentRoom).set(6, new levelSwitch(prevLLevel));
    //
    }
    
