@@ -143,6 +143,14 @@ public class Main extends Application
          }
       }
       
+      /*
+      levelSwitches.get(0).set(0, nextULevel);
+      levelSwitches.get(0).set(1, nextULevel2);
+      levelSwitches.get(0).set(2, nextLLevel);
+      levelSwitches.get(0).set(3, prevDLevel);
+      levelSwitches.get(0).set(4, prevRLevel);
+      */
+      
       for(int i= 0; i < 6; i++)
       {
          saveList.add(null);
@@ -171,6 +179,8 @@ public class Main extends Application
       menu.setOnAction(new ComboBoxListener());
       sp.getChildren().add(theCanvas);
       sp.getChildren().add(gp);
+      gp.getChildren().add(menu);
+      menu.setVisible(false);
       Scene scene = new Scene(sp, 1368, 768);
       stage.setScene(scene);
       stage.setTitle("Contraption Zac");
@@ -483,6 +493,11 @@ public class Main extends Application
          {
             mechs.get(currentRoom).get(i).checkBoundaries(player);
          }            
+         
+         if(menu.getValue().equals("Save") || menu.getValue().equals("Load"))
+         {
+            menu.setValue("Menu");
+         }
             
          /*
          if(Door.getDoorCounter() >= 150)
@@ -663,34 +678,19 @@ public class Main extends Application
       //Key listener for moving
          if (event.getCode() == KeyCode.ESCAPE) 
          {
-            if(gp.getChildren().contains(menu))
+            // Toggle ComboBox visibility instead of removing/adding
+            if (menu.isVisible()) 
             {
-               for(int i = 0; i < gp.getChildren().size(); i++)
-               {
-                  if(gp.getChildren().get(i).equals(menu))
-                  {
-                     gp.getChildren().remove(i);
-                  }
-               }
-            }
-            else
+                menu.setVisible(false); // Hide ComboBox
+                sp.requestFocus(); // Return focus to the main pane (so it will listen for ESC again)
+            } 
+            else 
             {
-               gp.getChildren().add(menu);
+                menu.setVisible(true); // Show ComboBox
+                menu.requestFocus(); // Focus on ComboBox when visible
             }
-            /*
-            if(menu.getValue() == "Save")
-            {
-               saveData();
-            }
-            else if (menu.getValue() == "Load")
-            {
-               loadReader();
-            }
-            */
-            
-            
-            
          }
+         
          if (event.getCode() == KeyCode.W)  
          {
             up = true;
@@ -761,52 +761,75 @@ public class Main extends Application
    {
       public void handle(ActionEvent e)
       {
-         switch((String)menu.getValue())
+         if(menu.getValue()==null)
          {
-            case "Save":
-               
-               //index 0 mechs
-               //index 1 boundaries
-               //index 2 levelSwitches
-               //index 3 levelFile
-               //index 4 X position of player
-               //index 5 Y position of player
-               ArrayList<ArrayList<AbstractMech>> tempMechs = new ArrayList<ArrayList<AbstractMech>>();
-               for(int i = 0; i < mechs.size(); i++)
-               {
-                  tempMechs.add(new ArrayList<AbstractMech>());
-                  for(int j = 0; j < mechs.get(i).size(); j++)
-                  {
-                     //this creates a new instance of the mech at the current index
-                     tempMechs.get(i).add(mechs.get(i).get(j).clone());
-                  }
-               }
-               saveList.set(0, tempMechs);
-               //this will create a shallow copy of the mechs arraylist
-               //
-               
-               //
-               saveList.set(1, new ArrayList<ArrayList<Integer>>(boundaries));
-               saveList.set(2, new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
-               saveList.set(3, new String(levelFile));
-               saveList.set(4, player.getX());
-               saveList.set(5, player.getY());
-               System.out.println("Success");
-               break;
-            case "Load":
-               //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
-               mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
-               boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
-               levelSwitches = (ArrayList<ArrayList<levelSwitch>>)saveList.get(2);
-               levelFile = (String)saveList.get(3);
-               initializeItems();
-               player.setX((int)saveList.get(4));
-               player.setY((int)saveList.get(5));
-               
-               
-               break;
+            System.out.println(">:( null");
+            menu.setValue("Menu");
          }
-         menu.setValue("Menu");
+         else
+         {
+            switch((String)menu.getValue())
+            {
+               case "Save":
+                  
+                  //index 0 mechs
+                  //index 1 boundaries
+                  //index 2 levelSwitches
+                  //index 3 levelFile
+                  //index 4 X position of player
+                  //index 5 Y position of player
+                  ArrayList<ArrayList<AbstractMech>> tempMechs = new ArrayList<ArrayList<AbstractMech>>();
+                  for(int i = 0; i < mechs.size(); i++)
+                  {
+                     tempMechs.add(new ArrayList<AbstractMech>());
+                     for(int j = 0; j < mechs.get(i).size(); j++)
+                     {
+                        //this creates a new instance of the mech at the current index
+                        tempMechs.get(i).add(mechs.get(i).get(j).clone());
+                     }
+                  }
+                  saveList.set(0, tempMechs);
+                  //this will create a shallow copy of the mechs arraylist
+                  //
+                  
+                  //
+                  saveList.set(1, new ArrayList<ArrayList<Integer>>(boundaries));
+                  ArrayList<ArrayList<levelSwitch>> tempSwitches = new ArrayList<ArrayList<levelSwitch>>();
+                  for(int i = 0; i < levelSwitches.size(); i++)
+                  {
+                     tempSwitches.add(new ArrayList<levelSwitch>());
+                     for(int j = 0; j < levelSwitches.get(i).size(); j++)
+                     {
+                        if(levelSwitches.get(i).get(j) == null)
+                        {
+                           tempSwitches.get(i).add(null);
+                        }
+                        else
+                        {
+                        tempSwitches.get(i).add(new levelSwitch(levelSwitches.get(i).get(j)));
+                        }
+                     }
+                  }
+                  saveList.set(2, tempSwitches);
+                  saveList.set(3, new String(levelFile));
+                  saveList.set(4, player.getX());
+                  saveList.set(5, player.getY());
+                  System.out.println("Success");
+                  break;
+               case "Load":
+                  //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
+                  mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
+                  boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
+                  levelSwitches = (ArrayList<ArrayList<levelSwitch>>)saveList.get(2);
+                  levelFile = (String)saveList.get(3);
+                  initializeItems();
+                  player.setX((int)saveList.get(4));
+                  player.setY((int)saveList.get(5));
+                  
+                  
+                  break;
+            }
+         }
       }
    }
 }
