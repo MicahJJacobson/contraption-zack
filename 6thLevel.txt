@@ -9,7 +9,7 @@ LB GREY 889 139 LB GREY 639 339 LB GREY 639 189
 
 Boundaries 409 134 634 909
 NextU 0 0 0 In?U false
-NextL 634 310 400
+NextL 634 310 400 In?L true
 PreviousR 909 134 200 PIn?R true
 levelUFile None
 levelLFile 7thLevel.txt
@@ -19,6 +19,6 @@ ReturnPosL 634 334
 ReturnPosL2 634 184
 end
 B ORANGE 884 234
-B DARKGREY 684 334
+TB DARKGREY 684 334
 SH DARKGREY 684 269 true
 SP GREY 848 394 true left SP GREY 748 194 true right

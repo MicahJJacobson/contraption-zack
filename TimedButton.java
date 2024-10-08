@@ -33,7 +33,6 @@ public class TimedButton extends Button
          spikes.add(new ArrayList<Spike>());
       }
       timer = 0;
-      currentRoom = 0;
    }
    
    public TimedButton(int x, int y, Color color)
@@ -44,7 +43,6 @@ public class TimedButton extends Button
          spikes.add(new ArrayList<Spike>());
       }
       timer = 0;
-      currentRoom = 0;
    }
    
    public TimedButton(TimedButton other)
@@ -60,7 +58,6 @@ public class TimedButton extends Button
          }
       }
       timer = 0;
-      currentRoom = 0;
    }
    
    public TimedButton clone()
@@ -98,7 +95,6 @@ public class TimedButton extends Button
          {
             timer = 0;
             swapCollisions();
-            System.out.println("Scooby snacks?");
          }
       }
       

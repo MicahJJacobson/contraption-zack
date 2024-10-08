@@ -122,29 +122,15 @@ public class Main extends Application
 
 
    //intially 1st level
+<<<<<<< HEAD
    String levelFile = "8thLevel.txt";
+=======
+   String levelFile = "7thLevel.txt";
+>>>>>>> origin/main
 
    public void start(Stage stage)
    {
-      for(int i = 0; i < 10; i++)
-      {
-         levelSwitches.add(new ArrayList<levelSwitch>());
-         boundaries.add(new ArrayList<Integer>());
-         mechs.add(new ArrayList<AbstractMech>());
-      }
-      
-      for(int i = 0; i < 20; i++)
-      {
-         Position.add(new ArrayList<Integer>());
-      }
-      
-      for(int i = 0; i < levelSwitches.size(); i++)
-      {
-         for(int j = 0; j < 5; j++)
-         {
-            levelSwitches.get(i).add(null);
-         }
-      }
+      initializeArrayLists();
       
       /*
       levelSwitches.get(0).set(0, nextULevel);
@@ -154,16 +140,15 @@ public class Main extends Application
       levelSwitches.get(0).set(4, prevRLevel);
       */
       
-      for(int i= 0; i < 6; i++)
-      {
-         saveList.add(null);
-      }
       
       
       
-      menu.setValue("Menu");
+      
+      menu.setValue("Lord Help Us");
       menu.getItems().add("Save");
       menu.getItems().add("Load");
+      menu.getItems().add("Reset");
+      menu.getItems().add("Exit");
       
       initializeItems();
       //Uncomment this
@@ -254,7 +239,7 @@ public class Main extends Application
          Button.setCurrentRoom(currentRoom);
          //temporary just so the level is playable
          //checks if the room has already been initalized
-         if(mechs.get(currentRoom).isEmpty())
+         if(mechs.get(currentRoom).isEmpty() || mechs.get(currentRoom).get(0) == null)
          {
             item = "";
             while(!(item.equals("end")))
@@ -536,6 +521,7 @@ public class Main extends Application
       drawBackground();
       for (int i = 0; i < mechs.get(currentRoom).size(); i++)
       {
+         System.out.println(currentRoom);
          mechs.get(currentRoom).get(i).drawMe(gc);
       }
       
@@ -554,9 +540,9 @@ public class Main extends Application
             mechs.get(currentRoom).get(i).checkBoundaries(player);
          }            
          
-         if(menu.getValue().equals("Save") || menu.getValue().equals("Load"))
+         if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
          {
-            menu.setValue("Menu");
+            menu.setValue("Lord help Us");
          }
             
          /*
@@ -834,6 +820,35 @@ public class Main extends Application
    //
    }
    
+   //this will create empty arraylists that have their inner arraylists initialized
+   public void initializeArrayLists()
+   {
+      for(int i = 0; i < 10; i++)
+      {
+         levelSwitches.add(new ArrayList<levelSwitch>());
+         boundaries.add(new ArrayList<Integer>());
+         mechs.add(new ArrayList<AbstractMech>());
+      }
+      
+      for(int i = 0; i < 20; i++)
+      {
+         Position.add(new ArrayList<Integer>());
+      }
+      
+      for(int i = 0; i < levelSwitches.size(); i++)
+      {
+         for(int j = 0; j < 5; j++)
+         {
+            levelSwitches.get(i).add(null);
+         }
+      }
+      
+      for(int i= 0; i < 6; i++)
+      {
+         saveList.add(null);
+      }
+   }
+   
    public class ComboBoxListener implements EventHandler<ActionEvent>
    {
       public void handle(ActionEvent e)
@@ -867,9 +882,6 @@ public class Main extends Application
                   }
                   saveList.set(0, tempMechs);
                   //this will create a shallow copy of the mechs arraylist
-                  //
-                  
-                  //
                   saveList.set(1, new ArrayList<ArrayList<Integer>>(boundaries));
                   ArrayList<ArrayList<levelSwitch>> tempSwitches = new ArrayList<ArrayList<levelSwitch>>();
                   for(int i = 0; i < levelSwitches.size(); i++)
@@ -891,9 +903,22 @@ public class Main extends Application
                   saveList.set(3, new String(levelFile));
                   saveList.set(4, player.getX());
                   saveList.set(5, player.getY());
+                  /*
+                  ArrayList<Door> tempDoors = new ArrayList<Door>();
+                  for(int i = 0; i < doors.size(); i++)
+                  {
+                     tempDoors.add(new Door(doors.get(i)));
+                  }
+                  saveList.set(6, tempDoors);
+                  saveList.set(7, doorcounter);
                   System.out.println("Success");
+                  */
                   break;
                case "Load":
+                  if(saveList.get(0) == null)
+                  {
+                     break;
+                  }
                   //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
                   mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
                   boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
@@ -905,6 +930,66 @@ public class Main extends Application
                   player.setY((int)saveList.get(5));                  
                   break;
                case "Reset":
+                  saveList.clear();
+                  doormechs.clear();
+                  /*
+                  for(int i = 0; i < mechs.size(); i++)
+                  {
+                     for(int j = 0; j < mechs.get(i).size(); j++)
+                     {
+                        mechs.get(i).set(j, null);
+                     }
+                  }
+                  for(int i = 0; i < levelSwitches.size(); i++)
+                  {
+                     for(int j = 0; j < levelSwitches.get(i).size(); j++)
+                     {
+                        levelSwitches.get(i).set(j, null);
+                     }
+                  }
+                  for(int i = 0; i < boundaries.size(); i++)
+                  {
+                     for(int j = 0; j < boundaries.get(i).size(); j++)
+                     {
+                        boundaries.get(i).set(j, null);
+                     }
+                  }
+                  for(int i = 0; i < Position.size(); i++)
+                  {
+                     for(int j = 0; j < Position.get(i).size(); j++)
+                     {
+                        Position.get(i).set(j, null);
+                     }
+                  }
+                  */
+                  for(int i = 0; i < mechs.size(); i++)
+                  {
+                     mechs.get(i).clear();
+                  }
+                  for(int i = 0; i < levelSwitches.size(); i++)
+                  {
+                     levelSwitches.get(i).clear();
+                  }
+                  for(int i = 0; i < boundaries.size(); i++)
+                  {
+                     boundaries.get(i).clear();
+                  }
+                  for(int i = 0; i < Position.size(); i++)
+                  {
+                     Position.get(i).clear();
+                  }
+                  for(int i = 0; i < doormechs.size(); i++)
+                  {
+                     doormechs.remove(0);
+                  }
+                  initializeArrayLists();
+                  levelFile = "1stLevel.txt";
+                  initializeItems();
+                  break;
+               case "Exit":
+                  System.exit(0);
+                  break;
+                  
             }
          }
       }
