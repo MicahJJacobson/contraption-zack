@@ -18,7 +18,7 @@ import javafx.scene.input.*;
 import javafx.animation.*;
 import java.awt.Point;
 
-public abstract class AbstractMech
+public abstract class AbstractMech implements Cloneable
 {
    protected int x;
    protected int y;
@@ -50,6 +50,16 @@ public abstract class AbstractMech
       this.hasCollisions = hasCollisions;
       this.color = color;
    }
+   
+   public AbstractMech clone() 
+   {
+        try 
+        {
+            return (AbstractMech) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // This shouldn't happen since we are Cloneable
+        }
+    }
 
    public abstract void drawMe(GraphicsContext gc);
    public int getHeight()

@@ -33,6 +33,21 @@ public class Spike extends AbstractMech
       super(x, y, 50, 12, hasCollisions, color);
    }
    
+   public Spike(Spike other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+   }
+   
+   public Spike clone()
+   {
+      return new Spike(this);
+   }
+   
+   public static Spike clone(Spike other)
+   {
+      return new Spike(other);
+   }
+   
    public void swapCollisions()
    {
       //will swap the value of hasCollisions
