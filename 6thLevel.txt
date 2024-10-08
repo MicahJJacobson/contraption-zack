@@ -9,7 +9,7 @@ LB GREY 889 139 LB GREY 639 339 LB GREY 639 189
 
 Boundaries 409 134 634 909
 NextU 0 0 0 In?U false
-NextL 634 310 400
+NextL 634 310 400 In?L true
 PreviousR 909 134 200 PIn?R true
 levelUFile None
 levelLFile 7thLevel.txt
