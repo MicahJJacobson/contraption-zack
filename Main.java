@@ -126,7 +126,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "9thLevel.txt";
+   String levelFile = "1stLevel.txt";
 
    public void start(Stage stage)
    {
@@ -753,7 +753,7 @@ public class Main extends Application
                {
                   if(nextLLevel.isInbound()) 
                   {
-                     prevDLevel.staging(levelFile);
+                     //prevDLevel.staging(levelFile);
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems(); 
@@ -761,7 +761,7 @@ public class Main extends Application
                      //make sure player fully leaves boundaries
                   else if(nextLLevel.isOut(player.getX(),player.getY())) 
                   {
-                     prevDLevel.staging(levelFile);
+                     //prevDLevel.staging(levelFile);
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
@@ -811,7 +811,7 @@ public class Main extends Application
                {
                   if(nextRLevel.isInbound()) 
                   {
-                     prevDLevel.staging(levelFile);
+                     //prevDLevel.staging(levelFile);
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems(); 
@@ -819,7 +819,7 @@ public class Main extends Application
                      //make sure player fully leaves boundaries
                   else if(nextRLevel.isOut(player.getX(),player.getY())) 
                   {
-                     prevDLevel.staging(levelFile);
+                     //prevDLevel.staging(levelFile);
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
