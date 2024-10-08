@@ -77,16 +77,16 @@ public class Switches extends Button
             System.out.println("Scooby snacks?");
             int borderWidth = 7;
             gc.setFill(color);
-            gc.fillRect(x + borderWidth, y + borderWidth, width - (borderWidth * 2), height + (borderWidth * 2));
+            gc.fillRect(x, y, 5, 7);
             }
       
 
          if(isActivated == false)
          {
-         int borderWidth = 7;
-         gc.setFill(color);
-         gc.fillRect(x + borderWidth, y - borderWidth, width - (borderWidth * 2), height - (borderWidth * 2));
-            
+            int borderWidth = 7;
+            gc.setFill(color);
+            gc.fillRect(x, y, 5, 5);
+               
          }
          
       
@@ -95,13 +95,13 @@ public class Switches extends Button
    public void switchIsActivated()
    {
       isActivated = !isActivated;
-         for(int i = 0; i < spikes.get(currentRoom).size(); i++)
-            {
-            if(spikes.get(currentRoom).get(i).getColor().equals(color))
-               {
-                  spikes.get(currentRoom).get(i).swapCollisions();
-               }   
-            }
+      for(int i = 0; i < spikes.get(currentRoom).size(); i++)
+      {
+         if(spikes.get(currentRoom).get(i).getColor().equals(color))
+         {
+            spikes.get(currentRoom).get(i).swapCollisions();
+         }   
+      }
    }
    
    public Color getColor()

@@ -122,11 +122,9 @@ public class Main extends Application
 
 
    //intially 1st level
-<<<<<<< HEAD
+
    String levelFile = "8thLevel.txt";
-=======
-   String levelFile = "7thLevel.txt";
->>>>>>> origin/main
+
 
    public void start(Stage stage)
    {
@@ -465,7 +463,7 @@ public class Main extends Application
                   int x = mechscan.nextInt();
                   int y = mechscan.nextInt();
                   mechs.get(currentRoom).add(new Switches(x,y,25,25, true, newColor, false));
-                  System.out.print("KILL ME");
+                  
                
                }
                //Electric Wall
