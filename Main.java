@@ -125,8 +125,7 @@ public class Main extends Application
 
 
    //intially 1st level
-<<<<<<< HEAD
-   String levelFile = "8thLevel.txt";
+   String levelFile = "6thLevel.txt";
 
    public void start(Stage stage)
    {
@@ -149,15 +148,12 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
-=======
 
    String levelFile = "8thLevel.txt";
 
 
-   public void start(Stage stage)
-   {
+   
       initializeArrayLists();
->>>>>>> origin/main
       
       /*
       levelSwitches.get(0).set(0, nextULevel);
