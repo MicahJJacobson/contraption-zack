@@ -160,12 +160,9 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
-<<<<<<< HEAD
+
    
    
-   
-=======
->>>>>>> origin/main
    
       initializeArrayLists();
       
@@ -181,7 +178,7 @@ public class Main extends Application
       
       
       
-      menu.setValue("Lord Help Us");
+      menu.setValue("MENU");
       menu.getItems().add("Save");
       menu.getItems().add("Load");
       menu.getItems().add("Reset");
