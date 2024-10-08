@@ -143,8 +143,6 @@ public abstract class AbstractMech implements Cloneable
          }
       }
       
-      
-      
       if(this instanceof Spring)
       {
          Spring spring = (Spring)this;
@@ -156,7 +154,12 @@ public abstract class AbstractMech implements Cloneable
             spring.springMove(player);
          }
       }
-      
+      if(this instanceof Switches)
+      {
+         Switches switches = (Switches)this;
+         switches.switchIsActivated();
+         
+      }      
       //if the rectangles overlap, then return true
       return true; 
    }
