@@ -9,9 +9,11 @@ LB GREY 889 339 LB GREY 639 189
 
 Boundaries 409 134 634 909
 NextU 184 800 909 In?U false
+NextR 909 300 450
+PreviousL 634 184 250 PIn?L true
 PreviousD 510 0 1000 PIn?D true
-levelUFile None
-levelDFile 3rdLevel.txt
+levelRFile1 None
+levelLFile1 9thLevel.txt
 StartPos 634 184
 ReturnPosU 884 334
 end

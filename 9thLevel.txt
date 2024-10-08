@@ -8,13 +8,13 @@ W RED 35 15 769 344 W LIGHTGREY 10 15 769 334 W LIGHTGREY 10 15 769 374 W RED 35
 LB GREY 889 139 LB GREY 639 339 LB GREY 639 189
 
 Boundaries 409 134 634 909
-NextU 184 800 909 In?U false
+NextU 134 800 1000 In?U true
 PreviousL 634 184 1000 PIn?L true
-PreviousD 510 0 1000 PIn?D true
+PreviousD 0 0 0 PIn?D true
 levelUFile 10thLevel.txt
 levelLFile1 8thLevel.txt
 StartPos 634 184
 ReturnPosU 634 334
 end
 SV BLUE 709 384 12 50 true SV BLUE 709 334 12 50 true SV BLUE 709 284 12 50 true B BLUE 709 134
-SP GREY 798 394 false right
+SP GREY 798 394 true right

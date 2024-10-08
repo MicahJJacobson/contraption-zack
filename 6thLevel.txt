@@ -15,7 +15,7 @@ levelUFile None
 levelLFile 7thLevel.txt
 levelRFile 3rdLevel.txt
 StartPos 884 134
-ReturnPosL 634 334
+ReturnPosU 634 334
 ReturnPosL2 634 184
 end
 B ORANGE 884 234
