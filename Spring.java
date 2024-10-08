@@ -42,6 +42,7 @@ public class Spring extends AbstractMech
    {
       super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
       isActivated = other.isActivated;
+      direction = other.direction;
    }
    
    public Spring clone()

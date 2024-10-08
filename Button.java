@@ -19,7 +19,10 @@ import javafx.animation.*;
 
 public class Button extends AbstractMech
 {
-   private static ArrayList<Spike> spikes = new ArrayList<Spike>();
+   //this is probably bad practice
+   protected static ArrayList<ArrayList<Spike>> spikes = new ArrayList<ArrayList<Spike>>();
+   //I know, bad practice
+   private static int currentRoom = 0;
 
    public Button(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
@@ -34,6 +37,54 @@ public class Button extends AbstractMech
    public Button(Button other)
    {
       super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+      /*
+      ArrayList<ArrayList<Spike>> tempSpikes = new ArrayList<ArrayList<Spike>>();
+      for(int i = 0; i < spikes.size(); i++)
+      {
+         tempSpikes.add(new ArrayList<Spike>());
+         for(int j = 0; j < spikes.get(i).size(); j++)
+         {
+            tempSpikes.get(i).add(new Spike(spikes.get(i).get(j)));
+         }
+      }
+      */
+      
+   }
+   
+   public static void reassignSpikes(ArrayList<ArrayList<AbstractMech>> mechs)
+   {
+      spikes = new ArrayList<ArrayList<Spike>>();
+      for(int i = 0; i < 10; i++)
+      {
+         spikes.add(new ArrayList<Spike>());
+      }
+      /*
+      for(int i = 0; i < spikes.size(); i++)
+      {
+         for(int j = 0; j < mechs.get(i).size(); j++)
+         {
+            AbstractMech current = mechs.get(i).get(j);
+            if(current instanceof Spike)
+            {
+               
+            }
+         }
+      }
+      */
+      for(int i = 0; i < mechs.size(); i++)
+      {
+         for(int j = 0; j < mechs.get(i).size(); j++)
+         {
+            AbstractMech current = mechs.get(i).get(j);
+            if(current instanceof Spike)
+            {
+               spikes.get(i).add((Spike)current);
+               System.out.println("kill me");
+            }
+         }
+      }
+      
+      
    }
    
    public Button clone()
@@ -46,24 +97,41 @@ public class Button extends AbstractMech
       return new Button(other);
    }
    
+   /*
+   public static ArrayList<ArrayList<Spike>> getSpikes()
+   {
+      return spikes;
+   }
+   */
+   
    public void swapCollisions()
    {
       //will swap the value of hasCollisions
       //if it is true, it will change it to false
       //if it is false, it will change it to true
       hasCollisions = !hasCollisions;
-      for(int i = 0; i < spikes.size(); i++)
+      for(int i = 0; i < spikes.get(currentRoom).size(); i++)
       {
-         if(spikes.get(i).getColor().equals(color))
-         {
-            spikes.get(i).swapCollisions();
-         }
+         if(spikes.get(currentRoom).get(i).getColor().equals(color))
+            {
+               spikes.get(currentRoom).get(i).swapCollisions();
+            }
       }
    }
    
    public boolean getCollisions()
    {
       return hasCollisions;
+   }
+   
+   public static int getCurrrentRoom()
+   {
+      return currentRoom;
+   }
+   
+   public static void setCurrentRoom(int currentRoomIn)
+   {
+      currentRoom = currentRoomIn;
    }
       
    public void drawMe(GraphicsContext gc)
@@ -85,7 +153,12 @@ public class Button extends AbstractMech
    
    public static void addSpike(Spike spike)
    {
-      spikes.add(spike);
+      System.out.println(currentRoom);
+      while(spikes.size() <= currentRoom)
+      {
+         spikes.add(new ArrayList<Spike>());
+      }
+      spikes.get(currentRoom).add(spike);
    }
    
    public Color getColor()

@@ -130,10 +130,20 @@ public abstract class AbstractMech implements Cloneable
          Button button = (Button)this;
          if(button.getCollisions() == true)
          {
-            System.out.println("yes");
             button.swapCollisions();
          }
       }
+      
+      if(this instanceof TimedButton)
+      {
+         TimedButton timedButton = (TimedButton)this;
+         if(timedButton.getCollisions() == true)
+         {
+            timedButton.swapCollisions();
+         }
+      }
+      
+      
       
       if(this instanceof Spring)
       {

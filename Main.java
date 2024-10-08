@@ -247,6 +247,8 @@ public class Main extends Application
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
+         //Button needs this information, so this gives button which room we are in
+         Button.setCurrentRoom(currentRoom);
          //temporary just so the level is playable
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
@@ -430,6 +432,14 @@ public class Main extends Application
                   int x = mechscan.nextInt();
                   int y = mechscan.nextInt();
                   mechs.get(currentRoom).add(new Button(x, y, newColor));
+               }
+               //timed button
+               else if(mech.equals("TB"))
+               {
+                  Color newColor = parseColor(mechscan.next());
+                  int x = mechscan.nextInt();
+                  int y = mechscan.nextInt();
+                  mechs.get(currentRoom).add(new TimedButton(x, y, newColor));
                }
                //Springs
                else if(mech.equals("SP")) 
@@ -822,6 +832,7 @@ public class Main extends Application
                   boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
                   levelSwitches = (ArrayList<ArrayList<levelSwitch>>)saveList.get(2);
                   levelFile = (String)saveList.get(3);
+                  Button.reassignSpikes(mechs);
                   initializeItems();
                   player.setX((int)saveList.get(4));
                   player.setY((int)saveList.get(5));
