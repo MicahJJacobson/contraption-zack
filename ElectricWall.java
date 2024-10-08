@@ -23,7 +23,7 @@ public class ElectricWall extends Spike
    public ElectricWall(int x, int y, int width, int height, boolean hasCollisions, Color color)
    {
       super(x, y, width, height, hasCollisions, color);
-      
+     
    }
    
    
@@ -64,11 +64,11 @@ public class ElectricWall extends Spike
             gc.fillRect(x,y,width,height);
         }
 
-      
+     
    }
-            
-      
-      
+           
+     
+     
    
    public Color getColor()
    {

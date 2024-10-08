@@ -158,7 +158,6 @@ public abstract class AbstractMech implements Cloneable
       {
          Switches switches = (Switches)this;
          switches.switchIsActivated();
-         
       }      
       //if the rectangles overlap, then return true
       return true; 

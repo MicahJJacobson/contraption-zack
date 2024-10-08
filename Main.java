@@ -139,6 +139,11 @@ public class Main extends Application
 >>>>>>> origin/main
 >>>>>>> 6f7c82021e1c20b08d8ed034a0cddec0f0488029
 
+=======
+   
+   String levelFile = "1stLevel.txt";
+   
+>>>>>>> origin/main
    public void start(Stage stage)
    {
       for(int i = 0; i < 10; i++)
@@ -161,9 +166,6 @@ public class Main extends Application
          }
       }
 
-   
-   
-   
       initializeArrayLists();
       
       /*
@@ -178,7 +180,8 @@ public class Main extends Application
       
       
       
-      menu.setValue("MENU");
+
+      menu.setValue("Menu");
       menu.getItems().add("Save");
       menu.getItems().add("Load");
       menu.getItems().add("Reset");
@@ -568,25 +571,8 @@ public class Main extends Application
             boundariesR = boundaries.get(currentRoom).get(3);
             if(currentRoom>currentRoomPrev) 
             {
-               
-               if(twoStart) 
-               {
-                 /* if(Position.get(currentRoom-1).get(2) == ) 
-                  { 
-                     player.setX(Position.get(currentRoom).get(4)); //start x
-                     player.setY(Position.get(currentRoom).get(5)); //start y 
-                  }
-                  else
-                  {
-                     player.setX(Position.get(currentRoom).get(0)); //start x
-                     player.setY(Position.get(currentRoom).get(1)); //start y  
-                  }  */
-               }
-               else
-               {
-                  player.setX(Position.get(currentRoom).get(0)); //start x
-                  player.setY(Position.get(currentRoom).get(1)); //start y 
-               }
+               player.setX(Position.get(currentRoom).get(0)); //start x
+               player.setY(Position.get(currentRoom).get(1)); //start y
             }
             else if(currentRoom<currentRoomPrev)
             {
@@ -629,10 +615,10 @@ public class Main extends Application
                mechs.get(currentRoom).get(i).checkBoundaries(player);
             }            
          
-            if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
-            {
-               menu.setValue("Lord help Us");
-            }
+         if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
+         {
+            menu.setValue("Menu");
+         }
             
          /*
          if(Door.getDoorCounter() >= 150)
@@ -993,9 +979,9 @@ public class Main extends Application
          Position.add(new ArrayList<Integer>());
       }
       
-      for(int i = 0; i < levelSwitches.size(); i++)
+      for(int i = 0; i < 10; i++)
       {
-         for(int j = 0; j < 5; j++)
+         for(int j = 0; j < 10; j++)
          {
             levelSwitches.get(i).add(null);
          }
@@ -1006,6 +992,31 @@ public class Main extends Application
          saveList.add(null);
       }
    }
+   
+   ArrayList<String> files = new ArrayList<String>();
+   int currentFileBadCode = 0;
+   
+   /*
+   public void initializeEveryLevel()
+   {
+      files.add(new String("1stlevel.txt"));
+      files.add(new String("2ndlevel.txt"));
+      files.add(new String("3rdlevel.txt"));
+      files.add(new String("4thlevel.txt"));
+      files.add(new String("5thlevel.txt"));
+      files.add(new String("6thlevel.txt"));
+      files.add(new String("7thlevel.txt"));
+      files.add(new String("8thlevel.txt"));
+      files.add(new String("9thlevel.txt"));
+      files.add(new String("10thlevel.txt"));
+      
+      levelFile = files.get(currentFileBadCode);
+      initializeItems();
+      currentFileBadCode++;
+      
+      
+   }
+   */
    
    public class ComboBoxListener implements EventHandler<ActionEvent>
    {
@@ -1085,7 +1096,8 @@ public class Main extends Application
                   Button.reassignSpikes(mechs);
                   initializeItems();
                   player.setX((int)saveList.get(4));
-                  player.setY((int)saveList.get(5));                  
+                  player.setY((int)saveList.get(5)); 
+                                   
                   break;
                case "Reset":
                   saveList.clear();
@@ -1142,6 +1154,7 @@ public class Main extends Application
                   }
                   initializeArrayLists();
                   levelFile = "1stLevel.txt";
+                  //initializeEveryLevel();
                   initializeItems();
                   break;
                case "Exit":
