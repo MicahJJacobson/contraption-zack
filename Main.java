@@ -42,8 +42,11 @@ public class Main extends Application
    //index 2 is Left
    //index 3 is Right
    ArrayList<ArrayList<Integer>> boundaries = new ArrayList<ArrayList<Integer>>();
+   ArrayList<ArrayList<Integer>> Position = new ArrayList<ArrayList<Integer>>();
    
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   int playerX;
+   int playerY;
    int doorX;
    int doorY;
    int doorcounter = -1;
@@ -114,7 +117,11 @@ public class Main extends Application
 
 
    //intially 1st level
+<<<<<<< HEAD
    String levelFile = "2ndLevel.txt";
+=======
+   String levelFile = "3rdLevel.txt";
+>>>>>>> origin/main
 
    public void start(Stage stage)
    {
@@ -122,6 +129,7 @@ public class Main extends Application
       {
          levelSwitches.add(new ArrayList<levelSwitch>());
          boundaries.add(new ArrayList<Integer>());
+         Position.add(new ArrayList<Integer>());
          mechs.add(new ArrayList<AbstractMech>());
       }
       
@@ -132,6 +140,8 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
+      
+      
       
       menu.setValue("Menu");
       menu.getItems().add("Save");
@@ -220,11 +230,11 @@ public class Main extends Application
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
-         //System.out.println(currentRoom);
-         
+         //temporary just so the level is playable
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
          {
+            item = "";
             while(!(item.equals("end")))
             {
                item = scan.next();         
@@ -301,6 +311,16 @@ public class Main extends Application
                {
                   prevDLevel.staging(scan.next());
                }
+               else if (item.equals("StartPos"))
+               {
+                  playerX = scan.nextInt();
+                  playerY = scan.nextInt();
+                  Position.get(currentRoom).add(playerX);
+                  Position.get(currentRoom).add(playerY);
+                  player.setX(playerX);
+                  player.setY(playerY);
+               }
+               
             }
             while(mechscan.hasNext())
             {
@@ -397,11 +417,7 @@ public class Main extends Application
                   mechs.get(currentRoom).add(newSpring);
                   
                } 
-            
-            
-            
-            
-            
+               addLevelSwitchesToArrayList();
             }
          }
          else
@@ -416,6 +432,10 @@ public class Main extends Application
             boundariesU = boundaries.get(currentRoom).get(1);
             boundariesL = boundaries.get(currentRoom).get(2);
             boundariesR = boundaries.get(currentRoom).get(3);
+            player.setX(Position.get(currentRoom).get(0));
+            player.setY(Position.get(currentRoom).get(1));
+            
+            
          }
       }
       catch(FileNotFoundException fnfe)
@@ -736,6 +756,7 @@ public class Main extends Application
          switch((String)menu.getValue())
          {
             case "Save":
+               
                //index 0 mechs
                //index 1 boundaries
                //index 2 levelSwitches
@@ -743,6 +764,17 @@ public class Main extends Application
                //index 4 X position of player
                //index 5 Y position of player
                saveList.add(new ArrayList<ArrayList<AbstractMech>>(mechs));
+               //this will create a shallow copy of the mechs arraylist
+               /*
+               for(int i = 0; i < saveList.get(0).size(); i++)
+               {
+                  for(int j = 0; j < saveList.get(0).get(i).size(); j++)
+                  {
+                     //this creates a new insteance of the mech at the current index
+                     saveList.get(0).get(i).add(new AbstractMech(mechs.get(i).get(j)));
+                  }
+               }
+               */
                saveList.add(new ArrayList<ArrayList<Integer>>(boundaries));
                saveList.add(new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
                saveList.add(new String(levelFile));
@@ -762,6 +794,7 @@ public class Main extends Application
                initializeItems();
                break;
          }
+         menu.setValue("Menu");
       }
    }
 }
