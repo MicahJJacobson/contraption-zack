@@ -18,17 +18,8 @@ StartPos 834 434
 ReturnPosU 850 384
 ReturnPosR2 884 234
 end
-<<<<<<< HEAD
 SW TAN 704 206
-=======
-<<<<<<< HEAD
+EW TAN 772 244 
 SV ORANGE 769 384 12 50 false
 SH PURPLE 659 319 true SH PURPLE 709 319 true B PURPLE 834 334
 SP GREY 698 394 true left
-=======
-SW TAN 694 208
->>>>>>> origin/main
-EW TAN 772 244 
-SP GREY 698 394 true
-SP GREY 698 394 true left
->>>>>>> origin/main
