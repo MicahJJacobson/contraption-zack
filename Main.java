@@ -127,8 +127,12 @@ public class Main extends Application
       {
          levelSwitches.add(new ArrayList<levelSwitch>());
          boundaries.add(new ArrayList<Integer>());
-         Position.add(new ArrayList<Integer>());
          mechs.add(new ArrayList<AbstractMech>());
+      }
+      
+      for(int i = 0; i < 20; i++)
+      {
+         Position.add(new ArrayList<Integer>());
       }
       
       for(int i = 0; i < levelSwitches.size(); i++)
@@ -139,7 +143,7 @@ public class Main extends Application
          }
       }
       
-      for(int i= 0; i < saveList.size(); i++)
+      for(int i= 0; i < 6; i++)
       {
          saveList.add(null);
       }
@@ -777,7 +781,7 @@ public class Main extends Application
                      tempMechs.get(i).add(mechs.get(i).get(j).clone());
                   }
                }
-               //saveList.set(0, tempMechs);
+               saveList.set(0, tempMechs);
                //this will create a shallow copy of the mechs arraylist
                //
                
@@ -795,10 +799,11 @@ public class Main extends Application
                boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
                levelSwitches = (ArrayList<ArrayList<levelSwitch>>)saveList.get(2);
                levelFile = (String)saveList.get(3);
+               initializeItems();
                player.setX((int)saveList.get(4));
                player.setY((int)saveList.get(5));
                
-               initializeItems();
+               
                break;
          }
          menu.setValue("Menu");
