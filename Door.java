@@ -43,6 +43,12 @@ public class Door extends AbstractMech
       this.shouldBeDrawn = shouldBeDrawn;
    }
    
+   public Door(Door other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+      shouldBeDrawn = other.shouldBeDrawn;
+   }
+   
    /*
    public static int getDoorCounter()
    {

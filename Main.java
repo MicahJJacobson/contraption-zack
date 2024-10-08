@@ -161,7 +161,7 @@ public class Main extends Application
       
       
       
-      menu.setValue("Menu");
+      menu.setValue("Lord Help Us");
       menu.getItems().add("Save");
       menu.getItems().add("Load");
       
@@ -534,7 +534,7 @@ public class Main extends Application
          
          if(menu.getValue().equals("Save") || menu.getValue().equals("Load"))
          {
-            menu.setValue("Menu");
+            menu.setValue("Lord help Us");
          }
             
          /*
@@ -869,7 +869,16 @@ public class Main extends Application
                   saveList.set(3, new String(levelFile));
                   saveList.set(4, player.getX());
                   saveList.set(5, player.getY());
+                  /*
+                  ArrayList<Door> tempDoors = new ArrayList<Door>();
+                  for(int i = 0; i < doors.size(); i++)
+                  {
+                     tempDoors.add(new Door(doors.get(i)));
+                  }
+                  saveList.set(6, tempDoors);
+                  saveList.set(7, doorcounter);
                   System.out.println("Success");
+                  */
                   break;
                case "Load":
                   //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
