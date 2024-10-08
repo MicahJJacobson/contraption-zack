@@ -42,8 +42,11 @@ public class Main extends Application
    //index 2 is Left
    //index 3 is Right
    ArrayList<ArrayList<Integer>> boundaries = new ArrayList<ArrayList<Integer>>();
+   ArrayList<ArrayList<Integer>> Position = new ArrayList<ArrayList<Integer>>();
    
    int boundariesU, boundariesD, boundariesL, boundariesR;
+   int playerX;
+   int playerY;
    int doorX;
    int doorY;
    int doorcounter = -1;
@@ -114,7 +117,9 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+//<<<<<<< HEAD
+//<<<<<<< HEAD
+   String levelFile = "2ndLevel.txt";
 
    public void start(Stage stage)
    {
@@ -122,6 +127,7 @@ public class Main extends Application
       {
          levelSwitches.add(new ArrayList<levelSwitch>());
          boundaries.add(new ArrayList<Integer>());
+         Position.add(new ArrayList<Integer>());
          mechs.add(new ArrayList<AbstractMech>());
       }
       
@@ -227,11 +233,11 @@ public class Main extends Application
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
-         //System.out.println(currentRoom);
-         
+         //temporary just so the level is playable
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
          {
+            item = "";
             while(!(item.equals("end")))
             {
                item = scan.next();         
@@ -308,6 +314,25 @@ public class Main extends Application
                {
                   prevDLevel.staging(scan.next());
                }
+               else if (item.equals("StartPos"))
+               {
+                  playerX = scan.nextInt();
+                  playerY = scan.nextInt();
+                  //Position.get(currentRoom).add(playerX);
+                  //Position.get(currentRoom).add(playerY);
+                  player.setX(playerX);
+                  player.setY(playerY);
+               }
+               else if (item.equals("ReturnPosU"))
+               {
+                  int replayerX = scan.nextInt();
+                  int replayerY = scan.nextInt();
+                  Position.get(currentRoom).add(replayerX);
+                  Position.get(currentRoom).add(replayerY);
+                  //player.setX(playerX);
+                  //player.setY(playerY);
+               }
+               
             }
             while(mechscan.hasNext())
             {
@@ -419,6 +444,10 @@ public class Main extends Application
             boundariesU = boundaries.get(currentRoom).get(1);
             boundariesL = boundaries.get(currentRoom).get(2);
             boundariesR = boundaries.get(currentRoom).get(3);
+            player.setX(Position.get(currentRoom).get(0));
+            player.setY(Position.get(currentRoom).get(1));
+            
+            
          }
       }
       catch(FileNotFoundException fnfe)
@@ -471,8 +500,6 @@ public class Main extends Application
             {
                doormechs.get(i).checkBoundaries(player);
             }
-            
-//<<<<<<< HEAD
             if(doorcounter == 150)
             {
                doorcounter = 0;
@@ -488,9 +515,6 @@ public class Main extends Application
                
             }
          
-//=======
-         
-         
          if(currentRoom == 2)
          {
             for (int i = 0; i < doormechs.size(); i++)
@@ -505,10 +529,7 @@ public class Main extends Application
                doormechs.get(i).setShouldBeDrawn(false);
             }
          }
-//>>>>>>> origin/main
-               
-                
-            
+         
             // 
             //      
          player.drawMe(player.getX(),player.getY(),gc);
