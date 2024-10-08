@@ -251,6 +251,8 @@ public class Main extends Application
    {
       try
       {
+         playerX=player.getX();
+         playerY=player.getY();
          Scanner scan = new Scanner(new File(levelFile));
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
