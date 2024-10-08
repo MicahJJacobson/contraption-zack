@@ -125,11 +125,9 @@ public class Main extends Application
 
 
    //intially 1st level
-<<<<<<< HEAD
+
    String levelFile = "7thLevel.txt";
-=======
-   String levelFile = "6thLevel.txt";
->>>>>>> origin/main
+
 
    public void start(Stage stage)
    {
@@ -153,7 +151,6 @@ public class Main extends Application
          }
       }
 
-   String levelFile = "8thLevel.txt";
 
 
    
