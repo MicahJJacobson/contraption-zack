@@ -43,6 +43,10 @@ public class Main extends Application
    //index 3 is Right
    ArrayList<ArrayList<Integer>> boundaries = new ArrayList<ArrayList<Integer>>();
    ArrayList<ArrayList<Integer>> Position = new ArrayList<ArrayList<Integer>>();
+   //index 0 is starposx
+   //index 1 is starposy
+   //index 2 is returnposx
+   //index 3 is returnposy
    
    int boundariesU, boundariesD, boundariesL, boundariesR;
    int playerX;
@@ -101,6 +105,7 @@ public class Main extends Application
    
    */
    int currentRoom = 0;
+   int currentRoomPrev = -1; //for level switching
    //String direction = "left";
    /*
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
@@ -117,9 +122,7 @@ public class Main extends Application
 
 
    //intially 1st level
-//<<<<<<< HEAD
-//<<<<<<< HEAD
-   String levelFile = "2ndLevel.txt";
+   String levelFile = "6thLevel.txt";
 
    public void start(Stage stage)
    {
@@ -228,7 +231,8 @@ public class Main extends Application
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
-         //temporary just so the level is playable
+         System.out.println(currentRoom);
+         System.out.println(currentRoomPrev);
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
          {
@@ -292,6 +296,18 @@ public class Main extends Application
                   prevDLevel.Inbound(Boolean.parseBoolean(In));
                   
                }
+               else if(item.equals("PreviousR"))
+               {
+                  prevRLevel.levelInput(scan.nextInt(), scan.nextInt(), scan.nextInt());
+                  
+               }
+               //tells if previous level block will be in boundaries or out
+               else if(item.equals("PIn?R"))
+               {
+                  String In = scan.next();
+                  prevRLevel.Inbound(Boolean.parseBoolean(In));
+                  
+               }
                //name of next level
                else if(item.equals("levelUFile"))
                {
@@ -309,12 +325,16 @@ public class Main extends Application
                {
                   prevDLevel.staging(scan.next());
                }
+               else if (item.equals("levelRFile"))
+               {
+                  prevRLevel.staging(scan.next());
+               }
                else if (item.equals("StartPos"))
                {
                   playerX = scan.nextInt();
                   playerY = scan.nextInt();
-                  //Position.get(currentRoom).add(playerX);
-                  //Position.get(currentRoom).add(playerY);
+                  Position.get(currentRoom).add(playerX);
+                  Position.get(currentRoom).add(playerY);
                   player.setX(playerX);
                   player.setY(playerY);
                }
@@ -327,6 +347,7 @@ public class Main extends Application
                   //player.setX(playerX);
                   //player.setY(playerY);
                }
+               
                
             }
             while(mechscan.hasNext())
@@ -439,11 +460,19 @@ public class Main extends Application
             boundariesU = boundaries.get(currentRoom).get(1);
             boundariesL = boundaries.get(currentRoom).get(2);
             boundariesR = boundaries.get(currentRoom).get(3);
-            player.setX(Position.get(currentRoom).get(0));
-            player.setY(Position.get(currentRoom).get(1));
-            
+            if(currentRoom>currentRoomPrev) 
+            {
+               player.setX(Position.get(currentRoom).get(0)); //start x
+               player.setY(Position.get(currentRoom).get(1)); //start y
+            }
+            else if(currentRoom<currentRoomPrev)
+            {
+               player.setX(Position.get(currentRoom).get(2)); //return x
+               player.setY(Position.get(currentRoom).get(3)); //return y
+            }
             
          }
+         currentRoomPrev=currentRoom;
       }
       catch(FileNotFoundException fnfe)
       {
@@ -631,11 +660,28 @@ public class Main extends Application
                   
             }
          }
-         if(player.getX() < boundariesR)
+         if(player.getX() < boundariesR || prevRLevel.canGo(player.getX(),player.getY()))
          {
             if(right)
             {
                player.setX(player.getX() + 1);
+               
+                  //check if player is going to next level
+               if(prevRLevel.canGo(player.getX(),player.getY()))
+               {
+                  if(prevRLevel.isInbound()) 
+                  {
+                     levelFile = prevRLevel.getStaging();
+                     addLevelSwitchesToArrayList();
+                     initializeItems(); 
+                  }
+                     //make sure player fully leaves boundaries
+                  else if(prevRLevel.isOut(player.getX(),player.getY())) 
+                  {
+                     addLevelSwitchesToArrayList();
+                     initializeItems();     
+                  }
+               }
             }  
          }
          if(doorcounter != -1)

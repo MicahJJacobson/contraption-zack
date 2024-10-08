@@ -12,6 +12,8 @@ NextU 184 800 909 In?U false
 PreviousD 510 0 1000 PIn?D true
 levelUFile None
 levelDFile 4thLevel.txt
+StartPos 634 484
+ReturnPosU 784 484
 end
 B DARKGREY 684 134
 B GREEN 934 234
