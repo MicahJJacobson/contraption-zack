@@ -881,6 +881,10 @@ public class Main extends Application
                   */
                   break;
                case "Load":
+                  if(saveList.get(0) == null)
+                  {
+                     break;
+                  }
                   //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
                   mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
                   boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);

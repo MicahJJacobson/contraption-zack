@@ -98,7 +98,6 @@ public class TimedButton extends Button
          {
             timer = 0;
             swapCollisions();
-            System.out.println("Scooby snacks?");
          }
       }
       
