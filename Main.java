@@ -109,7 +109,6 @@ public class Main extends Application
    */
    int currentRoom = 0;
    int currentRoomPrev = -1; //for level switching
-   boolean twoStart = false; // checks if two starting positions
    //String direction = "left";
    /*
    Spike newSpike = new Spike(684, 134, true, Color.GREEN);
@@ -126,12 +125,8 @@ public class Main extends Application
 
 
    //intially 1st level
-<<<<<<< HEAD
    
    String levelFile = "1stLevel.txt";
-=======
-   String levelFile = "9thLevel.txt";
->>>>>>> origin/main
 
    public void start(Stage stage)
    {
@@ -154,7 +149,6 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
-   
       initializeArrayLists();
       
       /*
@@ -553,25 +547,8 @@ public class Main extends Application
             boundariesR = boundaries.get(currentRoom).get(3);
             if(currentRoom>currentRoomPrev) 
             {
-               
-               if(twoStart) 
-               {
-                 /* if(Position.get(currentRoom-1).get(2) == ) 
-                  { 
-                     player.setX(Position.get(currentRoom).get(4)); //start x
-                     player.setY(Position.get(currentRoom).get(5)); //start y 
-                  }
-                  else
-                  {
-                     player.setX(Position.get(currentRoom).get(0)); //start x
-                     player.setY(Position.get(currentRoom).get(1)); //start y  
-                  }  */
-               }
-               else
-               {
-                  player.setX(Position.get(currentRoom).get(0)); //start x
-                  player.setY(Position.get(currentRoom).get(1)); //start y 
-               }
+               player.setX(Position.get(currentRoom).get(0)); //start x
+               player.setY(Position.get(currentRoom).get(1)); //start y
             }
             else if(currentRoom<currentRoomPrev)
             {
@@ -612,12 +589,12 @@ public class Main extends Application
             mechs.get(currentRoom).get(i).checkBoundaries(player);
          }            
          
-         /*
+         
          if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
          {
             menu.setValue("Lord help Us");
          }
-         */
+         
             
          /*
          if(Door.getDoorCounter() >= 150)
