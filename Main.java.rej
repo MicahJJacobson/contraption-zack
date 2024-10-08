@@ -1,0 +1,9 @@
+diff a/Main.java b/Main.java	(rejected hunks)
+@@ -122,7 +122,6 @@
+ //<<<<<<< HEAD
+ //<<<<<<< HEAD
+    String levelFile = "2ndLevel.txt";
+-=======
+ 
+    public void start(Stage stage)
+    {

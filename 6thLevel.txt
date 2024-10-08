@@ -8,12 +8,17 @@ W RED 15 35 642 269 W LIGHTGREY 15 10 634 269 W LIGHTGREY 15 10 674 269 W RED 15
 LB GREY 889 139 LB GREY 639 339 LB GREY 639 189
 
 Boundaries 409 134 634 909
-NextU 184 800 909 In?U false
-PreviousD 510 0 1000 PIn?D true
+NextU 0 0 0 In?U false
+NextL 634 310 400
+PreviousR 909 134 200 PIn?R true
 levelUFile None
-levelDFile 3rdLevel.txt
+levelLFile 7thLevel.txt
+levelRFile 3rdLevel.txt
+StartPos 884 134
+ReturnPosL 634 334
+ReturnPosL2 634 184
 end
 B ORANGE 884 234
 B DARKGREY 684 334
 SH DARKGREY 684 269 true
-SP GREY 848 394 true SP GREY 748 194 true
+SP GREY 848 394 true left SP GREY 748 194 true right

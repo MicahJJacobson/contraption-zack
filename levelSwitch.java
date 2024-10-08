@@ -86,6 +86,17 @@ public class levelSwitch
             return false;
          }
       }
+      else if(winningDirection.equals("right"))
+      {
+         if (posy > boundary1 && posx-25 >= winningSide && posy+25 <= boundary2)
+         {
+            return true;
+         }
+         else 
+         {
+            return false;
+         }
+      }
       else if(winningDirection.equals("down"))
       {
          if (posx > boundary1 && posy-25 >= winningSide && posx+25 <= boundary2)
@@ -117,6 +128,17 @@ public class levelSwitch
       else if(winningDirection.equals("left"))
       {
          if (posy > boundary1 && posx <= winningSide && posy+25 <= boundary2)
+         {
+            return true;
+         }
+         else 
+         {
+            return false;
+         }
+      }
+      else if(winningDirection.equals("right"))
+      {
+         if (posy > boundary1 && posx >= winningSide && posy+25 <= boundary2)
          {
             return true;
          }

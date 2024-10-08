@@ -12,5 +12,7 @@ NextU 184 800 909 In?U false
 PreviousD 510 0 1000 PIn?D true
 levelUFile None
 levelDFile 3rdLevel.txt
+StartPos 634 184
+ReturnPosU 884 334
 end
 SH BLUE 784 320 true B BLUE 759 210

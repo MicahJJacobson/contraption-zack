@@ -160,8 +160,7 @@ public abstract class AbstractMech implements Cloneable
       //if the rectangles overlap, then return true
       return true; 
    }
-   
-    
+     
 
 }   
 
