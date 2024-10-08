@@ -118,9 +118,13 @@ public class Main extends Application
 
    //intially 1st level
 <<<<<<< HEAD
+<<<<<<< HEAD
    String levelFile = "2ndLevel.txt";
 =======
    String levelFile = "3rdLevel.txt";
+>>>>>>> origin/main
+=======
+   String levelFile = "1stLevel.txt";
 >>>>>>> origin/main
 
    public void start(Stage stage)
@@ -315,10 +319,19 @@ public class Main extends Application
                {
                   playerX = scan.nextInt();
                   playerY = scan.nextInt();
-                  Position.get(currentRoom).add(playerX);
-                  Position.get(currentRoom).add(playerY);
+                  //Position.get(currentRoom).add(playerX);
+                  //Position.get(currentRoom).add(playerY);
                   player.setX(playerX);
                   player.setY(playerY);
+               }
+               else if (item.equals("ReturnPosU"))
+               {
+                  int replayerX = scan.nextInt();
+                  int replayerY = scan.nextInt();
+                  Position.get(currentRoom).add(replayerX);
+                  Position.get(currentRoom).add(replayerY);
+                  //player.setX(playerX);
+                  //player.setY(playerY);
                }
                
             }
@@ -488,8 +501,6 @@ public class Main extends Application
             {
                doormechs.get(i).checkBoundaries(player);
             }
-            
-//<<<<<<< HEAD
             if(doorcounter == 150)
             {
                doorcounter = 0;
@@ -505,9 +516,6 @@ public class Main extends Application
                
             }
          
-//=======
-         
-         
          if(currentRoom == 2)
          {
             for (int i = 0; i < doormechs.size(); i++)
@@ -522,10 +530,7 @@ public class Main extends Application
                doormechs.get(i).setShouldBeDrawn(false);
             }
          }
-//>>>>>>> origin/main
-               
-                
-            
+         
             // 
             //      
          player.drawMe(player.getX(),player.getY(),gc);
