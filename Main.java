@@ -845,9 +845,6 @@ public class Main extends Application
                   }
                   saveList.set(0, tempMechs);
                   //this will create a shallow copy of the mechs arraylist
-                  //
-                  
-                  //
                   saveList.set(1, new ArrayList<ArrayList<Integer>>(boundaries));
                   ArrayList<ArrayList<levelSwitch>> tempSwitches = new ArrayList<ArrayList<levelSwitch>>();
                   for(int i = 0; i < levelSwitches.size(); i++)
@@ -896,6 +893,7 @@ public class Main extends Application
                   player.setY((int)saveList.get(5));                  
                   break;
                case "Reset":
+                  doormechs.clear();
             }
          }
       }
