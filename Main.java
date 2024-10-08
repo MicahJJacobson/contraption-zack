@@ -133,6 +133,11 @@ public class Main extends Application
          }
       }
       
+      for(int i= 0; i < saveList.size(); i++)
+      {
+         saveList.add(null);
+      }
+      
       
       
       menu.setValue("Menu");
@@ -741,23 +746,26 @@ public class Main extends Application
                //index 3 levelFile
                //index 4 X position of player
                //index 5 Y position of player
-               saveList.add(new ArrayList<ArrayList<AbstractMech>>(mechs));
-               //this will create a shallow copy of the mechs arraylist
-               /*
-               for(int i = 0; i < saveList.get(0).size(); i++)
+               ArrayList<ArrayList<AbstractMech>> tempMechs = new ArrayList<ArrayList<AbstractMech>>();
+               for(int i = 0; i < mechs.size(); i++)
                {
-                  for(int j = 0; j < saveList.get(0).get(i).size(); j++)
+                  tempMechs.add(new ArrayList<AbstractMech>());
+                  for(int j = 0; j < mechs.get(i).size(); j++)
                   {
-                     //this creates a new insteance of the mech at the current index
-                     saveList.get(0).get(i).add(new AbstractMech(mechs.get(i).get(j)));
+                     //this creates a new instance of the mech at the current index
+                     tempMechs.get(i).add(mechs.get(i).get(j).clone());
                   }
                }
-               */
-               saveList.add(new ArrayList<ArrayList<Integer>>(boundaries));
-               saveList.add(new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
-               saveList.add(new String(levelFile));
-               saveList.add(player.getX());
-               saveList.add(player.getY());
+               saveList.set(0, new ArrayList<ArrayList<AbstractMech>>());
+               //this will create a shallow copy of the mechs arraylist
+               //
+               
+               //
+               saveList.set(1, new ArrayList<ArrayList<Integer>>(boundaries));
+               saveList.set(2, new ArrayList<ArrayList<levelSwitch>>(levelSwitches));
+               saveList.set(3, new String(levelFile));
+               saveList.set(4, player.getX());
+               saveList.set(5, player.getY());
                System.out.println("Success");
                break;
             case "Load":

@@ -26,20 +26,35 @@ public class Spring extends AbstractMech
       this.color = color;
    }
    */
-   String directionn;
-   Color colorr;
+   String direction;
+   Color color;
    //all spikes are the same size so we don't need width and height
    public Spring(int x, int y, boolean hasCollisions, Color color, String direction)
    {
       
       super(x, y, 50, 12, hasCollisions, color);
-      directionn = direction;
-      colorr = color;
+      this.direction = direction;
+      //this.color = color;
+   }
+   
+   public Spring(Spring other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+   }
+   
+   public Spring clone()
+   {
+      return new Spring(this);
+   }
+   
+   public static Spring clone(Spring other)
+   {
+      return new Spring(other);
    }
    
    public String getDirection() 
    {
-      return directionn;
+      return direction;
    }
    public int getX() 
    {

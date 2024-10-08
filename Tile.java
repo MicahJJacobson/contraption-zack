@@ -24,6 +24,21 @@ public class Tile extends AbstractMech
       super(x, y, 50, 50, false, color);
    }
    
+   public Tile(Tile other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+   }
+   
+   public Tile clone()
+   {
+      return new Tile(this);
+   }
+   
+   public static Tile clone(Tile other)
+   {
+      return new Tile(other);
+   }
+   
    public void drawMe(GraphicsContext gc)
    {
       gc.setFill(Color.BLACK);
