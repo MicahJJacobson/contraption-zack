@@ -126,9 +126,17 @@ public class Main extends Application
 
 
    //intially 1st level
+<<<<<<< HEAD
    
    String levelFile = "1stLevel.txt";
 
+=======
+
+
+   String levelFile = "1stLevel.txt";
+
+
+>>>>>>> origin/main
    public void start(Stage stage)
    {
       for(int i = 0; i < 10; i++)
@@ -150,6 +158,13 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
+<<<<<<< HEAD
+=======
+
+   
+   
+   
+>>>>>>> origin/main
       initializeArrayLists();
       
       /*
@@ -164,7 +179,11 @@ public class Main extends Application
       
       
       
+<<<<<<< HEAD
       menu.setValue("Menu");
+=======
+      menu.setValue("MENU");
+>>>>>>> origin/main
       menu.getItems().add("Save");
       menu.getItems().add("Load");
       menu.getItems().add("Reset");
