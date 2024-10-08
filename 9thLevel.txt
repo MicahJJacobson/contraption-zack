@@ -17,4 +17,4 @@ StartPos 634 184
 ReturnPosU 634 334
 end
 SV BLUE 709 384 12 50 true SV BLUE 709 334 12 50 true SV BLUE 709 284 12 50 true B BLUE 709 134
-SP GREY 798 394 false right
+SP GREY 798 394 true right
