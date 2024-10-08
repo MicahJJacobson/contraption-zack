@@ -114,7 +114,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "1stLevel.txt";
+   String levelFile = "2ndLevel.txt";
 
    public void start(Stage stage)
    {
@@ -222,11 +222,13 @@ public class Main extends Application
          Scanner mechscan = new Scanner(new File(levelFile));
          //this will check which level it is on and set the currentRoom variable to the level - 1
          currentRoom = Integer.parseInt(levelFile.substring(0, 1)) - 1;
-         //System.out.println(currentRoom);
-         
+         //temporary just so the level is playable
+         player.setX(684);
+         player.setY(484);
          //checks if the room has already been initalized
          if(mechs.get(currentRoom).isEmpty())
          {
+            item = "";
             while(!(item.equals("end")))
             {
                item = scan.next();         

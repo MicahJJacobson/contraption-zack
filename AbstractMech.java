@@ -131,7 +131,6 @@ public abstract class AbstractMech
          //We want spring to have collisions
          if(spring.getCollisions() == true)
          {
-            System.out.println("yes");
             spring.swapCollisions();
             String direction = spring.getDirection();
             springMove(player, direction, spring.getX(), spring.getY());
@@ -144,7 +143,6 @@ public abstract class AbstractMech
    
    public void springMove(Player player, String direction, int x, int y) 
    {
-      System.out.println(x);
       player.setX(x);
       player.setY(y);
       if(direction.equals("right")) 
