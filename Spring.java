@@ -32,7 +32,7 @@ public class Spring extends AbstractMech
    public Spring(int x, int y, boolean hasCollisions, Color color, String direction)
    {
       
-      super(x, y, 50, 12, hasCollisions, color);
+      super(x , y , 25, 25, hasCollisions, color);
       this.direction = direction;
       //this.color = color;
    }
