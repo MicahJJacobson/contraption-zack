@@ -23,7 +23,7 @@ public class Main extends Application
    AnimationHandler ta = new AnimationHandler();
    ComboBox menu = new ComboBox();
    StackPane sp = new StackPane();
-   GridPane gp = new GridPane();
+   GridPane gp = new GridPane(); 
    Canvas theCanvas = new Canvas(1368,768);
    GraphicsContext gc = theCanvas.getGraphicsContext2D(); 
    ArrayList<Object> saveList = new ArrayList<Object>();
@@ -56,6 +56,7 @@ public class Main extends Application
    int doorY;
    int doorcounter = -1;
    int doorcount = 0;
+   boolean start = false;
    String item = "";
    String mech = "";
    levelSwitch nextULevel = new levelSwitch("up");
@@ -126,7 +127,7 @@ public class Main extends Application
 
    //intially 1st level
 
-   String levelFile = "7thLevel.txt";
+   String levelFile = "1stLevel.txt";
 
 
    public void start(Stage stage)
@@ -150,9 +151,9 @@ public class Main extends Application
             levelSwitches.get(i).add(null);
          }
       }
-
-
-
+   
+   
+   
    
       initializeArrayLists();
       
@@ -189,6 +190,10 @@ public class Main extends Application
       sp.setOnKeyPressed(new KeyListenerDown());
       sp.setOnKeyReleased(new KeyListenerUp());
       menu.setOnAction(new ComboBoxListener());
+      sp.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+         sp.setPrefSize(100,30);
+         Label label2 = new Label("Welcome to MoodTraption Zac         Please press H to Start          START             LOAD");
+          sp.getChildren().add(label2);
       sp.getChildren().add(theCanvas);
       sp.getChildren().add(gp);
       gp.getChildren().add(menu);
@@ -588,16 +593,18 @@ public class Main extends Application
    {
       public void handle(long currentTimeInNanoSeconds) 
       {
-         drawItems();
-         for(int i = 0; i<mechs.get(currentRoom).size(); i++)
+         if(start == true)
          {
-            mechs.get(currentRoom).get(i).checkBoundaries(player);
-         }            
+            drawItems();
+            for(int i = 0; i<mechs.get(currentRoom).size(); i++)
+            {
+               mechs.get(currentRoom).get(i).checkBoundaries(player);
+            }            
          
-         if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
-         {
-            menu.setValue("Lord help Us");
-         }
+            if(menu.getValue().equals("Save") || menu.getValue().equals("Load") || menu.getValue().equals("Reset") || menu.getValue().equals("Exit"))
+            {
+               menu.setValue("Lord help Us");
+            }
             
          /*
          if(Door.getDoorCounter() >= 150)
@@ -614,7 +621,7 @@ public class Main extends Application
             
          }
          */
-
+         
             for(int i = 0; i<doormechs.size(); i++)
             {
                doormechs.get(i).checkBoundaries(player);
@@ -634,192 +641,192 @@ public class Main extends Application
                
             }
          
-         if(currentRoom == 2)
-         {
-            for (int i = 0; i < doormechs.size(); i++)
+            if(currentRoom == 2)
             {
-               doormechs.get(i).setShouldBeDrawn(true);
+               for (int i = 0; i < doormechs.size(); i++)
+               {
+                  doormechs.get(i).setShouldBeDrawn(true);
+               }
             }
-         }
-         else
-         {
-            for (int i = 0; i < doormechs.size(); i++)
+            else
             {
-               doormechs.get(i).setShouldBeDrawn(false);
+               for (int i = 0; i < doormechs.size(); i++)
+               {
+                  doormechs.get(i).setShouldBeDrawn(false);
+               }
             }
-         }
          
             // 
             //      
-         player.drawMe(player.getX(),player.getY(),gc);
-         if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY()) || nextULevel2.canGo(player.getX(),player.getY()))
-         {
-            if(up)
+            player.drawMe(player.getX(),player.getY(),gc);
+            if(player.getY() > boundariesU || nextULevel.canGo(player.getX(),player.getY()) || nextULevel2.canGo(player.getX(),player.getY()))
             {
-               player.setY(player.getY() - 1);
-                  //check if player is going to next level
-               if(nextULevel.canGo(player.getX(),player.getY()))
+               if(up)
                {
-                  if(nextULevel.isInbound()) 
+                  player.setY(player.getY() - 1);
+                  //check if player is going to next level
+                  if(nextULevel.canGo(player.getX(),player.getY()))
                   {
+                     if(nextULevel.isInbound()) 
+                     {
                         //prevDLevel.staging(levelFile);
-                     levelFile = nextULevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
+                        levelFile = nextULevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
                      
-                  }
-                  //make sure player fully leaves boundaries
-                  else if(nextULevel.isOut(player.getX(),player.getY()))
-                  {
-                        //prevDLevel.staging(levelFile);
-                     levelFile = nextULevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems();    
-                  }
-               }
-               else if(nextULevel2.canGo(player.getX(),player.getY()))
-               {
-                  if(nextULevel2.isInbound()) 
-                  {
-                        //prevDLevel.staging(levelFile);
-                     levelFile = nextULevel2.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
-                  }
+                     }
                      //make sure player fully leaves boundaries
-                  else if(nextULevel2.isOut(player.getX(),player.getY()))
-                  {
+                     else if(nextULevel.isOut(player.getX(),player.getY()))
+                     {
                         //prevDLevel.staging(levelFile);
-                     levelFile = nextULevel2.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems();   
+                        levelFile = nextULevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems();    
+                     }
                   }
+                  else if(nextULevel2.canGo(player.getX(),player.getY()))
+                  {
+                     if(nextULevel2.isInbound()) 
+                     {
+                        //prevDLevel.staging(levelFile);
+                        levelFile = nextULevel2.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
+                     }
+                     //make sure player fully leaves boundaries
+                     else if(nextULevel2.isOut(player.getX(),player.getY()))
+                     {
+                        //prevDLevel.staging(levelFile);
+                        levelFile = nextULevel2.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems();   
+                     }
+                  }
+               
                }
-            
             }
-         }
-         if(player.getY() < boundariesD || prevDLevel.canGo(player.getX(),player.getY()))
-         {
-            if(down)
+            if(player.getY() < boundariesD || prevDLevel.canGo(player.getX(),player.getY()))
             {
-               player.setY(player.getY() + 1);
+               if(down)
+               {
+                  player.setY(player.getY() + 1);
                   
                   //check if player is going to next level
-               if(prevDLevel.canGo(player.getX(),player.getY()))
-               {
-                  if(prevDLevel.isInbound()) 
+                  if(prevDLevel.canGo(player.getX(),player.getY()))
                   {
+                     if(prevDLevel.isInbound()) 
+                     {
                         //need to fix with previous previous level somehow (if applicable)
                         //prevDLevel.staging(levelFile);
-                     levelFile = prevDLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
+                        levelFile = prevDLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
                         
-                  }
+                     }
                      //make sure player fully leaves boundaries
-                  else if(prevDLevel.isOut(player.getX(),player.getY())) 
-                  {
+                     else if(prevDLevel.isOut(player.getX(),player.getY())) 
+                     {
                         //need to fix with previous previous level somehow (if applicable)
                         //prevDLevel.staging(levelFile);
-                     addLevelSwitchesToArrayList();
-                     initializeItems();    
+                        addLevelSwitchesToArrayList();
+                        initializeItems();    
+                     }
                   }
                }
             }
-         }
-         if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()) || prevLLevel.canGo(player.getX(),player.getY()))
-         {            
-            if(left)
-            {
-               player.setX(player.getX() - 1);
+            if(player.getX() > boundariesL || nextLLevel.canGo(player.getX(),player.getY()) || prevLLevel.canGo(player.getX(),player.getY()))
+            {            
+               if(left)
+               {
+                  player.setX(player.getX() - 1);
                   
                   //check if player is going to next level
-               if(nextLLevel.canGo(player.getX(),player.getY()))
-               {
-                  if(nextLLevel.isInbound()) 
+                  if(nextLLevel.canGo(player.getX(),player.getY()))
                   {
-                     prevDLevel.staging(levelFile);
-                     levelFile = nextLLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
-                  }
+                     if(nextLLevel.isInbound()) 
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextLLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
+                     }
                      //make sure player fully leaves boundaries
-                  else if(nextLLevel.isOut(player.getX(),player.getY())) 
-                  {
-                     prevDLevel.staging(levelFile);
-                     levelFile = nextLLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems();    
+                     else if(nextLLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextLLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems();    
+                     }
                   }
-               }
-               else if(prevLLevel.canGo(player.getX(),player.getY()))
-               {
-                  if(prevLLevel.isInbound()) 
+                  else if(prevLLevel.canGo(player.getX(),player.getY()))
                   {
-                     levelFile = prevLLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
-                  }
+                     if(prevLLevel.isInbound()) 
+                     {
+                        levelFile = prevLLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
+                     }
                      //make sure player fully leaves boundaries
-                  else if(prevLLevel.isOut(player.getX(),player.getY())) 
-                  {
-                     addLevelSwitchesToArrayList();
-                     initializeItems();     
+                     else if(prevLLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        addLevelSwitchesToArrayList();
+                        initializeItems();     
+                     }
                   }
-               }
                   
+               }
             }
-         }
-         if(player.getX() < boundariesR || prevRLevel.canGo(player.getX(),player.getY()) || nextRLevel.canGo(player.getX(),player.getY()))
-         {
-            if(right)
+            if(player.getX() < boundariesR || prevRLevel.canGo(player.getX(),player.getY()) || nextRLevel.canGo(player.getX(),player.getY()))
             {
-               player.setX(player.getX() + 1);
+               if(right)
+               {
+                  player.setX(player.getX() + 1);
                
                   //check if player is going to next level
-               if(prevRLevel.canGo(player.getX(),player.getY()))
-               {
-                  if(prevRLevel.isInbound()) 
+                  if(prevRLevel.canGo(player.getX(),player.getY()))
                   {
-                     levelFile = prevRLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
-                  }
+                     if(prevRLevel.isInbound()) 
+                     {
+                        levelFile = prevRLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
+                     }
                      //make sure player fully leaves boundaries
-                  else if(prevRLevel.isOut(player.getX(),player.getY())) 
-                  {
-                     addLevelSwitchesToArrayList();
-                     initializeItems();     
+                     else if(prevRLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        addLevelSwitchesToArrayList();
+                        initializeItems();     
+                     }
                   }
-               }
-               else if(nextRLevel.canGo(player.getX(),player.getY()))
-               {
-                  if(nextRLevel.isInbound()) 
+                  else if(nextRLevel.canGo(player.getX(),player.getY()))
                   {
-                     prevDLevel.staging(levelFile);
-                     levelFile = nextRLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems(); 
-                  }
+                     if(nextRLevel.isInbound()) 
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextRLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems(); 
+                     }
                      //make sure player fully leaves boundaries
-                  else if(nextRLevel.isOut(player.getX(),player.getY())) 
-                  {
-                     prevDLevel.staging(levelFile);
-                     levelFile = nextRLevel.getStaging();
-                     addLevelSwitchesToArrayList();
-                     initializeItems();    
+                     else if(nextRLevel.isOut(player.getX(),player.getY())) 
+                     {
+                        prevDLevel.staging(levelFile);
+                        levelFile = nextRLevel.getStaging();
+                        addLevelSwitchesToArrayList();
+                        initializeItems();    
+                     }
                   }
-               }
-            }  
-         }
-         if(doorcounter != -1)
-         {
-            doorcounter++;
-         }
+               }  
+            }
+            if(doorcounter != -1)
+            {
+               doorcounter++;
+            }
                 
             
+         }
       }
-      
    }
    public class KeyListenerDown implements EventHandler<KeyEvent>  
    {
@@ -831,14 +838,18 @@ public class Main extends Application
             // Toggle ComboBox visibility instead of removing/adding
             if (menu.isVisible()) 
             {
-                menu.setVisible(false); // Hide ComboBox
-                sp.requestFocus(); // Return focus to the main pane (so it will listen for ESC again)
+               menu.setVisible(false); // Hide ComboBox
+               sp.requestFocus(); // Return focus to the main pane (so it will listen for ESC again)
             } 
             else 
             {
-                menu.setVisible(true); // Show ComboBox
-                menu.requestFocus(); // Focus on ComboBox when visible
+               menu.setVisible(true); // Show ComboBox
+               menu.requestFocus(); // Focus on ComboBox when visible
             }
+         }
+         if (event.getCode() == KeyCode.H) 
+         {
+            start = true;
          }
          
          if (event.getCode() == KeyCode.W)  
@@ -984,7 +995,7 @@ public class Main extends Application
                         }
                         else
                         {
-                        tempSwitches.get(i).add(new levelSwitch(levelSwitches.get(i).get(j)));
+                           tempSwitches.get(i).add(new levelSwitch(levelSwitches.get(i).get(j)));
                         }
                      }
                   }
