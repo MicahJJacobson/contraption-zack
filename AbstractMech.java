@@ -151,7 +151,27 @@ public abstract class AbstractMech implements Cloneable
       return true; 
    }
    
-    
+   public void springMove(Player player, String direction, int x, int y) 
+   {
+      player.setX(x);
+      player.setY(y);
+      if(direction.equals("right")) 
+      {
+         player.setX(player.getX()+50);
+      }
+      else if(direction.equals("left")) 
+      {
+         player.setX(player.getX()-50);
+      }
+      else if(direction.equals("up")) 
+      {
+         player.setY(player.getY()-50);
+      }
+      else if(direction.equals("down")) 
+      {
+         player.setY(player.getY()+50);
+      }
+   }  
 
 }   
 
