@@ -13,6 +13,7 @@ LB GREY 889 339 LB GREY 689 139 LB GREY 839 139 LB GREY 889 239
 Boundaries 409 134 634 909
 NextU 134 684 909 In?U true
 PreviousD 0 0 0 PIn?D true
+PreviousR 909 0 1000 PIn?D true
 levelUFile 8thLevel.txt
 levelRFile 6thLevel.txt
 StartPos 884 334

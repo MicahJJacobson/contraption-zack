@@ -1,0 +1,9 @@
+diff a/ElectricWall.java b/ElectricWall.java	(rejected hunks)
+@@ -0,6 +0,7 @@
+ import javafx.scene.*;
+ import javafx.scene.text.*;
+ import javafx.stage.*;
++import javafx.scene.control.*;
+ import javafx.scene.layout.*;
+ import java.util.*;
+ import javafx.scene.paint.*;
