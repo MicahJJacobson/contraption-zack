@@ -119,7 +119,7 @@ public class Main extends Application
    //intially 1st level
 //<<<<<<< HEAD
 //<<<<<<< HEAD
-   String levelFile = "2ndLevel.txt";
+   String levelFile = "1stLevel.txt";
 
    public void start(Stage stage)
    {
@@ -777,7 +777,7 @@ public class Main extends Application
                      tempMechs.get(i).add(mechs.get(i).get(j).clone());
                   }
                }
-               saveList.set(0, new ArrayList<ArrayList<AbstractMech>>());
+               //saveList.set(0, tempMechs);
                //this will create a shallow copy of the mechs arraylist
                //
                
