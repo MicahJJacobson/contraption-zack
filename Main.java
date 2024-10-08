@@ -122,7 +122,7 @@ public class Main extends Application
 
 
    //intially 1st level
-   String levelFile = "4thLevel.txt";
+   String levelFile = "7thLevel.txt";
 
    public void start(Stage stage)
    {
