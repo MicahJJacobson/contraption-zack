@@ -127,23 +127,10 @@ public class Main extends Application
 
 
    //intially 1st level
-<<<<<<< HEAD
-   String levelFile = "1stLevel.txt";
-=======
-<<<<<<< HEAD
 
    String levelFile = "1stLevel.txt";
 
-=======
-   String levelFile = "9thLevel.txt";
->>>>>>> origin/main
->>>>>>> 6f7c82021e1c20b08d8ed034a0cddec0f0488029
 
-=======
-   
-   String levelFile = "1stLevel.txt";
-   
->>>>>>> origin/main
    public void start(Stage stage)
    {
       for(int i = 0; i < 10; i++)
@@ -757,7 +744,7 @@ public class Main extends Application
                   //check if player is going to next level
                   if(nextLLevel.canGo(player.getX(),player.getY()))
                   {
-<<<<<<< HEAD
+
                      //prevDLevel.staging(levelFile);
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
@@ -770,7 +757,7 @@ public class Main extends Application
                      levelFile = nextLLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
-=======
+
                      if(nextLLevel.isInbound()) 
                      {
                         prevDLevel.staging(levelFile);
@@ -786,7 +773,6 @@ public class Main extends Application
                         addLevelSwitchesToArrayList();
                         initializeItems();    
                      }
->>>>>>> 6f7c82021e1c20b08d8ed034a0cddec0f0488029
                   }
                   else if(prevLLevel.canGo(player.getX(),player.getY()))
                   {
@@ -830,7 +816,7 @@ public class Main extends Application
                   }
                   else if(nextRLevel.canGo(player.getX(),player.getY()))
                   {
-<<<<<<< HEAD
+
                      //prevDLevel.staging(levelFile);
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
@@ -843,7 +829,7 @@ public class Main extends Application
                      levelFile = nextRLevel.getStaging();
                      addLevelSwitchesToArrayList();
                      initializeItems();    
-=======
+
                      if(nextRLevel.isInbound()) 
                      {
                         prevDLevel.staging(levelFile);
@@ -859,7 +845,6 @@ public class Main extends Application
                         addLevelSwitchesToArrayList();
                         initializeItems();    
                      }
->>>>>>> 6f7c82021e1c20b08d8ed034a0cddec0f0488029
                   }
                }  
             }
