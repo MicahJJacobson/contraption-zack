@@ -32,6 +32,21 @@ public class Wall extends AbstractMech
       //outlineColor = Color.BLACK;
    }
    
+   public Wall(Wall other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+   }
+   
+   public Wall clone()
+   {
+      return new Wall(this);
+   }
+   
+   public static Wall clone(Wall other)
+   {
+      return new Wall(other);
+   }
+   
    /*
    public Wall(int x , int y, int width, int height, boolean hasCollisions, Color color, Color outlineColor)
    {

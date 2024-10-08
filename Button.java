@@ -31,6 +31,21 @@ public class Button extends AbstractMech
       super(x, y, 50, 50, true, color);
    }
    
+   public Button(Button other)
+   {
+      super(other.x, other.y, other.width, other.height, other.hasCollisions, other.color);
+   }
+   
+   public Button clone()
+   {
+      return new Button(this);
+   }
+   
+   public static Button clone(Button other)
+   {
+      return new Button(other);
+   }
+   
    public void swapCollisions()
    {
       //will swap the value of hasCollisions

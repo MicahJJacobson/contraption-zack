@@ -13,8 +13,10 @@ LB GREY 889 339 LB GREY 689 139 LB GREY 839 139 LB GREY 889 239
 Boundaries 409 134 634 909
 NextU 184 800 909 In?U false
 PreviousD 510 0 1000 PIn?D true
-levelUFile None
-levelDFile 6thLevel.txt
+levelUFile 8thLevel.txt
+levelRFile 6thLevel.txt
+StartPos 884 334
+ReturnPosU 884 234
 end
 B BLUE 634 384 SV BLUE 834 234 12 50 true
 B YELLOW 634 134 SH YELLOW 784 219 true

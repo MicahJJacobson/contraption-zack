@@ -18,7 +18,7 @@ import javafx.scene.input.*;
 import javafx.animation.*;
 import java.awt.Point;
 
-public abstract class AbstractMech
+public abstract class AbstractMech implements Cloneable
 {
    protected int x;
    protected int y;
@@ -50,6 +50,16 @@ public abstract class AbstractMech
       this.hasCollisions = hasCollisions;
       this.color = color;
    }
+   
+   public AbstractMech clone() 
+   {
+        try 
+        {
+            return (AbstractMech) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // This shouldn't happen since we are Cloneable
+        }
+    }
 
    public abstract void drawMe(GraphicsContext gc);
    public int getHeight()
@@ -129,39 +139,18 @@ public abstract class AbstractMech
       {
          Spring spring = (Spring)this;
          //We want spring to have collisions
-         if(spring.getCollisions() == true)
+         if(spring.getIsActivated() == false)
          {
-            spring.swapCollisions();
-            String direction = spring.getDirection();
-            springMove(player, direction, spring.getX(), spring.getY());
+            //spring.swapCollisions();
+            spring.activate();
+            spring.springMove(player);
          }
       }
       
       //if the rectangles overlap, then return true
       return true; 
    }
-   
-   public void springMove(Player player, String direction, int x, int y) 
-   {
-      player.setX(x);
-      player.setY(y);
-      if(direction.equals("right")) 
-      {
-         player.setX(player.getX()+50);
-      }
-      else if(direction.equals("left")) 
-      {
-         player.setX(player.getX()-50);
-      }
-      else if(direction.equals("up")) 
-      {
-         player.setY(player.getY()-50);
-      }
-      else if(direction.equals("down")) 
-      {
-         player.setY(player.getY()+50);
-      }
-   }  
+     
 
 }   
 
