@@ -152,7 +152,6 @@ public class Button extends AbstractMech
    
    public static void addSpike(Spike spike)
    {
-      System.out.println(currentRoom);
       while(spikes.size() <= currentRoom)
       {
          spikes.add(new ArrayList<Spike>());

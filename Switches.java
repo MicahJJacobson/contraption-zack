@@ -74,18 +74,15 @@ public class Switches extends Button
 
             if(isActivated == true)
             {
-            System.out.println("Scooby snacks?");
-            int borderWidth = 7;
             gc.setFill(color);
-            gc.fillRect(x, y, 5, 7);
+            gc.fillRect(x, y+2, 10, 10);
             }
       
 
          if(isActivated == false)
          {
-            int borderWidth = 7;
             gc.setFill(color);
-            gc.fillRect(x, y, 5, 5);
+            gc.fillRect(x, y, 10, 10);
                
          }
          

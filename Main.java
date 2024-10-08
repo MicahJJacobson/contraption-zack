@@ -519,7 +519,6 @@ public class Main extends Application
       drawBackground();
       for (int i = 0; i < mechs.get(currentRoom).size(); i++)
       {
-         System.out.println(currentRoom);
          mechs.get(currentRoom).get(i).drawMe(gc);
       }
       
