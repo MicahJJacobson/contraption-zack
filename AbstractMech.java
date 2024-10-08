@@ -143,8 +143,6 @@ public abstract class AbstractMech implements Cloneable
          }
       }
       
-      
-      
       if(this instanceof Spring)
       {
          Spring spring = (Spring)this;
