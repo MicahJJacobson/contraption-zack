@@ -21,7 +21,7 @@ public class Main extends Application
 {
 
    AnimationHandler ta = new AnimationHandler();
-   ComboBox menu = new ComboBox();
+   ComboBox<String> menu = new ComboBox<>();
    StackPane sp = new StackPane();
    GridPane gp = new GridPane(); 
    Canvas theCanvas = new Canvas(1368,768);
@@ -1001,7 +1001,12 @@ public class Main extends Application
       
    }
    */
-   
+ 
+   // compiler said the following:
+   // warning: [unchecked] unchecked cast
+   // I took the part in the brackets for the type of warning to be suppressed
+   // this is needed because the type casting from the save array was generating warnings but we know it will always be the right type so we can just ignore it
+   @SuppressWarnings("unchecked")
    public class ComboBoxListener implements EventHandler<ActionEvent>
    {
       public void handle(ActionEvent e)
@@ -1013,7 +1018,7 @@ public class Main extends Application
          }
          else
          {
-            switch((String)menu.getValue())
+            switch(menu.getValue())
             {
                case "Save":
                   
@@ -1073,7 +1078,8 @@ public class Main extends Application
                      break;
                   }
                   //typecasting all of thhe ArrayLists back to their original types and then setting them to their respective references
-                  mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
+                  
+		  mechs = (ArrayList<ArrayList<AbstractMech>>)saveList.get(0);
                   boundaries = (ArrayList<ArrayList<Integer>>)saveList.get(1);
                   levelSwitches = (ArrayList<ArrayList<levelSwitch>>)saveList.get(2);
                   levelFile = (String)saveList.get(3);
@@ -1149,4 +1155,8 @@ public class Main extends Application
          }
       }
    }
+	public static void main(String[] args)
+	{
+		launch(args);
+	}
 }
